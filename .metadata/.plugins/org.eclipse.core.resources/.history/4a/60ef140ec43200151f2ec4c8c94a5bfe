@@ -1,0 +1,28 @@
+package treesAndTreeLikeStructures;
+
+public class Folder {
+	private String name;
+	private File[] files;
+	private Folder[] childFolders;
+	
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public File[] getFiles() {
+		return files;
+	}
+	public void setFiles(File[] files) {
+		this.files = files;
+	}
+	public Folder[] getChildFolders() {
+		return childFolders;
+	}
+	public void setChildFolders(Folder[] childFolders) {
+		this.childFolders = childFolders;
+	}
+	
+	
+}

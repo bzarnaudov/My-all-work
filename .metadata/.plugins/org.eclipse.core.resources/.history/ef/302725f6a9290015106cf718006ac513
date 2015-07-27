@@ -1,0 +1,21 @@
+package stacksAndQueues;
+
+import java.util.Scanner;
+import java.util.Stack;
+
+public class Problem2CalculateSequenceWithAQueue {
+
+	public static void main(String[] args) {
+		Queue<Integer> queueSequence = new Queue<Integer>();
+		Scanner input = new Scanner(System.in);
+		System.out.print("Please write number for the first of a sequence  : ");
+		int inputN = input.nextInt();
+		for (int index = 1; index <= 50; index++) {
+			
+			System.out.println();
+		}
+		input.close();
+
+	}
+
+}

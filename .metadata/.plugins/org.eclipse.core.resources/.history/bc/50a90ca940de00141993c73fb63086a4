@@ -1,0 +1,25 @@
+package all;
+
+import java.util.Random;
+
+public class Psuvni {
+
+	private static String[] deistvie = {"shte te eba v", 
+		"shte ti go nachukam v"};
+	private static String[] dopulnenie = {"ushite", 
+			"ustata", "nosa", 
+			"putkata", 
+			"guzut"};
+	private static String[] obrushtenie = {"glupak", "prostak", "shibidak", "idio", "sersemin"};
+	private static String[] epitet = {"smahnat", "smeshen", "glamav", "kriv", "naeban"};
+	
+	public static void main(String[] args) {
+		Random rnd = new Random();
+		System.out.println(deistvie[rnd.nextInt(deistvie.length)]
+				+ " " + dopulnenie[rnd.nextInt(dopulnenie.length)] 
+				+ " " + epitet[rnd.nextInt(epitet.length)]
+				+ " " + epitet[rnd.nextInt(epitet.length)]
+				+ " " + obrushtenie[rnd.nextInt(obrushtenie.length)]);
+		
+	}
+}

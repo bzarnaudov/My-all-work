@@ -1,0 +1,40 @@
+package all;
+
+@SuppressWarnings({"unchecked"})
+
+public class CircularQueue<T> {
+	private T[] elements;
+	private int startIndex = 0;
+    private int endIndex = 0;
+    private int count;
+
+    private final int INITIALCAPACITY = 16;
+    
+    public int count() {
+    	return this.count;
+    }
+	
+    public CircularQueue() {
+    	this.elements = (T[]) new Object[INITIALCAPACITY];
+        this.count = 0;
+    }
+    
+    public CircularQueue(int capacity) {
+    	this.elements = (T[]) new Object[capacity];
+        this.count = 0;
+    }
+    
+    public void enqueue(T element) {
+    	if (this.count >= this.elements.length) {
+            this.Grow();
+        }
+        this.elements[this.endIndex] = element;
+        this.endIndex = (this.endIndex + 1) % this.elements.length;
+        this.count++;
+    }
+
+	private void Grow() {
+		// TODO Auto-generated method stub
+		
+	}
+}

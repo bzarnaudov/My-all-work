@@ -1,0 +1,89 @@
+package treesAndTreeLikeStructures;
+
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Scanner;
+import java.util.TreeSet;
+
+public class Problem1PlayWithTrees<T> {
+	
+	static Map<Integer, Tree<Integer>> nodeByValue = new HashMap<>();
+		
+	public static void main(String[] args) {
+		Scanner input = new Scanner(System.in);
+		System.out.print("Please write number of nodes in the tree : ");
+		int nodesCount = Integer.parseInt(input.nextLine());
+		for ( int i = 1; i < nodesCount; i++) {
+			System.out.println("Write parent and child with space between them(edge " + i + ") : " );
+			String[] edge = input.nextLine().split(" ");
+			int parentValue = Integer.parseInt(edge[0]);
+			Tree<Integer> parentNode = getTreeNodeByValue(parentValue);
+			int childValue = Integer.parseInt(edge[1]);
+			Tree<Integer> childNode = getTreeNodeByValue(childValue);
+			parentNode.getChildren().add(childNode);
+			childNode.setParent(parentNode);
+		
+		}
+		System.out.println("Write path sum : ");
+//		int pathSum = Integer.parseInt(input.nextLine());
+		System.out.println("Write subtree sum : ");
+//		int subtreeSum = Integer.parseInt(input.nextLine());
+		
+		System.out.println("Root node: " + findRootNode().getValue());
+		System.out.printf("Leaf nodes: " + findLeafNodes().toString() + "\n");
+		System.out.printf("Middle nodes: " + findMiddleNodes().toString() + "\n");
+//		System.out.println("Longest path: " + findLongestPath());
+//		System.out.println("Paths of sum " + pathSum + ":");
+		input.close();
+	}
+
+	private static String findLongestPath() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	private static TreeSet<Integer> findMiddleNodes() {
+		TreeSet<Integer> middleNodes = new TreeSet<>();
+		for (Tree<Integer> node : nodeByValue.values()) {
+			if (node.getParent() != null && !node.getChildren().isEmpty()) {
+				middleNodes.add(node.getValue());
+			}
+		}	
+		return middleNodes;
+	}
+
+	private static TreeSet<Integer> findLeafNodes() {
+		TreeSet<Integer> leafNodes = new TreeSet<>();
+		for (Tree<Integer> node : nodeByValue.values()) {
+			if (node.getParent() != null && node.getChildren().isEmpty()) {
+				leafNodes.add(node.getValue());
+			}
+		}	
+		return leafNodes;
+	}
+
+	//dictionary to map nodes by their value
+	@SuppressWarnings("unchecked")
+	private static Tree<Integer> getTreeNodeByValue(
+			int value) {
+		if (!nodeByValue.containsKey(value)) {
+			nodeByValue.put(value, new Tree<Integer>(value));
+		}
+		return nodeByValue.get(value);
+	}
+	
+	public static  Tree<Integer> findRootNode() {
+		Tree<Integer> rootNode = null;
+		for (Tree<Integer> node : nodeByValue.values()) {
+			if (node.getParent() == null) {
+				rootNode = node;
+			}
+		}
+		return rootNode;
+	}
+
+	
+}
+

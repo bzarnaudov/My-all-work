@@ -1,0 +1,85 @@
+package all;
+
+
+
+public class CustomArrayList {
+	private Object[] arr;
+	private int count;
+	private static final int INITIAL_CAPACITY = 4;
+	/** Initializes the array-based list – allocate memory **/
+	
+	public CustomArrayList() {
+		arr = new Object[INITIAL_CAPACITY];
+	}
+	/**
+	* @return the actual list length
+	*/
+	public int getLength() {
+		return count;
+	}
+	
+	/**
+	* Adds element to the list
+	* @param item - the element you want to add
+	*/
+	public void add(Object item) {
+		add(count, item);
+	}
+	
+	/**
+	* Inserts the specified element at given position in this list
+	* @param index -
+	* index at which the specified element is to be inserted
+	* @param item -
+	* element to be inserted
+	* @throws IndexOutOfBoundsException
+	*/
+	public void add(int index, Object item) {
+		if (index>count || index<0) {
+			throw new IndexOutOfBoundsException("Invalid index: " + index);
+		}
+		Object[] extendedArr = arr;
+		if (count + 1 == arr.length) {
+			extendedArr = new Object[arr.length * 2];
+		}
+		System.arraycopy(arr, 0, extendedArr, 0, index);
+		count++;
+		System.arraycopy(arr, index, extendedArr, index+1, count-index-1);
+		extendedArr[index] = item;
+		arr = extendedArr;
+	}
+	
+	/**
+	* Returns the index of the first occurrence of the specified
+	* element in this list.
+	*
+	* @param item - the element you are searching
+	* @return the index of given element or -1 is not found
+	*/
+	public int indexOf(Object item) {
+		if (item == null) {
+			for (int i = 0; i < arr.length; i++) {
+				if (arr[i] == null)
+					return i;
+			}
+		} else {
+			for (int i = 0; i < arr.length; i++)
+				if (item.equals(arr[i]))
+					return i;
+		}
+		return -1;
+	}
+	
+	/**
+	* Clears the list
+	*/
+	public void clear() {
+		arr = new Object[0];
+		count = 0;
+	}
+	
+	
+	
+}
+	
+

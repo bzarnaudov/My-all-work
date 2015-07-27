@@ -1,0 +1,28 @@
+package treesAndTreeLikeStructures;
+
+import java.util.ArrayList;
+
+public class Tree<T> {
+	private T value;
+	private Tree<T> parent;
+	private ArrayList<Tree<T>> children;
+	
+	public Tree(T value) {
+		if (value == null) {
+			throw new IllegalArgumentException(
+			"Cannot insert null value!");
+		}
+		this.value = value;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public Tree(T value, Tree<T> ...children) {
+		this.value = value;
+		this.children = new ArrayList<Tree<T>>();
+		
+		for (Tree<T> child : children) {
+			this.children.add(child);
+			child.parent = this;
+		}
+	}
+}

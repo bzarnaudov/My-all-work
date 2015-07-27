@@ -1,0 +1,6 @@
+package treesAndTreeLikeStructures;
+
+public class File {
+	private String name;
+	private int size;
+}

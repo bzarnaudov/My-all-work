@@ -1,0 +1,52 @@
+package stacksAndQueues;
+
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Scanner;
+
+public class Problem9SequenceNtoM {
+	
+	private class Item { 
+        public int value;
+        public Item previousItem;
+
+        public Item(int value, Item previousItem)
+        {
+            this.value = value;
+            this.previousItem = previousItem;
+        }
+    }
+
+	public static void main(String[] args) {
+		int n, m;
+		Scanner input = new Scanner(System.in);
+		System.out.print("Please enter n : ");
+		n = input.nextInt();
+		System.out.println();
+		System.out.print("Please enter m : ");
+		m = input.nextInt();
+		Queue<Item> queue = new LinkedList<Item>();
+		queue.add(new Item(n, null));
+		while (queue.size() > 0) {
+			int e = queue.poll();
+			if ( e < m) {
+				
+			}
+		}
+		
+		input.close();
+	}
+	
+	public int plusOne(int number) {
+		return number + 1;
+	}
+	
+	public int plusTwo(int number) {
+		return number + 2;
+	}
+	
+	public int multipliedByTwo(int number) {
+		return number*2;
+	}
+
+}

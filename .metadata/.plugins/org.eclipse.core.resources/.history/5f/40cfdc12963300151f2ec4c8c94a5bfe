@@ -1,0 +1,233 @@
+package treesAndTreeLikeStructures;
+
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Scanner;
+import java.util.Stack;
+
+public class Problem3CalculateArithmeticExpression {
+
+	public static void main(String[] args) {
+		Scanner input = new Scanner(System.in);
+		System.out.print("Please write arithmetic expression : ");
+		String inputString = input.nextLine();
+		String[] symbols = getExpressionsElements(inputString);
+		for ( String symbol : symbols) {
+			System.out.println(symbol);
+		}
+		try {
+			Queue<String> outputQueue = shuntingYardAlorithm(symbols);
+			while (!outputQueue.isEmpty()) {
+				System.out.println(outputQueue.poll());
+			}
+			System.out.println(calculateExpression(outputQueue));
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
+		
+		input.close();
+	}
+	
+	//Implementing the Reverse Polish Notation Algorithm
+	private static double calculateExpression(Queue<String> outputQueue) {
+		Stack<double> operationStack = new Stack<double>();
+
+        /* While the input queue is not empty, dequeue the next element */
+        while (postfixExpression.Count > 0)
+        {
+            string element = postfixExpression.Dequeue();
+
+            /* If the element is a number, push in to the operation stack */
+            if (numRegex.IsMatch(element) || floatingNumRegex.IsMatch(element))
+            {
+                double number = double.Parse(element);
+                operationStack.Push(number);
+            }
+            else if (IsOperator(element))
+            {
+                /* 
+                 * If it is an operator, get the first two elements 
+                 * of the operation stack and apply the operator.
+                 * If there are less than two numbers in the stack,
+                 * the expression is invalid.
+                 */
+                try
+                {
+                    double secondNumber = operationStack.Pop();
+                    double firstNumber = operationStack.Pop();
+                    double result = 0;
+
+                    switch (element)
+                    {
+                        case "+":
+                            result = firstNumber + secondNumber;
+                            break;
+                        case "-":
+                            result = firstNumber - secondNumber;
+                            break;
+                        case "*":
+                            result = firstNumber * secondNumber;
+                            break;
+                        case "/":
+                            result = firstNumber / secondNumber;
+                            break;
+                        default:
+                            throw new ArgumentException("The expression is invalid");
+                    }
+
+                    operationStack.Push(result);
+                }
+                catch (Exception e)
+                {
+                    throw new ArgumentException("The expression is invalid");
+                }
+                
+            }
+            else
+            {
+                throw new ArgumentException("The expression is invalid");
+            }
+        }
+
+        /* 
+         * If there are more or less than one element in the stack left,
+         * the expression is invalid.
+         */
+        if (operationStack.Count != 1)
+        {
+            throw new ArgumentException("The expression is invalid");
+        }
+
+        return operationStack.Pop();
+		
+		
+		return 0;
+	}
+
+	static String wordRegex = "[a-zA-Z]+";
+    static String numRegex = "-?[0-9]+";
+    static String floatingNumRegex = "-?[0-9]+\\.[0-9]+";
+    
+	/* Convert the input string to an array with every member of the expression */
+	private static String[] getExpressionsElements(String inputString) {
+		Queue<String> outputQueue = new LinkedList<String>();
+		String currentExpression = "";
+	    for (int index = 0; index < inputString.length(); index++) {
+	    	if (inputString.substring(index, index+1).matches(wordRegex)) {
+	    		currentExpression += inputString.charAt(index);
+	        } else if (inputString.substring(index, index+1).matches(numRegex) || 
+	        		inputString.charAt(index) == '.' || (inputString.charAt(index) == '-' && 
+	        		index + 1 < inputString.length() && inputString.substring(index, index+1).matches(numRegex))) {
+	        	currentExpression += inputString.charAt(index);
+	        } else if (currentExpression.length() > 0) {
+	                outputQueue.add(currentExpression);
+	                currentExpression = "";
+	                index--;
+	        } else {
+	        	if (inputString.charAt(index) != ' ') {
+	        		outputQueue.add(inputString.substring(index, index+1));
+	            }
+	        }
+	    }
+        if (currentExpression.length() > 0) {
+        	outputQueue.add(currentExpression);
+        }
+        String[] arr = new String[outputQueue.size()];
+        return outputQueue.toArray(arr);
+    }
+
+	private static Queue<String> shuntingYardAlorithm(String[] symbols) throws Exception {
+		Queue<String> outputQueue = new LinkedList<String>();
+		Stack<String> stack = new Stack<String>();
+		for (int i=0; i< symbols.length; i++) {
+			// 1. push numbers in output queue in any case
+			if (symbols[i].matches(numRegex) || symbols[i].matches(floatingNumRegex)) {
+				outputQueue.add(symbols[i]);
+			} else if (isFunction(symbols[i])) {
+				// 2. Push operators in operation stack if stack is empty
+				if (stack.isEmpty()) {
+					stack.push(symbols[i]);
+				} else {
+					/* 
+                     * 3. If operator to push is with higher precedence than 
+                     * the top one - push it
+                     * If not, pop all operators with higher or equal precedence 
+                     * and push them to the queue 
+                     */
+					while (!stack.isEmpty() && isFunction(symbols[i]) && 
+							isFunction(stack.peek()) && 
+							(checkFunctionPrecedence(stack.peek(), symbols[i]) > 0)) {
+						String topOperatorInStack = stack.pop();
+						outputQueue.add(topOperatorInStack);
+					}
+					stack.push(symbols[i]);
+				}
+			} else if (symbols[i].compareTo("(") == 0) {
+				 // 4. If left parenthesis - push to stack
+                stack.push(symbols[i]);
+			} else if (symbols[i].compareTo(")") == 0) {
+				 /* 
+                 * 5. If right parenthesis - 
+                 * pop all operators from stack into queue
+                 * until left parenthesis is reached 
+                 */
+                while (!stack.isEmpty() && stack.peek() != "(") {
+                    String topOperatorInStack = stack.pop();
+                    outputQueue.add(topOperatorInStack);
+                }
+                /* If no left parenthesis is reached - The expression is invalid */
+                if (stack.isEmpty() || stack.peek() != "(") {
+                    throw new Exception("The expression is invalid");
+                } else {
+                    stack.pop();
+                }
+			} else {
+				/*
+                 * If the element is not a number, operator or a parenthesis,
+                 * the expression is invalid.
+                 */
+                throw new Exception("The expression is invalid");
+			}
+		}
+			
+		/*
+		 * While there are still operator tokens in the stack:
+	     *     * If the operator token on the top of the stack is a parenthesis, 
+	     *          then there are mismatched parentheses.
+	     *     * Pop the operator onto the output queue.
+	    */
+	    while (!stack.isEmpty()) {
+	    	String topOperatorInStack = stack.pop();
+	        if (!isFunction(topOperatorInStack)) {
+	        	throw new Exception("The expression is invalid");
+	        }
+	        outputQueue.add(topOperatorInStack);
+	    }
+	    return outputQueue;
+	}
+	
+	private static int checkFunctionPrecedence (String first, String second) {
+		if ((first.compareTo("-") == 0 || first.compareTo("+") == 0) &&
+				(second.compareTo("*") == 0 || second.compareTo("/") == 0)) {
+			return -1;
+		} else if ((second.compareTo("-") == 0 || second.compareTo("+") == 0) &&
+				(first.compareTo("*") == 0 || first.compareTo("/") == 0)) {
+			return 1;
+		} else {
+			return 0;
+		}
+	}
+	
+	private static boolean isFunction(String str) {
+		CharSequence cs1 = "^";
+		CharSequence cs2 = "*";
+		CharSequence cs3 = "/";
+		CharSequence cs4 = "+";
+		CharSequence cs5 = "-";
+		
+		return str.contains(cs1) || str.contains(cs2) ||
+				str.contains(cs3) || str.contains(cs4) || 
+				str.contains(cs5);
+	}	
+}

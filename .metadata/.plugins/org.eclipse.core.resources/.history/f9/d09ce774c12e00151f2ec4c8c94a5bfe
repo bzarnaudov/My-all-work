@@ -1,0 +1,41 @@
+package all;
+
+/**
+* Represents a binary tree structure.
+*/
+
+public class BinaryTree<T> {
+	/**
+	* Represents a binary tree node.
+	* @param <T> - the type of the values in nodes.
+	*/
+	public static class BinaryTreeNode<T> {
+		// Contains the value of the node
+		private T value;
+		// Shows whether the current node has parent
+		private boolean hasParent;
+		// Contains the left child of the node
+		private BinaryTreeNode<T> leftChild;
+		// Contains the right child of the node
+		private BinaryTreeNode<T> rightChild;
+		/**
+		* Constructs a binary tree node.
+		* @param value - the value of the node.
+		* @param leftChild - the left child of the node.
+		* @param rightChild - the right child of the node.
+		*/
+		public BinaryTreeNode(T value, BinaryTreeNode<T> leftChild,
+				BinaryTreeNode<T> rightChild) {
+			if (value == null) {
+				throw new IllegalArgumentException(
+				"Cannot insert null value!");
+			}
+			this.value = value;
+			this.leftChild = leftChild;
+			this.rightChild = rightChild;
+		}
+				
+	}
+	
+
+}

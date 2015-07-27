@@ -1,0 +1,74 @@
+package stacksAndQueues;
+
+import java.util.NoSuchElementException;
+
+import org.junit.Rule;
+import org.junit.Test;
+import org.junit.rules.ExpectedException;
+
+import static org.junit.Assert.*;
+
+
+public class Problem4ArrayBasedStackUnitTests {
+
+	@Test
+    public void testPushPopElement() {
+		Problem3ArrayBasedStack<Integer> myUnit = new Problem3ArrayBasedStack<Integer>();
+		assertEquals(0, myUnit.count());
+		myUnit.push(5);
+		assertEquals(1, myUnit.count());
+		int popedElement = myUnit.pop();
+		assertEquals(popedElement, 5);
+		assertEquals(0, myUnit.count());
+    }
+	
+	@Test
+    public void testPushPop1000Elements() {
+		Problem3ArrayBasedStack<String> myUnit = new Problem3ArrayBasedStack<String>();
+		assertEquals(0, myUnit.count());
+		for (int i = 1; i <= 1000; i++) {
+			myUnit.push("patka" + i);
+			assertEquals(i, myUnit.count());
+		}
+		String popedElement;
+		for (int i = 1000; i >= 1; i--) {
+			popedElement = myUnit.pop();
+			assertEquals(popedElement, "patka" + i);
+			assertEquals(i-1, myUnit.count());
+		}
+	}
+	
+	@Rule public ExpectedException thrown= ExpectedException.none();
+	@Test
+	public void testPopFromEmptyStack() {
+		Problem3ArrayBasedStack<String> myUnit = new Problem3ArrayBasedStack<String>();		
+		
+		thrown.expect( NoSuchElementException.class );
+		thrown.expectMessage("Stack is empty");
+		myUnit.pop();
+	}
+	
+	@Test
+	public void testPushPopWithInitialCapacity() {
+		Problem3ArrayBasedStack<Integer> myUnit = new Problem3ArrayBasedStack<Integer>(1);		
+		assertEquals(0, myUnit.count());
+		myUnit.push(5);
+		assertEquals(1, myUnit.count());
+		myUnit.push(15);
+		assertEquals(2, myUnit.count());
+		int popedElement = myUnit.pop();
+		assertEquals(popedElement, 15);
+		assertEquals(1, myUnit.count());
+		popedElement = myUnit.pop();
+		assertEquals(popedElement, 5);
+		assertEquals(0, myUnit.count());
+	}
+	
+	@Test
+	public void testToArray() {
+		Problem3ArrayBasedStack<Integer> myUnit = new Problem3ArrayBasedStack<Integer>();		
+		
+	}
+	
+	
+}

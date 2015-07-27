@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;all.SumAndAverage&apos; to &apos;Problem1SumAndAverage&apos;&#x0D;&#x0A;- Original project: &apos;SoftUniDataStructures&apos;&#x0D;&#x0A;- Original element: &apos;all.SumAndAverage&apos;&#x0D;&#x0A;- Renamed element: &apos;all.Problem1SumAndAverage&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;SumAndAverage&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;all{SumAndAverage.java[SumAndAverage" matchStrategy="1" name="Problem1SumAndAverage" qualified="false" references="true" similarDeclarations="false" stamp="1436312179475" textual="false" version="1.0"/>
+</session>

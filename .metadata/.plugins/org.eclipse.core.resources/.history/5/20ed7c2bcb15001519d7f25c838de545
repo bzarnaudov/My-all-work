@@ -1,0 +1,24 @@
+package all;
+
+
+
+public class CustomArrayList {
+	private Object[] arr;
+	private int count;
+	private static final int INITIAL_CAPACITY = 4;
+	/** Initializes the array-based list – allocate memory **/
+	
+	public CustomArrayList() {
+		arr = new Object[INITIAL_CAPACITY];
+	}
+	/**
+	* @return the actual list length
+	*/
+	public int getLength() {
+		return count;
+	}
+	
+
+}
+	
+

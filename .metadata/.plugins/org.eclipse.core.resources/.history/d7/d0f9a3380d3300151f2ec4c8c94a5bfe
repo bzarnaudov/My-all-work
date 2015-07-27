@@ -1,0 +1,28 @@
+package treesAndTreeLikeStructures;
+
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Scanner;
+import java.util.Stack;
+
+public class Problem3CalculateArithmeticExpression {
+
+	public static void main(String[] args) {
+		Scanner input = new Scanner(System.in);
+		System.out.print("Please write arithmetic expression : ");
+		String inputString = input.nextLine();
+		String[] numbers = inputString.split(" ");
+		Queue<Double> outputQueue = new LinkedList<Double>();
+		Stack<String> stack = new Stack<String>();
+		
+		
+		
+//		for (int i=0; i< numbers.length; i++) {
+//			reverseNumbers.push(Integer.parseInt(numbers[i]));
+//		}
+
+	}
+
+	
+	
+}

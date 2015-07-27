@@ -1,0 +1,10 @@
+package newToJava;
+
+public class CatManipulating {
+	public static void main(String[] args) {
+		Cat myCat = new Cat();
+		myCat.setName("Alfred");
+		System.out.printf("The name of my cat is %s.", myCat.getName());
+		myCat.sayMiau();
+	}
+}

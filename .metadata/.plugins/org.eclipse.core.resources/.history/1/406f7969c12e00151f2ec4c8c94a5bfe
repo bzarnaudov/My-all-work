@@ -1,0 +1,17 @@
+package all;
+
+/**
+* Represents a binary tree structure.
+*/
+
+public class BinaryTree<T> {
+	/**
+	* Represents a binary tree node.
+	* @param <T> - the type of the values in nodes.
+	*/
+	public static class BinaryTreeNode<T> {
+		
+	}
+	
+
+}

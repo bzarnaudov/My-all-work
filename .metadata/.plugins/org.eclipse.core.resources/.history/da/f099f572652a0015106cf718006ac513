@@ -1,0 +1,62 @@
+package stacksAndQueues;
+
+public class Problem3ArrayBasedStack {
+	private int count;
+    private Object[] elements;
+    private final int INITIALCAPACITY = 16;
+
+    public Problem3ArrayBasedStack() {
+        elements = new Object[INITIALCAPACITY];
+        count = 0;
+    }
+    
+    public Problem3ArrayBasedStack(int capacity) {
+    	if (capacity <= 0) {
+    		throw new IllegalArgumentException("Stack's capacity must be positive");
+    	}
+        elements = new Object[capacity];
+        count = 0;
+    }
+
+    public int capacity() {
+    	return elements.length;
+    }
+
+    void push(Object element) {
+        if (count == elements.length) {
+              grow();
+        }
+        count++;
+        elements[count-1] = element;
+    }
+
+    private void grow() {
+		Object[] newElements = new Object[this.elements.length*2];
+		System.arraycopy(elements, 0, newElements, 0, this.count);
+	}
+
+	public Object peek() {
+        if (count == 0) {
+              throw new StackException("Stack is empty");
+        }
+        return elements[count];
+    }
+    
+    void pop() {
+        if (count == 0) {
+              throw new StackException("Stack is empty");
+        }
+        count--;
+    }
+
+    boolean isEmpty() {
+        return (count == 0);
+    }
+
+    public class StackException extends RuntimeException {
+		private static final long serialVersionUID = 1L;
+		public StackException(String message) {
+			super(message);
+        }
+    }
+}

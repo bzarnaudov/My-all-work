@@ -1,0 +1,22 @@
+package all;
+
+public class Reklama {
+	private static String[] hvalebstveniFrazi = {"Продуктът е отличен.", 
+			"Това е страхотен продукт.", "Постоянно ползвам този продукт.", 
+			"Това е най-добрият продукт от тази категория."};
+	private static String[] hvalebstveniSluchki = {"Вече се чувствам добре.", 
+			"Успях да се променя.", "Той направи чудо.", 
+			"Не мога да повярвам, но вече се чувствам страхотно.", 
+			"Опитайте и вие. Аз съм много доволна."};
+	private static String[] firstNameOfAutor = {"Диана", "Петя", "Стела", "Елена", "Катя"};
+	private static String[] secondNameOfAutor = {"Иванова", "Петрова", "Кирова"};
+	private static String[] cities = {"София", "Пловдив", "Варна", "Русе", "Бургас"};
+	
+	public static void main(String[] args) {
+		System.out.println(hvalebstveniFrazi[(int) (Math.random()*hvalebstveniFrazi.length)]
+				+ hvalebstveniSluchki[(int) (Math.random()*hvalebstveniSluchki.length)] 
+				+ firstNameOfAutor[(int) (Math.random()*firstNameOfAutor.length)]
+				+ secondNameOfAutor[(int) (Math.random()*secondNameOfAutor.length)] 
+				+ cities[(int) (Math.random()*cities.length)]);
+	}
+}

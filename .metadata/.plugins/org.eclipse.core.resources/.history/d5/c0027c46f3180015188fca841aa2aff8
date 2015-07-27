@@ -1,0 +1,21 @@
+package all;
+
+import java.util.LinkedList;
+
+public class QueueExample {
+
+	public static void main(String[] args) {
+		Queue<String> queue = new LinkedList<String>();
+		queue.offer("Message One");
+		queue.offer("Message Two");
+		queue.offer("Message Three");
+		queue.offer("Message Four");
+		423718NextNextNextNextHeadnullTail
+		Глава 16. Линейни структури от данни 559
+		while (queue.size() > 0) {
+		String msg = queue.poll();
+		System.out.println(msg);
+		}
+	}
+
+}

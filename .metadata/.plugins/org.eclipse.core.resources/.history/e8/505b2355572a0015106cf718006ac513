@@ -1,0 +1,51 @@
+package stacksAndQueues;
+
+public class Problem3ArrayBasedStack {
+	private int count;
+    private int[] storage;
+
+    public Problem3ArrayBasedStack(int capacity) {
+        if (capacity <= 0) {
+              throw new IllegalArgumentException("Stack's capacity must be positive");
+        }
+        storage = new int[capacity];
+        count = -1;
+    }
+
+    public int capacity() {
+    	return storage.length;
+    }
+
+    void push(int value) {
+        if (count == storage.length) {
+              throw new StackException("Stack's underlying storage is overflow");
+        }
+        count++;
+        storage[count] = value;
+    }
+
+    public int peek() {
+        if (count == -1) {
+              throw new StackException("Stack is empty");
+        }
+        return storage[count];
+    }
+    
+    void pop() {
+        if (count == -1) {
+              throw new StackException("Stack is empty");
+        }
+        count--;
+    }
+
+    boolean isEmpty() {
+        return (count == -1);
+    }
+
+    public class StackException extends RuntimeException {
+		private static final long serialVersionUID = 1L;
+		public StackException(String message) {
+			super(message);
+        }
+    }
+}

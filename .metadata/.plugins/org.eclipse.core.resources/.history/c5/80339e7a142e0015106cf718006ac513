@@ -1,0 +1,33 @@
+package all;
+
+import java.util.ArrayList;
+
+public class Tree<T> {
+
+	/**
+	* Represents a tree node.
+	* @author Vesko Kolev
+	* @param <T> - the type of the values in nodes.
+	*/
+	public static class TreeNode<T> {
+		// Contains the value of the node
+		private T value;
+		// Shows whether the current node has parent
+		private boolean hasParent;
+		// Contains the children of the node
+		private ArrayList<TreeNode<T>> children;
+		
+		/**
+		* Constructs a tree node.
+		* @param value - the value of the node.
+		*/
+		public TreeNode(T value) {
+			if (value == null) {
+				throw new IllegalArgumentException(
+						"Cannot insert null value!");
+			}
+			this.value = value;
+			this.children = new ArrayList<TreeNode<T>>();
+		}
+	
+}

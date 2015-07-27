@@ -1,0 +1,255 @@
+package treesAndTreeLikeStructures;
+
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+import java.util.Scanner;
+import java.util.Stack;
+
+public class Problem3CalculateArithmeticExpression {
+
+	public static void main(String[] args) {
+		
+		Scanner input = new Scanner(System.in);
+		System.out.print("Please write arithmetic expression : ");
+		String inputString = input.nextLine();
+		System.out.println(input.toString());
+		
+		try {
+			Queue<String> outputQueue = convertToRPN(inputString);
+			Queue<String> queue = new LinkedList<String>(outputQueue);
+			
+			while (!queue.isEmpty()) {
+				System.out.println(queue.poll());
+			}
+			
+			System.out.println(calculateExpression(outputQueue));
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
+		
+		input.close();
+	}
+	
+	private static double calculateExpression(Queue<String> queue) {
+		
+        Stack<String> stack = new Stack<String>();
+        String token;
+        
+        // While there are input tokens left 
+        while (queue.size() > 0) {
+            // Read the next token from input.
+            token = queue.poll();
+            // If the token is a value, Push it onto the stack.
+            
+            if (token.matches(numRegex) || token.matches(floatingNumRegex)) {
+                stack.push(token);
+            } else {
+            	// Otherwise, the token is an operator or function
+                String operatorResult = null;
+
+                // Else, Pop the top n values from the stack.
+                switch (token) {
+                    case "/":
+                        operatorResult = ExecuteDivision(stack);
+                        break;
+                    case "*":
+                        operatorResult = ExecuteMultiplication(stack);
+                        break;
+                    case "+":
+                        operatorResult = ExecuteAddition(stack);
+                        break;
+                    case "-":
+                        operatorResult = ExecuteSubtraction(stack);
+                        break;
+                    case "pow":
+                        operatorResult = ExecutePow(stack);
+                        break;
+                    case "sqrt":
+                        operatorResult = ExecuteSqrt(stack);
+                        break;
+                    case "ln":
+                        operatorResult = ExecuteLn(stack);
+                        break;
+                    default:
+                        throw new Exception("The inserted operator or function is not allowed to be used");
+                }
+                
+                stack.push(operatorResult);
+            }
+        }
+        
+        if (stack.size() > 1) {
+            throw new Exception(" The user input has too many values");
+        }
+        
+        return Double.parseDouble(stack.pop());
+    }
+
+	static String wordRegex = "[a-zA-Z]+";
+    static String numRegex = "-?[0-9]+";
+    static String floatingNumRegex = "-?[0-9]+\\.[0-9]+";
+    
+    private static Queue<String> convertToRPN(String input) throws Exception {
+    	 List<String> operators = new ArrayList<String>();
+    	 operators.add("*");
+    	 operators.add("/");
+    	 operators.add("+");
+    	 operators.add("-");
+    	 List<String> functions = new ArrayList<String>();
+    	 functions.add("ln");
+    	 functions.add("sqrt");
+    	 functions.add("pow");
+    	 List<String> brackets = new ArrayList<String>();
+    	 brackets.add("(");
+    	 brackets.add(")");
+    	 List<String> separator = new ArrayList<String>();
+    	 separator.add(",");
+         Queue<String> queue = new LinkedList<String>();
+         Stack<String> stack = new Stack<String>();
+         String concatenation = null;
+         //while there are tokens to be read
+         for (int pos = 0; pos < input.length(); pos++) {
+        	 //read token
+        	 String token = concatenation + input.charAt(pos);
+        	// token is number
+             /* Unary minus handled - a minus sign is always unary if it 
+        	 immediately follows another operator or a left parenthesis, 
+        	 or if it occurs at the very beginning of the input. */
+        	 if (token.matches(numRegex) || 
+        			 (token.compareTo("-") == 0 && pos == 0) ||
+        			 (token.compareTo("-") == 0 && (input.charAt(pos-1) == '(' ||
+        			 input.charAt(pos - 1) == ',')) || 
+        			 (token.compareTo("-") == 0 && operators.indexOf(input.charAt(pos - 1)) != -1)){
+        		 //check if the next token is number or decimal point
+        		 int counter = 1;
+        		 while ((pos + counter) < input.length() && 
+        				 (input.charAt(pos+counter) == '.' ||
+        				 Character.isDigit(input.charAt(pos + counter)))) {
+        			 token = token + input.charAt(pos + counter);
+        			 counter++;
+        		 }
+        		 pos += counter - 1;
+        		 queue.add(token);
+        		 concatenation = null;
+        		 continue;
+        	 }
+        	 //token is a separator
+        	 if (separator.contains(token)) {
+        		 while(stack.peek() != "(") {
+        			 /*Until the token at the top of the stack is a left parenthesis,
+                      * pop operators off the stack onto the output queue.*/
+        			 queue.add(stack.pop());
+        		 }
+        		 /*If the stack runs out without finding a left parenthesis,
+                  * then there are mismatched parentheses.*/
+        		 if (!stack.contains("(")) {
+        			 throw new Exception();
+        		 }
+        		 concatenation = null;
+    			 continue;
+        	 }
+        	 //token is bracket
+        	 if (brackets.contains(token)) {
+                 //token is left parenthesis => push onto the stack
+                 if (token.compareTo("(") == 0) {
+                	 stack.push(token);
+                 }
+                 //token is right parenthesis
+                 if (token.compareTo(")") == 0)
+                 {
+                     /*If the stack runs out without finding a left parenthesis,
+                      *then there are mismatched parentheses.*/
+                     if (!stack.contains("(")) {
+                    	 throw new Exception();
+                     }
+                     /*Until the token at the top of the stack is a left parenthesis,*/
+                     while (stack.peek().compareTo("(") != 0)
+                     {
+                         /* pop operators off the stack onto the output queue.*/
+                         queue.add(stack.pop());
+                     }
+                     /*Pop the left parenthesis from the stack, but not onto the output queue.*/
+                     if (stack.peek().compareTo("(") == 0) {
+                    	 stack.pop();
+                     }
+                     /*If the token at the top of the stack is a function token, 
+                      * pop it onto the output queue.*/
+                     if (stack.size() > 0 && functions.contains(stack.peek())) {
+                    	 queue.add(stack.pop());
+                     }
+                 }
+                 concatenation = null;
+                 continue;
+             }
+        	// token is function
+             if (functions.contains(token)) {
+                 stack.push(token);
+                 concatenation = null;
+                 continue;
+             }
+
+             // token is operator
+             //If the token is an operator, o1, then:
+             if (operators.contains(token)) {
+                 /* while there is an operator token, o2, at the top of the stack, and
+                    either o1 is left-associative and its precedence is equal to that of o2,
+                    or o1 has precedence less than that of o2,*/
+                 while (stack.size() > 0 && operators.contains(stack.peek()) && 
+                		 Precedence(token) >= Precedence(stack.peek())) {
+                     //pop o2 off the stack, onto the output queue;
+                     queue.add(stack.pop());
+                 }
+                 //push o1 onto the stack.
+                 stack.push(token);
+                 concatenation = null;
+                 continue;
+             }
+             concatenation = token;	 
+         }
+         //While there are still operator tokens in the stack:
+         while (stack.size() > 0) {
+             //If the operator token on the top of the stack is a parenthesis,
+        	 //then there are mismatched parentheses.
+             if (brackets.contains(stack.peek())) {
+                 throw new Exception("There are mismatched parentheses");
+             }
+             //Pop the operator onto the output queue.
+             queue.add(stack.pop());
+         }
+         return queue;
+    }
+    	
+	private static int Precedence(String token) {
+		int precedence;
+        switch (token) {
+            case "+":
+            case "-":
+                precedence = 2;
+                break;
+            case "*":
+            case "/":
+                precedence = 1;
+                break;
+            default:
+                precedence = 0;
+                break;
+        }
+
+        return precedence;
+	}
+	
+	private static boolean isFunction(String str) {
+		CharSequence cs1 = "^";
+		CharSequence cs2 = "*";
+		CharSequence cs3 = "/";
+		CharSequence cs4 = "+";
+		CharSequence cs5 = "-";
+		
+		return str.contains(cs1) || str.contains(cs2) ||
+				str.contains(cs3) || str.contains(cs4) || 
+				str.contains(cs5);
+	}	
+}

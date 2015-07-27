@@ -1,0 +1,31 @@
+package treesAndTreeLikeStructures;
+
+import java.util.ArrayList;
+
+public class Problem1PlayWithTrees<T> {
+	
+	private T value;
+	private Problem1PlayWithTrees<T> parent;
+	private ArrayList<Problem1PlayWithTrees<T>> children;
+	
+	public Problem1PlayWithTrees(T value) {
+		if (value == null) {
+			throw new IllegalArgumentException(
+			"Cannot insert null value!");
+		}
+		this.value = value;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public Problem1PlayWithTrees(T value, Problem1PlayWithTrees<T> ...children) {
+		this.value = value;
+		this.children = new ArrayList<Problem1PlayWithTrees<T>>();
+		
+		for (Problem1PlayWithTrees<T> child : children) {
+			this.children.add(child);
+		}
+	}
+
+	
+}
+

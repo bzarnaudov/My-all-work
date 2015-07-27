@@ -1,0 +1,78 @@
+e:\games
+e:\games\1Action
+e:\games\1Action\Alien.Isolation-CODEX
+e:\games\1Action\Dead.Rising.3-CODEX
+e:\games\1Action\Metro.2033.Redux-CODEX
+e:\games\1Action\Metro.2033.Redux.Update.1.and.2-CODEX
+e:\games\1Action\Metro.2033.Redux.Update.1.and.2-CODEX\CODEX
+e:\games\1Action\Metro.2033.Redux.Update.1.and.2-CODEX\Update
+e:\games\1Action\Tales.from.the.Borderlands.Episode.2-CODEX
+e:\games\1Action\Tales.from.the.Borderlands.Episode.3-CODEX
+e:\games\1Action\Tales_from_the_Borderlands-FLTep1
+e:\games\1Quest
+e:\games\1Quest\Sherlock.Holmes.Crimes.and.Punishments-CODEX
+e:\games\1RPG
+e:\games\1RPG\Fable.Anniversary-CODEX
+e:\games\1RPG\Wasteland.2-CODEX
+e:\games\Alan.Wake-SKIDROW
+e:\games\Atlantis Evolution
+e:\games\Batman.Arkham.Asylum-RELOADED
+e:\games\Batman.Arkham.City-IPT
+e:\games\Batman.Arkham.City-IPT\Crack
+e:\games\Batman.Arkham.City-IPT\Crack\Binaries
+e:\games\Batman.Arkham.City-IPT\Crack\Binaries\Win32
+e:\games\Batman.Arkham.City-IPT\Disk 1
+e:\games\Batman.Arkham.City-IPT\Disk 2
+e:\games\Batman.Arkham.City.DLC.PACK-R.G
+e:\games\Batman.Arkham.City.DLC.PACK-R.G\BmGame
+e:\games\Batman.Arkham.City.DLC.PACK-R.G\BmGame\Config
+e:\games\Batman.Arkham.City.DLC.PACK-R.G\BmGame\Config\PC
+e:\games\Batman.Arkham.City.DLC.PACK-R.G\BmGame\CookedPCConsole
+e:\games\Batman.Arkham.City.DLC.PACK-R.G\BmGame\CookedPCConsole\English(US)
+e:\games\Batman.Arkham.City.DLC.PACK-R.G\BmGame\CookedPCConsole\French(France)
+e:\games\Batman.Arkham.City.DLC.PACK-R.G\BmGame\CookedPCConsole\German
+e:\games\Batman.Arkham.City.DLC.PACK-R.G\BmGame\CookedPCConsole\Italian
+e:\games\Batman.Arkham.City.DLC.PACK-R.G\BmGame\CookedPCConsole\SFX
+e:\games\Batman.Arkham.City.DLC.PACK-R.G\BmGame\CookedPCConsole\Spanish(Spain)
+e:\games\Batman.Arkham.City.DLC.PACK-R.G\BmGame\Localization
+e:\games\Batman.Arkham.City.DLC.PACK-R.G\BmGame\Localization\DEU
+e:\games\Batman.Arkham.City.DLC.PACK-R.G\BmGame\Localization\ESM
+e:\games\Batman.Arkham.City.DLC.PACK-R.G\BmGame\Localization\ESN
+e:\games\Batman.Arkham.City.DLC.PACK-R.G\BmGame\Localization\FRA
+e:\games\Batman.Arkham.City.DLC.PACK-R.G\BmGame\Localization\INT
+e:\games\Batman.Arkham.City.DLC.PACK-R.G\BmGame\Localization\ITA
+e:\games\Batman.Arkham.City.DLC.PACK-R.G\BmGame\Localization\POL
+e:\games\Batman.Arkham.City.DLC.PACK-R.G\BmGame\Localization\POR
+e:\games\Batman.Arkham.City.DLC.PACK-R.G\BmGame\Localization\RUS
+e:\games\Call.of.Duty.Black.Ops-SKIDROW
+e:\games\Call.of.Duty.Modern.Warfare.2.PROPER-SKIDROW
+e:\games\Call.of.Juarez.The.Cartel-SKIDROW
+e:\games\Call_Of_Duty_4-Razor1911
+e:\games\Crysis.3.INTERNAL-RELOADED
+e:\games\DmC.Devil.may.Cry-RELOADED
+e:\games\DreadOut-CODEX
+e:\games\Far.Cry.3-RELOADED
+e:\games\Far.Cry.3-RELOADED\update
+e:\games\Far.Cry.3-RELOADED\update\Crack
+e:\games\Far.Cry.3-RELOADED\update\Update
+e:\games\From.Dust-SKIDROW
+e:\games\Hitman.Absolution-SKIDROW
+e:\games\Middle.Earth.Shadow.of.Mordor.Game.of.The.Year.Edition-PROPHET
+e:\games\Need.For.Speed.The.Run-RELOADED
+e:\games\Red.Johnsons.Chronicles-SKIDROW
+e:\games\Secret Files 2 - Puritas Cordis [BG] and [RUS]
+e:\games\Secret Files 2 - Puritas Cordis [BG] and [RUS]\Crack
+e:\games\Secret.Files.3-RELOADED
+e:\games\The Sims 4 Update v1.4.83.1010 Incl DLC - RELOADED
+e:\games\The Sims 4 Update v1.4.83.1010 Incl DLC - RELOADED\Crack
+e:\games\The Sims 4 Update v1.4.83.1010 Incl DLC - RELOADED\Crack\Game
+e:\games\The Sims 4 Update v1.4.83.1010 Incl DLC - RELOADED\Crack\Game\Bin
+e:\games\The Sims 4 Update v1.4.83.1010 Incl DLC - RELOADED\Update
+e:\games\The.Darkness.II-SKIDROW
+e:\games\The.Sims.4-RELOADED
+e:\games\The.Sims.4.Get.to.Work.Addon-RELOADED
+e:\games\The.Sims.4.Update.v1.0.797.20-RELOADED
+e:\games\The.Sims.4.Update.v1.0.797.20-RELOADED\Crack
+e:\games\The.Sims.4.Update.v1.0.797.20-RELOADED\Update
+e:\games\The.Vanishing.of.Ethan.Carter-CODEX
+e:\games\Tomb.Raider-SKIDROW

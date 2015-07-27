@@ -1,0 +1,21 @@
+package all;
+
+import chapter11.Cat;
+import chapter11.Sequence;
+
+public class CatManipulacia {
+	public static void main(String[] args) {
+		for (int i = 0; i < 10; i++) {
+			String p = "Cat" + Sequence.nextValue();
+			Cat razni = new Cat(p,p);
+			razni.sayMiau();
+		}
+		
+		Cat[10] razni = new Cat[]();
+		for (int i = 0; i < 10; i++) {
+			razni[i].setName("Cat" + Sequence.nextValue());
+		}
+		
+		
+	}
+}
