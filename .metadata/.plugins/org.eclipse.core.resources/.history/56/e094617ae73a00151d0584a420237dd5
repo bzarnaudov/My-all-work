@@ -1,0 +1,21 @@
+package treeAndGraphTraversal;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import treesAndTreeLikeStructures.Tree;
+
+public class Problem1FindTheRoot {
+	
+	static Map<Integer, Tree<Integer>> nodeByValue = new HashMap<>();
+	
+	private static void readFromConsole() {
+		
+	}
+	
+	
+	public static void main(String[] args) {
+		readFromConsole();
+		
+	}
+}

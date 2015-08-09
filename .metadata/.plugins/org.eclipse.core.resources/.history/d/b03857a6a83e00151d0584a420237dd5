@@ -1,0 +1,19 @@
+package treeAndGraphTraversal;
+
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Map;
+
+public class Problem2RoundDance {
+	
+	static LinkedList<Integer>[] graph;
+	static Map<Integer, LinkedList<Integer>> map = new HashMap<>();
+	
+	public static void main(String[] args) {
+		LinkedList<Integer> list = new LinkedList<Integer>();
+		list.add(-1);
+		map.put(-5, list);
+		
+		map.put(-1, value)
+	}
+}

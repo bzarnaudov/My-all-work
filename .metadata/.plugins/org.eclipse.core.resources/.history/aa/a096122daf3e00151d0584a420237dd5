@@ -1,0 +1,59 @@
+package treeAndGraphTraversal;
+
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Map;
+import java.util.Scanner;
+
+public class Problem2RoundDance {
+	
+	static Map<Integer, Node<Integer>> map = new HashMap<>();
+	
+	public static void main(String[] args) {
+		Scanner input = new Scanner(System.in);
+		System.out.print("Please write number of edges in the graph: ");
+		int edgesCount = Integer.parseInt(input.nextLine());
+		System.out.print("Please write first Node from whom to start: ");
+		int startNode = Integer.parseInt(input.nextLine());
+		Node<Integer> node = new Node<Integer>(startNode);
+		map.put(startNode, node);
+		for (int i = 0; i <= edgesCount; i++) {
+			System.out.println("Write edge between nodes with space between them(edge " + i + ") : " );
+			String[] edge = input.nextLine().split(" ");
+			int firstValue = Integer.parseInt(edge[0]);
+			Node<Integer> firstNode = getTreeNodeByValue(firstValue);
+			int secondValue = Integer.parseInt(edge[1]);
+			Node<Integer> secondNode = getTreeNodeByValue(secondValue);
+			firstNode.childNodes.add(secondNode);
+			secondNode.childNodes.add(firstNode);
+		}
+		
+	
+		
+		input.close();
+	}
+	
+	//dictionary to map nodes by their value
+	@SuppressWarnings("unchecked")
+	private static Node<Integer> getTreeNodeByValue(
+			int value) {
+		if (!map.containsKey(value)) {
+			map.put(value, new Node<Integer>(value));
+		}
+		return map.get(value);
+	}
+	
+	public class Node<T>{
+		T element;
+		LinkedList<Node<T>> childNodes;
+		
+		Node(T element, LinkedList<Node<T>> childNodes) {
+			this.element = element;
+			childNodes = new LinkedList<Node<T>>();
+		}
+		Node(T element) {
+			this.element = element;
+			childNodes = null;
+		}
+	}
+}

@@ -5,6 +5,9 @@
 	<item value="false" key="TypeHierarchyViewPart.linkeditors"/>
 	<item value="G:\Program Files\Java\jdk1.7.0_67" key="org.eclipse.jdt.ui.lastextjar"/>
 	<item value="2" key="TypeHierarchyViewPart.hierarchyview"/>
+	<section name="SelfEncapsulateFieldWizard">
+		<item value="false" key="GenerateJavadoc"/>
+	</section>
 	<section name="org.eclipse.jdt.internal.ui.packageview.PackageExplorerPart">
 		<item value="2" key="layout"/>
 		<item value="true" key="group_libraries"/>
@@ -16,8 +19,8 @@
 		<item value="520" key="DIALOG_WIDTH"/>
 		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
 		<item value="677" key="DIALOG_HEIGHT"/>
-		<item value="379" key="DIALOG_X_ORIGIN"/>
-		<item value="-2" key="DIALOG_Y_ORIGIN"/>
+		<item value="250" key="DIALOG_X_ORIGIN"/>
+		<item value="8" key="DIALOG_Y_ORIGIN"/>
 	</section>
 	<section name="SourceActionDialog.constructors">
 		<item value="false" key="SynchronizedModifier"/>
@@ -139,8 +142,8 @@
 		<item value="529" key="DIALOG_WIDTH"/>
 		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
 		<item value="680" key="DIALOG_HEIGHT"/>
-		<item value="597" key="DIALOG_X_ORIGIN"/>
-		<item value="-2" key="DIALOG_Y_ORIGIN"/>
+		<item value="241" key="DIALOG_X_ORIGIN"/>
+		<item value="0" key="DIALOG_Y_ORIGIN"/>
 	</section>
 	<section name="DialogBounds_GenerateToStringDialog">
 		<item value="516" key="DIALOG_WIDTH"/>

@@ -6,37 +6,37 @@
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="shoppingList" key="selection"/>
+		<item value="Pow" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
-			<item value="shoppingList"/>
-			<item value="Dequeue"/>
-			<item value="Console.WriteLine"/>
-			<item value="new"/>
-			<item value="myUnit"/>
-			<item value="Problem3ArrayBasedStack"/>
-			<item value="element"/>
-			<item value="head"/>
+			<item value="pow"/>
+			<item value="token"/>
+			<item value="contains"/>
+			<item value="null"/>
+			<item value="Count"/>
+			<item value="string"/>
+			<item value="resultingStack"/>
+			<item value="postfixQueue"/>
 		</list>
 		<list key="replacehistory">
-			<item value="numbers"/>
-			<item value="dequeue"/>
-			<item value="System.out.printf"/>
-			<item value="queue"/>
+			<item value="&quot;&quot;"/>
+			<item value="size()"/>
+			<item value="String"/>
 			<item value="stack"/>
-			<item value="Problem5LinkedStack"/>
-			<item value="value"/>
-			<item value="firstNode"/>
+			<item value="queue"/>
+			<item value="outputQueue"/>
+			<item value="||"/>
+			<item value="BinarySearchTree"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
 		<item value="257" key="DIALOG_WIDTH"/>
 		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
 		<item value="380" key="DIALOG_HEIGHT"/>
-		<item value="131" key="DIALOG_Y_ORIGIN"/>
-		<item value="801" key="DIALOG_X_ORIGIN"/>
+		<item value="177" key="DIALOG_Y_ORIGIN"/>
+		<item value="815" key="DIALOG_X_ORIGIN"/>
 	</section>
 </section>

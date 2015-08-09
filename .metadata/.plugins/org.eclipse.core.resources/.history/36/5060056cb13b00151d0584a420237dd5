@@ -1,0 +1,38 @@
+package treeAndGraphTraversal;
+
+import java.util.LinkedList;
+import java.util.List;
+
+public class Tree<T> {
+	private T value;
+	private Tree<T> parent;
+	private List<Tree<T>> children;
+	
+	public Tree() {
+		this.setChildren(new LinkedList<Tree<T>>());
+	}
+		
+	public T getValue() {
+		return value;
+	}
+
+	public void setValue(T value) {
+		this.value = value;
+	}
+
+	public Tree<T> getParent() {
+		return parent;
+	}
+
+	public void setParent(Tree<T> parent) {
+		this.parent = parent;
+	}
+
+	public List<Tree<T>> getChildren() {
+		return children;
+	}
+
+	public void setChildren(List<Tree<T>> children) {
+		this.children = children;
+	}
+}

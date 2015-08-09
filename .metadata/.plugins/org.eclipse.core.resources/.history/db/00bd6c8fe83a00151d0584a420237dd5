@@ -1,0 +1,27 @@
+package treeAndGraphTraversal;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
+import treesAndTreeLikeStructures.Tree;
+
+public class Problem1FindTheRoot {
+	
+	static Map<Integer, Tree<Integer>> nodeByValue = new HashMap<>();
+	
+	private static void readFromConsole() {
+		Scanner input = new Scanner(System.in);
+		System.out.print("Please write number of edges in the forest: ");
+		int edgesCount = Integer.parseInt(input.nextLine());
+		
+		
+		input.close();
+	}
+	
+	
+	public static void main(String[] args) {
+		readFromConsole();
+		
+	}
+}

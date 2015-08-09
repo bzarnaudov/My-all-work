@@ -7,8 +7,10 @@ import java.util.List;
 */
 
 public class Graph {
+	
 	// Contains the vertices of the graph
 	private int vertices[][];
+	
 	/**
 	* Constructs the graph.
 	* @param vertices - the vertices of the graph.
@@ -16,6 +18,7 @@ public class Graph {
 	public Graph(int[][] vertices) {
 		this.vertices = vertices;
 	}
+	
 	/**
 	* Adds new edge from i to j.
 	* @param i - the starting vertex.
@@ -24,6 +27,7 @@ public class Graph {
 	public void addEdge(int i, int j) {
 		vertices[i][j] = 1;
 	}
+	
 	/**
 	* Removes the edge from i to j if such exists.
 	* @param i - the starting vertex.
@@ -32,6 +36,7 @@ public class Graph {
 	public void removeEdge(int i, int j) {
 		vertices[i][j] = 0;
 	}
+	
 	/**
 	* Checks whether there is an edge between vertex i and j.
 	* @param i - the starting vertex.
@@ -42,6 +47,7 @@ public class Graph {
 	public boolean hasEdge(int i, int j) {
 		return vertices[i][j] == 1;
 	}
+	
 	/**
 	* Returns the successors of a given vertex.
 	* @param i - the vertex.
