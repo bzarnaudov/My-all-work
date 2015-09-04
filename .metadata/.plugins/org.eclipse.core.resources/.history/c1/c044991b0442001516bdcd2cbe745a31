@@ -1,0 +1,29 @@
+package treeAndGraphTraversal;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
+import treesAndTreeLikeStructures.Tree;
+
+public class Problem4LongestPathInATree {
+	static Map<Integer, Tree<Integer>> nodeByValue = new HashMap<>();
+	static int pathSum, subtreeSum;	
+	public static void main(String[] args) {
+		Scanner input = new Scanner(System.in);
+		System.out.print("Please write number of nodes in the tree : ");
+		int nodesCount = Integer.parseInt(input.nextLine());
+		for ( int i = 1; i < nodesCount; i++) {
+			System.out.println("Write parent and child with space between them(edge " + i + ") : " );
+			String[] edge = input.nextLine().split(" ");
+			int parentValue = Integer.parseInt(edge[0]);
+			Tree<Integer> parentNode = getTreeNodeByValue(parentValue);
+			int childValue = Integer.parseInt(edge[1]);
+			Tree<Integer> childNode = getTreeNodeByValue(childValue);
+			parentNode.getChildren().add(childNode);
+			childNode.setParent(parentNode);
+		
+		}
+		
+		input.close();
+}

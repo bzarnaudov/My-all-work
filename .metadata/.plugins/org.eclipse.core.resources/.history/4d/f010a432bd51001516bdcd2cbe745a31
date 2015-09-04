@@ -1,0 +1,28 @@
+package treeAndGraphTraversal;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Scanner;
+
+public class Problem5Sorting {
+	private static HashSet differentSets = new HashSet();
+	private static List<Integer> list = new ArrayList<Integer>();
+	
+	public static void main(String[] args) {
+		input();
+		
+	}
+
+	private static void input() {
+		Scanner input = new Scanner(System.in);
+		System.out.print("Please write count of numbers : ");
+		int count = Integer.parseInt(input.nextLine());
+		System.out.print("Please write numbers separated one from another by a space : ");
+		String[] edge = input.nextLine().split(" ");
+		
+		
+		input.close();
+	}
+	
+}

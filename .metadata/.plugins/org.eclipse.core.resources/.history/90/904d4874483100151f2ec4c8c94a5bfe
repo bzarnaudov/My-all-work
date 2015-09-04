@@ -1,5 +1,0 @@
-package treesAndTreeLikeStructures;
-
-public class Tree<T> {
-
-}

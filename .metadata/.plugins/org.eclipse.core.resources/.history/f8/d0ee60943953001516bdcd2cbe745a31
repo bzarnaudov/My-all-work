@@ -1,0 +1,59 @@
+package treeAndGraphTraversal;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+import java.util.Scanner;
+
+public class Problem5Sorting {
+	private static HashSet differentSets = new HashSet();
+	private static List<Integer> list = new ArrayList<Integer>();
+	private static int elementsForReversing;
+	
+	public static void main(String[] args) {
+		input();
+		Queue<List<Integer>> steps = new LinkedList<List<Integer>>();
+		list.add(0);
+		steps.add(list);
+		while (steps.size() > 0) {
+			List<Integer> currentList = steps.poll();
+			boolean finish = true;
+			for (int i = 1; i <= list.size()-1; i++) {
+				if (i != list.get(i-1)) {
+					finish = false;
+				}
+			}
+			if (finish == true) {
+				System.out.println(list.get(list.size()-1));
+				break;
+			}
+			
+			for (int i = 0; i <= list.size()-2; i++) {
+				list.get(i)
+				
+			}
+		}
+		
+		
+//		for (Integer string : list) {
+//			System.out.println(string);
+//		}
+//		System.out.println(elementsForReversing);
+	}
+
+	private static void input() {
+		Scanner input = new Scanner(System.in);
+		System.out.print("Please write count of numbers : ");
+		int count = Integer.parseInt(input.nextLine());
+		System.out.print("Please write numbers separated one from another by a space : ");
+		String[] numbers = input.nextLine().split(" ");
+		for (int i = 0; i < count; i++) {
+			list.add(Integer.parseInt(numbers[i]));
+		}
+		elementsForReversing = Integer.parseInt(input.nextLine());
+		input.close();
+	}
+	
+}

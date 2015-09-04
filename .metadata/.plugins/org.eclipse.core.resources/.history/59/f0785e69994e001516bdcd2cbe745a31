@@ -1,0 +1,101 @@
+package treeAndGraphTraversal;
+
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Map;
+import java.util.Queue;
+import java.util.Scanner;
+import java.util.Stack;
+import java.util.TreeMap;
+
+import treesAndTreeLikeStructures.Tree;
+
+public class Problem4LongestPathInATree {
+	static Map<Integer, Tree<Integer>> nodeByValue = new HashMap<>();
+	static Map<Integer, Integer> pathBetweenRootAndNode = new HashMap<>();
+	static int pathSum, subtreeSum;	
+	static Tree<Integer> rootNode;
+	public static void main(String[] args) {
+		Scanner input = new Scanner(System.in);
+		System.out.print("Please write number of nodes in the tree : ");
+		int nodesCount = Integer.parseInt(input.nextLine());
+		System.out.print("Please write number of edges in the tree : ");
+		int edgesCount = Integer.parseInt(input.nextLine());
+		for ( int i = 1; i <= edgesCount; i++) {
+			System.out.println("Write parent and child with space between them(edge " + i + ") : " );
+			String[] edge = input.nextLine().split(" ");
+			int parentValue = Integer.parseInt(edge[0]);
+			Tree<Integer> parentNode = getTreeNodeByValue(parentValue);
+			int childValue = Integer.parseInt(edge[1]);
+			Tree<Integer> childNode = getTreeNodeByValue(childValue);
+			parentNode.getChildren().add(childNode);
+			childNode.setParent(parentNode);
+		}
+		findRootNode();
+		sumLongPath();
+//		longestPathinATree();
+		
+		input.close();
+	}
+	
+	
+	public static Queue<Tree<Integer>> findLeaf() {
+		Stack<Tree<Integer>> stack = new Stack<Tree<Integer>>();
+		Queue<Tree<Integer>> listLeaf = new LinkedList<Tree<Integer>>();
+		Tree<Integer> currentNode = rootNode;
+
+		stack.add(currentNode);
+		do {
+			currentNode = stack.pop();
+
+			for (Tree<Integer> childNode : currentNode.getChildren()) {
+				stack.add(childNode);
+				if (childNode.getChildren().size() == 0) {
+					listLeaf.add(childNode);
+				}
+			}
+		} while (stack.size() > 0);
+
+		return listLeaf;
+	}
+	
+	public static void sumLongPath() {
+		Queue<Tree<Integer>> leafs = findLeaf();
+//		TreeMap<Integer, Tree<Integer>> maxAmountLeaf = new TreeMap<Integer, Tree<Integer>>();
+//		@SuppressWarnings("unchecked")
+		int sum = 0;
+		while (leafs.size() > 0) {
+			Tree<Integer> currentNode = leafs.poll();
+			System.out.print("Leaf " + currentNode.getValue() + " ");
+			do {
+				int currentValue = currentNode.getValue();
+				sum += currentValue;
+				currentNode = currentNode.getParent();
+				if (currentNode.getParent() == null) {
+					int rootValue = currentNode.getValue();
+					sum += rootValue;
+				}
+			} while (currentNode.getParent() != null);
+			System.out.println("- Sum " + sum);
+			sum = 0;
+		}
+	}
+	
+	private static void findRootNode() {
+		for (Tree<Integer> node : nodeByValue.values()) {
+			if (node.getParent() == null) {
+				rootNode = node;
+			}
+		}
+	}
+
+	//dictionary to map nodes by their value
+		@SuppressWarnings("unchecked")
+		private static Tree<Integer> getTreeNodeByValue(
+				int value) {
+			if (!nodeByValue.containsKey(value)) {
+				nodeByValue.put(value, new Tree<Integer>(value));
+			}
+			return nodeByValue.get(value);
+		}
+}

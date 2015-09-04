@@ -1,0 +1,29 @@
+package treeAndGraphTraversal;
+
+import java.util.Scanner;
+
+public class Problem3RideTheHorse {
+
+	public static int[][] matrix;
+	public static int startPositionN, startPositionM;
+	public static int firstHorseStep = 1;
+	
+	public static void main(String[] args) {
+		input();
+		
+	}
+
+	private static void input() {
+		Scanner input = new Scanner(System.in);
+		System.out.println("Please write number of Rows in matrix:");
+		int sizeOfRows = Integer.parseInt(input.nextLine());
+		System.out.println("Please write number of Columns in matrix:");
+		int sizeOfColumns = Integer.parseInt(input.nextLine());
+		System.out.println("Please write position in which row in matrix to start:");
+		startPositionN = Integer.parseInt(input.nextLine());
+		System.out.println("Please write position in which column in matrix to start:");
+		startPositionM = Integer.parseInt(input.nextLine());
+		matrix = new int[sizeOfRows][sizeOfColumns];
+		input.close();
+	}
+}

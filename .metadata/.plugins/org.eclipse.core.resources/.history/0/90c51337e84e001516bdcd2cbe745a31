@@ -1,0 +1,125 @@
+package treeAndGraphTraversal;
+
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Queue;
+import java.util.Scanner;
+import java.util.Stack;
+
+import javax.swing.text.html.MinimalHTMLWriter;
+
+import treesAndTreeLikeStructures.Tree;
+
+public class Problem4LongestPathInATree {
+	static Map<Integer, Tree<Integer>> nodeByValue = new HashMap<>();
+	static Map<Integer, Integer> pathBetweenRootAndNode = new HashMap<>();
+	static int pathSum, subtreeSum;	
+	static Tree<Integer> rootNode;
+	public static void main(String[] args) {
+		Scanner input = new Scanner(System.in);
+		System.out.print("Please write number of nodes in the tree : ");
+		@SuppressWarnings("unused")
+		int nodesCount = Integer.parseInt(input.nextLine());
+		System.out.print("Please write number of edges in the tree : ");
+		int edgesCount = Integer.parseInt(input.nextLine());
+		for ( int i = 1; i <= edgesCount; i++) {
+			System.out.println("Write parent and child with space between them(edge " + i + ") : " );
+			String[] edge = input.nextLine().split(" ");
+			int parentValue = Integer.parseInt(edge[0]);
+			Tree<Integer> parentNode = getTreeNodeByValue(parentValue);
+			int childValue = Integer.parseInt(edge[1]);
+			Tree<Integer> childNode = getTreeNodeByValue(childValue);
+			parentNode.getChildren().add(childNode);
+			childNode.setParent(parentNode);
+		}
+		findRootNode();
+		sumLongPath();
+		input.close();
+	}
+	
+	
+	public static Queue<Tree<Integer>> findLeaf() {
+		Stack<Tree<Integer>> stack = new Stack<Tree<Integer>>();
+		Queue<Tree<Integer>> listLeaf = new LinkedList<Tree<Integer>>();
+		Tree<Integer> currentNode = rootNode;
+
+		stack.add(currentNode);
+		do {
+			currentNode = stack.pop();
+
+			for (Tree<Integer> childNode : currentNode.getChildren()) {
+				stack.add(childNode);
+				if (childNode.getChildren().size() == 0) {
+					listLeaf.add(childNode);
+				}
+			}
+		} while (stack.size() > 0);
+
+		return listLeaf;
+	}
+	
+	public static void sumLongPath() {
+		Queue<Tree<Integer>> leafs = findLeaf();
+//		TreeMap<Integer, Tree<Integer>> maxAmountLeaf = new TreeMap<Integer, Tree<Integer>>();
+//		@SuppressWarnings("unchecked")
+		int sum = 0;
+		List<List<Integer>> pathsToRootList = new LinkedList<List<Integer>>();
+		while (leafs.size() > 0) {
+			Tree<Integer> currentNode = leafs.poll();
+			int currentValue = currentNode.getValue();
+			List<Integer> currentPathToRoot = new LinkedList<Integer>();
+			while (currentNode != rootNode) {
+				currentPathToRoot.add(currentValue);
+				currentNode = currentNode.getParent();
+				currentValue = currentNode.getValue();
+			}
+			pathsToRootList.add(currentPathToRoot);
+		}
+		int maximumPath = Integer.MIN_VALUE;
+		for (int i = 0; i < pathsToRootList.size(); i++) {
+            for (int j = 0; j < pathsToRootList.size(); j++) {
+            	List<Integer> intersectList = new LinkedList<Integer>();
+            	intersectList.addAll(pathsToRootList.get(i));
+            	intersectList.retainAll(pathsToRootList.get(j));
+                if (i != j && intersectList.size() == 0) {
+                	int sumI = sumOfPath(pathsToRootList.get(i));
+                	int sumJ = sumOfPath(pathsToRootList.get(i));
+                    int currentSum = sumI + sumJ + rootNode;
+                    if (currentSum > maximumPath) {
+                        maximumPath = currentSum;
+                    }
+                }
+            }
+        }
+		System.out.println(maximumPath);
+	}
+	
+	private static int sumOfPath(List<Integer> list) {
+		int sum = 0;
+		for (int i = 0; i < list.size(); i++) {
+			sum += list.get(i);
+		}
+		return sum;
+	}
+
+
+	private static void findRootNode() {
+		for (Tree<Integer> node : nodeByValue.values()) {
+			if (node.getParent() == null) {
+				rootNode = node;
+			}
+		}
+	}
+
+	//dictionary to map nodes by their value
+		@SuppressWarnings("unchecked")
+		private static Tree<Integer> getTreeNodeByValue(
+				int value) {
+			if (!nodeByValue.containsKey(value)) {
+				nodeByValue.put(value, new Tree<Integer>(value));
+			}
+			return nodeByValue.get(value);
+		}
+}

@@ -1,0 +1,45 @@
+package treeAndGraphTraversal;
+
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Scanner;
+
+public class Problem3RideTheHorse {
+
+	public static int[][] matrix;
+	public static int startPositionN, startPositionM;
+	public static int horseStepNumber = 1;
+	
+	public static void main(String[] args) {
+		input();
+		Queue<Integer[]> queue = new LinkedList<Integer[]>();
+		Integer[] cordination = {startPositionN, startPositionM};
+		queue.add(cordination);
+		while (!queue.isEmpty()) {
+			cordination = queue.poll();
+			matrix[cordination[0]][cordination[1]] = horseStepNumber;
+			movingLikeHorse(queue, cordination[0], cordination[1]);
+		
+		}
+	}
+
+	private static void movingLikeHorse(Queue<Integer[]> queue,
+			Integer row, Integer column) {
+		
+		
+	}
+
+	private static void input() {
+		Scanner input = new Scanner(System.in);
+		System.out.println("Please write number of Rows in matrix:");
+		int sizeOfRows = Integer.parseInt(input.nextLine());
+		System.out.println("Please write number of Columns in matrix:");
+		int sizeOfColumns = Integer.parseInt(input.nextLine());
+		System.out.println("Please write position in which row in matrix to start:");
+		startPositionN = Integer.parseInt(input.nextLine());
+		System.out.println("Please write position in which column in matrix to start:");
+		startPositionM = Integer.parseInt(input.nextLine());
+		matrix = new int[sizeOfRows][sizeOfColumns];
+		input.close();
+	}
+}

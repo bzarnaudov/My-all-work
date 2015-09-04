@@ -1,0 +1,62 @@
+package treeAndGraphTraversal;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
+import treesAndTreeLikeStructures.Tree;
+
+public class Problem4LongestPathInATree {
+	static Map<Integer, Tree<Integer>> nodeByValue = new HashMap<>();
+	static Map<Integer, Integer> pathBetweenRootAndNode = new HashMap<>();
+	static int pathSum, subtreeSum;	
+	public static void main(String[] args) {
+		Scanner input = new Scanner(System.in);
+		System.out.print("Please write number of nodes in the tree : ");
+		int nodesCount = Integer.parseInt(input.nextLine());
+		for ( int i = 1; i < nodesCount; i++) {
+			System.out.println("Write parent and child with space between them(edge " + i + ") : " );
+			String[] edge = input.nextLine().split(" ");
+			int parentValue = Integer.parseInt(edge[0]);
+			Tree<Integer> parentNode = getTreeNodeByValue(parentValue);
+			int childValue = Integer.parseInt(edge[1]);
+			Tree<Integer> childNode = getTreeNodeByValue(childValue);
+			parentNode.getChildren().add(childNode);
+			childNode.setParent(parentNode);
+		}
+		longestPathinATree();
+		
+		input.close();
+	}
+	
+	private static void longestPathinATree() {
+		pathBetweenNodeAndRoot();
+		
+		
+	}
+
+	private static void pathBetweenNodeAndRoot() {
+		Tree<Integer> rootNode = findRootNode();
+		
+	}
+	
+	private static Tree<Integer> findRootNode() {
+		Tree<Integer> rootNode = null;
+		for (Tree<Integer> node : nodeByValue.values()) {
+			if (node.getParent() == null) {
+				rootNode = node;
+			}
+		}
+		return rootNode;
+	}
+
+	//dictionary to map nodes by their value
+		@SuppressWarnings("unchecked")
+		private static Tree<Integer> getTreeNodeByValue(
+				int value) {
+			if (!nodeByValue.containsKey(value)) {
+				nodeByValue.put(value, new Tree<Integer>(value));
+			}
+			return nodeByValue.get(value);
+		}
+}
