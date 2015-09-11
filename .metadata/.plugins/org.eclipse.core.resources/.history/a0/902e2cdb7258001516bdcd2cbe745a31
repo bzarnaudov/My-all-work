@@ -1,0 +1,20 @@
+package all;
+
+public class Problem8CheckCyclicGraph {
+
+	public static void main(String[] args) {
+		int vertices[][] = { 	{ 0, 1, 0, 0 , 0 },
+								{ 0, 0, 1, 0 , 0 },
+								{ 0, 0, 0, 1 , 0 },
+								{ 0, 0, 0, 0 , 1 },
+								{ 0, 0, 0, 0 , 0 }
+							};
+		
+		Graph graph = new Graph(vertices);
+		System.out.println(graph.getSuccessors(0));
+		
+		
+
+	}
+
+}

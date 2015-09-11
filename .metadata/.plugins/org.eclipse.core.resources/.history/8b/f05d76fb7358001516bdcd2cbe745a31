@@ -1,0 +1,29 @@
+package all;
+
+import java.util.List;
+
+public class Problem8CheckCyclicGraph {
+
+	public static int vertices[][] = { 	{ 0, 1, 0, 0 , 0 },
+										{ 0, 0, 1, 0 , 0 },
+										{ 0, 0, 0, 1 , 0 },
+										{ 0, 0, 0, 0 , 1 },
+										{ 0, 0, 0, 0 , 0 }
+									};
+	public static boolean[] visited = new boolean[vertices.length];
+	
+	public static void main(String[] args) {
+		
+		
+		Graph graph = new Graph(vertices);
+		DFS(graph.getSuccessors(0));
+	}
+
+	private static void DFS(List<Integer> successors) {
+		
+		
+	}
+
+	
+
+}

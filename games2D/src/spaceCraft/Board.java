@@ -11,19 +11,21 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-
 import java.util.ArrayList;
 
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
 
 public class Board extends JPanel implements ActionListener {
 
-    private Timer timer;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private Timer timer;
     private Craft craft;
-    private ArrayList aliens;
+    private ArrayList<Alien> aliens;
     private boolean ingame;
     private int B_WIDTH;
     private int B_HEIGHT;
@@ -65,7 +67,7 @@ public class Board extends JPanel implements ActionListener {
     }
 
     public void initAliens() {
-        aliens = new ArrayList();
+        aliens = new ArrayList<Alien>();
 
         for (int i=0; i<pos.length; i++ ) {
             aliens.add(new Alien(pos[i][0], pos[i][1]));
@@ -83,7 +85,7 @@ public class Board extends JPanel implements ActionListener {
                 g2d.drawImage(craft.getImage(), craft.getX(), craft.getY(),
                               this);
 
-            ArrayList ms = craft.getMissiles();
+            ArrayList<Missile> ms = craft.getMissiles();
 
             for (int i = 0; i < ms.size(); i++) {
                 Missile m = (Missile)ms.get(i);
@@ -101,7 +103,7 @@ public class Board extends JPanel implements ActionListener {
 
 
         } else {
-            String msg = "Game Over, Dick";
+            String msg = "Game Over, Dude";
             Font small = new Font("Helvetica", Font.BOLD, 14);
             FontMetrics metr = this.getFontMetrics(small);
 
@@ -121,7 +123,7 @@ public class Board extends JPanel implements ActionListener {
     	if (aliens.size()==0) {
             ingame = false;
         }
-    	ArrayList ms = craft.getMissiles();
+    	ArrayList<Missile> ms = craft.getMissiles();
 
         for (int i = 0; i < ms.size(); i++) {
             Missile m = (Missile) ms.get(i);
@@ -157,7 +159,7 @@ public class Board extends JPanel implements ActionListener {
             }
         }
 
-        ArrayList ms = craft.getMissiles();
+        ArrayList<Missile> ms = craft.getMissiles();
 
         for (int i = 0; i < ms.size(); i++) {
             Missile m = (Missile) ms.get(i);

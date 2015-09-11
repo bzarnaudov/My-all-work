@@ -1,0 +1,76 @@
+package all;
+
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Scanner;
+
+public class Problem7GraphShortestPathbetweenVertices {
+
+	public class Graph {
+        private List<Edge> edges = new LinkedList<Edge>();
+
+        public Graph() {  	
+        }
+
+        public void AddEdge(char nodeOne, char nodeTwo) {
+            edges.add(new Edge(nodeOne, nodeTwo));
+        }
+
+        public List<Edge> getEdges() {
+			return edges;
+		}
+
+        public Graph createGraph() {
+            Graph graph = new Graph();
+            Scanner input = new Scanner(System.in);
+            String line = input.nextLine();
+
+            while (line != "")
+            {
+                string[] edgeNodes = line.Split(new char[] { ' ', ',' });
+
+                if (edgeNodes.Length > 2)
+                {
+                    throw new ArgumentException("Incorrect input: Graph edges can only have two nodes.");
+                }
+
+                graph.AddEdge(Convert.ToChar(edgeNodes[0]), Convert.ToChar(edgeNodes[1]));
+
+                line = Console.ReadLine();
+            }
+            
+            input.close();
+            return graph;
+        }
+    }
+	
+    public class Edge {
+        public char edgeNodeOne;
+        public char edgeNodeTwo;
+        public Integer cost = 0;
+        
+        public char getEdgeNodeOne() {
+			return edgeNodeOne;
+		}
+		public void setEdgeNodeOne(char edgeNodeOne) {
+			this.edgeNodeOne = edgeNodeOne;
+		}
+		public char getEdgeNodeTwo() {
+			return edgeNodeTwo;
+		}
+		public void setEdgeNodeTwo(char edgeNodeTwo) {
+			this.edgeNodeTwo = edgeNodeTwo;
+		}
+		
+
+        public Edge(char nodeOne, char nodeTwo) {
+            this.edgeNodeOne = nodeOne;
+            this.edgeNodeTwo = nodeTwo;
+        }
+        public int compareTo(Edge otherEdge) {
+            return this.cost.compareTo(otherEdge.cost);
+        }
+    }
+
+
+}

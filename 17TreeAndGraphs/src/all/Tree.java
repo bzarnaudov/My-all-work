@@ -13,6 +13,11 @@ public class Tree<T> {
 		private T value;
 		// Shows whether the current node has parent
 		private boolean hasParent;
+		
+		public boolean hasParent() {
+			return hasParent;
+		}
+
 		// Contains the children of the node
 		private ArrayList<TreeNode<T>> children;
 		

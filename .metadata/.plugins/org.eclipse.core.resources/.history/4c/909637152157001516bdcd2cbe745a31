@@ -1,0 +1,64 @@
+package all;
+
+import java.util.TreeSet;
+
+public class Problem7GraphShortestPathbetweenVertices {
+
+    public static void BFS(Problem7Graph graph, char startNode, char goalNode) {
+        int cost = 1;
+        TreeSet<Problem7Edge> openEdges = new TreeSet<Problem7Edge>();
+        char currentNode = startNode;
+        boolean[] visitedEdges = new boolean[graph.getEdges().size()];
+
+        for (int index = 0; index < graph.getEdges().size(); index++) {
+            if ((graph.getEdges().get(index).edgeNodeOne == currentNode) || 
+            		(graph.getEdges().get(index).edgeNodeTwo == currentNode)) {
+            	Problem7Edge temp = graph.getEdges().get(index);
+
+                visitedEdges[index] = true;
+                temp.cost = cost;
+                openEdges.add(temp);
+            }
+        }
+
+        while (openEdges.size() != 0) {
+        	Problem7Edge currentEdge = openEdges.first();
+
+            currentNode = currentEdge.edgeNodeOne;
+            char nextNode = currentEdge.edgeNodeTwo;
+
+            openEdges.pollFirst();
+
+            if (currentEdge.edgeNodeOne == goalNode || currentEdge.edgeNodeTwo == goalNode) {
+                System.out.println(currentEdge.cost);
+                return;
+            }
+
+            cost = currentEdge.cost + 1;
+
+            for (int index = 0; index < graph.getEdges().size(); index++) {
+                if (!visitedEdges[index]) {
+                    if ((graph.getEdges().get(index).edgeNodeOne == nextNode) ||
+                    		(graph.getEdges().get(index).edgeNodeTwo == nextNode)) {
+                    	Problem7Edge temp = graph.getEdges().get(index);
+
+                        visitedEdges[index] = true;
+                        temp.cost = cost;
+                        openEdges.add(temp);
+                    }
+                }
+            }
+        }
+    }
+    
+    public static void main(String[] args) throws Exception {
+    	Problem7Graph graph = new Problem7Graph();
+    	graph.createGraph();
+		BFS(graph, 'x','y');
+	}
+
+                        
+                        
+                        
+                        
+}

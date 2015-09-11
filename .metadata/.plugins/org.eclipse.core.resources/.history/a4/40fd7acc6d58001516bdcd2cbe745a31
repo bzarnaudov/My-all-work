@@ -1,0 +1,17 @@
+package all;
+
+public class Problem8CheckCyclicGraph {
+
+	public static void main(String[] args) {
+		int vertices[][] = { 	{ },
+								{ },
+								{ },
+								{ } };
+		
+		Graph graph = new Graph(vertices);
+		
+		
+
+	}
+
+}

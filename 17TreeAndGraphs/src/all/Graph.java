@@ -3,13 +3,14 @@ package all;
 import java.util.LinkedList;
 import java.util.List;
 /**
-* Represents a directed unweighted graph structure.
+* Represents a directed unweighted graph structure. 
 */
 
 public class Graph {
 	
 	// Contains the vertices of the graph
 	private int vertices[][];
+	// It can be implemented with List<Integer>[] childNodes
 	
 	/**
 	* Constructs the graph.
@@ -55,7 +56,7 @@ public class Graph {
 	*/
 	public List<Integer> getSuccessors(int i) {
 		List<Integer> successors = new LinkedList<Integer>();
-		for (int j = 0; j < vertices[i].length; i++) {
+		for (int j = 0; j < vertices[i].length; j++) {
 			if (vertices[i][j] == 1) {
 				successors.add(j);
 			}

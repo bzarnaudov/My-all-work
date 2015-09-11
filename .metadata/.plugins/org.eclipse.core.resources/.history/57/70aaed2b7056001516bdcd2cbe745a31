@@ -1,0 +1,189 @@
+package all;
+
+import java.util.Stack;
+
+import all.BinaryTree.BinaryTreeNode;
+
+public class Problem6ChecksIsABinaryTreeIsPerfectlyBalanced {
+
+	public static BinaryTree<Integer> binaryTree;
+	
+	public static void main(String[] args) {
+		binaryTree =
+				new BinaryTree<Integer>(14,
+						new BinaryTree<Integer>(19,
+								new BinaryTree<Integer> (23),
+								new BinaryTree<Integer> (6,
+										new BinaryTree<Integer>(10),
+										new BinaryTree<Integer>(21))),
+						new BinaryTree<Integer>(15,
+								new BinaryTree<Integer>(3),
+								new BinaryTree<Integer>(16)));
+		
+		setDepthOfNodes(binaryTree.getRoot(), 0);
+	}
+
+	
+	public static void setDepthOfNodes(BinaryTreeNode<Integer> root, int depth) {
+		if (root == null) {
+			return;
+		}
+		// 1. Visit the root of this subtree.
+		root.setDepth(depth);
+		if (sumOfLevel.size() <= depth) {
+			sumOfLevel.add(0);
+		}
+		sumOfLevel.set(depth, sumOfLevel.get(depth) + root.getValue());
+		// 2. Visit the left child.
+		setDepthOfNodes(root.getLeftChild(), depth + 1);
+		// 3. Visit the right child.
+		setDepthOfNodes(root.getRightChild(), depth + 1);
+	}
+	
+	public static int countNodesDfs(BinaryTreeNode<Integer> root) {
+		int nodesCount = 1;
+		Stack<BinaryTreeNode<Integer>> currentNodes = new Stack<BinaryTreeNode<Integer>>();
+		currentNodes.push(root);
+
+		while (currentNodes.size() > 0) {
+			BinaryTreeNode<Integer> currentNode = currentNodes.pop();
+			if (currentNode.getLeftChild() != null) {
+				currentNodes.push(currentNode.getLeftChild());
+				nodesCount++;
+			}
+			if (currentNode.getRightChild() != null) {
+				currentNodes.push(currentNode.getRightChild());
+				nodesCount++;
+			}
+		}
+		return nodesCount;
+	}
+
+	public static boolean IsIdeallyBalanced() {
+		return IsIdeallyBalanced(binaryTree.getRoot());
+	}
+
+	public static boolean IsIdeallyBalanced(BinaryTreeNode<Integer> root)
+	{
+		long leftTreeNodesCount = 0;
+		long rightTreeNodesCount = 0;
+
+		if (root == null) {
+			return true;
+		}
+		if (root.getLeftChild() != null) {
+			leftTreeNodesCount = countNodesDfs(root.getLeftChild());
+		}
+		if (root.getRightChild() != null) {
+			rightTreeNodesCount = countNodesDfs(root.getRightChild());
+		}
+
+		if (Math.Abs(leftTreeNodesCount - rightTreeNodesCount) <= 1 &&
+			IsIdeallyBalanced(root.getLeftChild()) == true &&
+			IsIdeallyBalanced(root.getRightChild()) == true)
+		{
+			return true;
+		}
+		return false;
+	}
+}
+
+public class IdeallyBalanced
+{
+	private static List<string> GetChildren(string successors)
+	{
+		List<string> children = new List<string>();
+		int openBrackets = 0;
+		StringBuilder currentChildTree = new StringBuilder();
+		for (int i = 0; i < successors.Length; i++)
+		{
+			if (openBrackets == 0 && successors[i] != '(')
+			{
+				StringBuilder currentLeaf = new StringBuilder();
+				while (i < successors.Length && (Char.IsDigit(successors[i]) || successors[i] == 'x'))
+				{
+					currentLeaf.Append(successors[i]);
+					i++;
+				}
+				children.Add(currentLeaf.ToString());
+				continue;
+			}
+
+			if (successors[i] == ')')
+			{
+				openBrackets--;
+			}
+			else if (successors[i] == '(')
+			{
+				openBrackets++;
+			}
+
+			if (openBrackets == 0)
+			{
+				currentChildTree.Append(')');
+				children.Add(currentChildTree.ToString());
+				currentChildTree.Clear();
+				i++;
+			}
+			else
+			{
+				currentChildTree.Append(successors[i]);
+			}
+		}
+		return children;
+	}
+
+	public static BinaryTreeNode ParseTree(string tree)
+	{
+		if (tree.Contains("->") == false)
+		{
+			int currentValue = int.Parse(tree);
+			return new BinaryTreeNode(currentValue);
+		}
+		string cleanTree = tree.Substring(1, tree.Length - 2);
+		string[] currentNodes = cleanTree.Split(new string[] { "->" }, 2, StringSplitOptions.RemoveEmptyEntries);
+		BinaryTreeNode currentNode = new BinaryTreeNode(int.Parse(currentNodes[0]));
+
+		if (currentNodes[1].Contains("->") == true)
+		{
+			List<string> children = GetChildren(currentNodes[1]);
+
+			if (children[0] != "x")
+			{
+				currentNode.LeftChild = ParseTree(children[0]);
+			}
+			if (children[1] != "x")
+			{
+				currentNode.RightChild = ParseTree(children[1]);
+			}
+		}
+		else
+		{
+			string[] leafs = currentNodes[1].Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+
+			if (leafs[0] != "x")
+			{
+				int leafValue = int.Parse(leafs[0]);
+				currentNode.LeftChild = new BinaryTreeNode(leafValue);
+			}
+			if (leafs[1] != "x")
+			{
+				int leafValue = int.Parse(leafs[1]);
+				currentNode.RightChild = new BinaryTreeNode(leafValue);
+			}
+		}
+		return currentNode;
+	}
+
+	static void Main(string[] args)
+	{
+		string rawTree = Console.ReadLine();
+		BinaryTreeNode root = ParseTree(rawTree);
+		BinaryTree tree = new BinaryTree(root);
+		Console.WriteLine(tree.IsIdeallyBalanced());
+	}
+}
+}
+
+
+}

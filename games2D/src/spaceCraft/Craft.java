@@ -21,14 +21,14 @@ public class Craft {
     private boolean visible;
     private Image image;
     
-    private ArrayList missiles;
+    private ArrayList<Missile> missiles;
     
     public Craft() {
         ImageIcon ii = new ImageIcon(this.getClass().getResource(craft));
         image = ii.getImage();
         width = image.getWidth(null);
         height = image.getHeight(null);
-        missiles = new ArrayList();
+        missiles = new ArrayList<Missile>();
         visible = true;
         x = 40;
         y = 60;
@@ -68,7 +68,7 @@ public class Craft {
         return image;
     }
 
-    public ArrayList getMissiles() {
+    public ArrayList<Missile> getMissiles() {
         return missiles;
     }
     

@@ -19,6 +19,8 @@ public class BinaryTree<T> {
 		private BinaryTreeNode<T> leftChild;
 		// Contains the right child of the node
 		private BinaryTreeNode<T> rightChild;
+		// Contains the depth of node
+		private int depth;
 		/**
 		* Constructs a binary tree node.
 		* @param value - the value of the node.
@@ -94,6 +96,14 @@ public class BinaryTree<T> {
 			}
 			value.hasParent = true;
 			this.rightChild = value;
+		}
+
+		public int getDepth() {
+			return depth;
+		}
+
+		public void setDepth(int depth) {
+			this.depth = depth;
 		}
 	}
 	

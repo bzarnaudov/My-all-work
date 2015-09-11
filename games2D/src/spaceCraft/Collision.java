@@ -4,7 +4,11 @@ import javax.swing.JFrame;
 
 public class Collision extends JFrame {
 	
-    public static int w = 400, h = 300;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	public static int w = 400, h = 300;
 
 	public Collision() {
     	
@@ -14,7 +18,7 @@ public class Collision extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(w, h);
         setLocationRelativeTo(null);
-        setTitle("Alien Fucker by Arnaudov");
+        setTitle("Alien killer by Arnaudov");
         setResizable(false);
         setVisible(true);
     }
