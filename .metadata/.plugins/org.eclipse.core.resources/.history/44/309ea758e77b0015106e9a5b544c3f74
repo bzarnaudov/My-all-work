@@ -1,0 +1,14 @@
+package all;
+
+public class Problem5Animal {
+	private int age;
+	private String name;
+	private String gender;
+	
+	public void makeNoise() {}
+
+	@Override
+	public String toString() {
+		return "Animal age=" + age + ", name=" + name;
+	}
+}

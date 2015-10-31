@@ -13,7 +13,7 @@ public class Folder {
 	public Folder(String name) {
 		this.name = name;
 		this.files = new ArrayList<File>();
-		this.childFolders = new ArrayList<Folder>();;
+		this.childFolders = new ArrayList<Folder>();
 	}
 	
 	public void addFile(File file) {

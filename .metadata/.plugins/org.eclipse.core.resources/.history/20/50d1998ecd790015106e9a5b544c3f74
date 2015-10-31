@@ -1,0 +1,6 @@
+package all;
+
+public class Problem1Student extends Problem1Human{
+	private double mark;
+	
+}

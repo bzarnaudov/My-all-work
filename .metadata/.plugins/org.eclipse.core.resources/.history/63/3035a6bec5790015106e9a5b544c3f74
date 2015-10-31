@@ -1,0 +1,6 @@
+package all;
+
+public class Problem1Worker extends Problem1Human{
+	private int workRate;
+	private int workedHours;
+}

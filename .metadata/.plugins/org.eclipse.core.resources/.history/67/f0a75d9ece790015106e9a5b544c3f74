@@ -1,0 +1,33 @@
+package all;
+
+@SuppressWarnings("rawtypes")
+public class Problem1Student extends Problem1Human implements Comparable{
+	
+	private double mark;
+	
+	public Problem1Student(String name, String surname, double mark) {
+		super(name, surname);
+		this.mark = mark;
+	}
+
+	public double getMark() {
+		return mark;
+	}
+
+	public void setMark(double mark) {
+		this.mark = mark;
+	}
+
+	@Override
+	public String toString() {
+		return "Problem1Student [mark=" + mark + ", getName()=" + getName()
+				+ ", getSurname()=" + getSurname() + "]";
+	}
+
+	@Override
+	public int compareTo(Object o) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+}

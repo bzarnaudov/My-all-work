@@ -21,6 +21,7 @@ import java.util.Date;
 //import com.itextpdf.text.pdf.PdfPTable;
 //import com.itextpdf.text.pdf.PdfWriter;
 
+@SuppressWarnings("unused")
 public class DeckOfCards {
 //	private static String FILE = "g:/FirstPdf.pdf";
 //	private static Font catFont = new Font(Font.FontFamily.TIMES_ROMAN, 18,

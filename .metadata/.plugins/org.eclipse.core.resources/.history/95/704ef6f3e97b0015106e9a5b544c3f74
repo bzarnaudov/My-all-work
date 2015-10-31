@@ -1,0 +1,14 @@
+package all;
+
+public class Problem5Cat extends Problem5Animal{
+
+	public Problem5Cat(int age, String name, String gender) {
+		super(age, name, gender);
+	}
+
+	@Override
+	public String makeNoise() {
+		String noise = "Miaaayyy";
+		return noise;
+	}
+}

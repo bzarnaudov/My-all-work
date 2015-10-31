@@ -1,0 +1,33 @@
+package all;
+
+public class Problem1QualityCode {
+	
+	private static final int SWITCH_VALUE = 010;
+
+	public static void main(String... args) {
+		int i, w;
+		
+		i = 5;
+		switch (SWITCH_VALUE) {
+		case 10:
+			w = 5;
+		case 9:
+			i = 0;
+		default:
+			;
+			System.out.print("4 ");
+			break;
+		case 8:
+			System.out.print("9 ");
+			System.out.print("9 ");
+			{
+				System.out.print("9 ");
+			}
+			for (int k = 0; k < i; k++, System.out.print(k - 'f'))
+				;
+		}
+		{
+			System.out.println("Cycle");
+		}
+	}
+}

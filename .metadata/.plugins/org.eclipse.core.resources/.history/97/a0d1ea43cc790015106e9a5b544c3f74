@@ -1,0 +1,11 @@
+package all;
+
+public class Problem1Human {
+	private String name;
+	private String surname;
+	
+	public Problem1Human(String name, String surname) {
+		this.name = name;
+		this.surname = surname;
+	}
+}

@@ -1,0 +1,31 @@
+package all;
+
+public class Problem1QualityCode {
+
+	public static void main(String... args) {
+		private int i;
+		final int value = 010;
+		i = 5;
+		switch (value) {
+		case 10:
+			w = 5;
+		case 9:
+			i = 0;
+		default:
+			;
+			System.out.print("4 ");
+			break;
+		case 8:
+			System.out.print("9 ");
+			System.out.print("9 ");
+			{
+				System.out.print("9 ");
+			}
+			for (int k = 0; k < i; k++, System.out.print(k - 'f'))
+				;
+		}
+		{
+			System.out.println("Cycle");
+		}
+	}
+}

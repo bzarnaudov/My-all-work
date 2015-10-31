@@ -1,0 +1,10 @@
+package all;
+
+public class Mammal extends Lion{
+
+	public Mammal(boolean male, int weight) {
+		super(male, weight);
+		// TODO Auto-generated constructor stub
+	}
+
+}

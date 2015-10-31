@@ -1,0 +1,5 @@
+package all;
+
+public abstract class Problem7ContinentalFactory {
+
+}

@@ -5,7 +5,9 @@ import java.util.Date;
 
 public class ArrayListInt {
 
+	@SuppressWarnings("unchecked")
 	public static void main(String[] args) {
+		@SuppressWarnings("rawtypes")
 		ArrayList list = new ArrayList();
 		list.add("Hello");
 		list.add(5);
@@ -16,6 +18,7 @@ public class ArrayListInt {
 			System.out.printf("Index=%d; Value=%s\n", i, value);
 		}
 		
+		@SuppressWarnings("rawtypes")
 		ArrayList list1 = new ArrayList();
 		list1.add(2);
 		list1.add(3);

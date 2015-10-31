@@ -1,0 +1,16 @@
+package all;
+
+public class Problem4Rectangle extends Problem4Shape {
+	
+	public Problem4Rectangle(double width, double height) {
+		super(width, height);
+	}
+	
+	@Override
+	public double calculateSurfave() {
+		double rectangleSurface = this.getWidth() * this.getHeight();
+		return rectangleSurface;
+	}
+	
+	
+}

@@ -1,0 +1,17 @@
+package all;
+
+public class Problem7AnimalWorld {
+	
+	private Problem7HerbivorousAnimal herbivorousAnimal;
+	private Problem7CarnivorousAnimal carnivorousAnimal;
+
+	public AnimalWorld(ContinentalFactory factory) {
+		carnivorousAnimal = factory.CreateCarnivorousAnimal();
+		herbivorousAnimal = factory.CreateHerbivorousAnimal();
+	}
+
+	public void RunFoodChain() {
+		carnivorousAnimal.Eat(herbivorousAnimal);
+	}
+
+}

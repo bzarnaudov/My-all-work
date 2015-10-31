@@ -1,0 +1,7 @@
+package all;
+
+public interface Problem7ContinentalFactory {
+	public HerbivorousAnimal CreateHerbivorousAnimal();
+    public CarnivorousAnimal CreateCarnivorousAnimal();
+
+}

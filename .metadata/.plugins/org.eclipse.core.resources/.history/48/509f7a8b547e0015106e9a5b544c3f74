@@ -1,0 +1,26 @@
+package all;
+
+public class Problem1QualityCode {
+	
+	public static void main(String... args) {
+		int decisionCode = 10;
+		int maxIterations = 5;
+		int wordCode = 0;
+	
+		switch (decisionCode) {
+			case 10: w = 5; break;
+			case 9: i = 0; break;
+			case 8:
+				System.out.print("9 ");
+				System.out.print("9 ");
+				{
+					System.out.print("9 ");
+				}
+				for (int k = 0; k < i; k++, System.out.print(k - 'f'))
+					;
+			default: System.out.print("4 "); break;	
+		}
+		System.out.println("Cycle");
+
+	}
+}

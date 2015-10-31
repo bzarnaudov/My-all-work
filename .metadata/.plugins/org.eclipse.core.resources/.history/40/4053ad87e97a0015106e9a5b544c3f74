@@ -1,0 +1,9 @@
+package all;
+
+public class Problem5Animal {
+	private int age;
+	private String name;
+	private String gender;
+	
+	
+}

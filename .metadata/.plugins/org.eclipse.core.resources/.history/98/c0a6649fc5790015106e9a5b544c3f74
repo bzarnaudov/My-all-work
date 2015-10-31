@@ -1,0 +1,5 @@
+package all;
+
+public class Problem1Worker extends Problem1Human{
+	
+}

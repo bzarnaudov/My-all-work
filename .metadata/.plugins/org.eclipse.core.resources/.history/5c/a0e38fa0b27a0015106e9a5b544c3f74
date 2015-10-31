@@ -1,0 +1,10 @@
+package all;
+
+public class Problem4Rectangle extends Problem4Shape {
+	
+	public Problem4Rectangle(double width, double height) {
+		super(width, height);
+	}
+	
+	
+}

@@ -1,0 +1,19 @@
+package all;
+
+public class Problem5Kitten extends Problem5Animal{
+
+	public Problem5Kitten() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Problem5Kitten(int age, String name, Problem5Gender animalGender) {
+		super(age, name, Problem5Gender.MALE);
+		this.setSound("KittenMiaaayyy");
+	}
+
+	@Override
+	public String getAnimalSound() {
+		return this.getSound();
+	}
+}

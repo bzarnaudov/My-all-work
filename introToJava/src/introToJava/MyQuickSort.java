@@ -245,7 +245,7 @@ import java.util.Scanner;
 		System.out.printf(Locale.JAPANESE, "The date in Day/Mont/Year is : %1$tI/%1$tM/%1$tp %n", date); 
 		Calendar c = Calendar.getInstance();
 		System.out.format("%tB %te, %tY%n", c, c, c);
-		// --> "Август 9, 2008"
+		// --> "пїЅпїЅпїЅпїЅпїЅпїЅ 9, 2008"
 		System.out.format("%tl:%tM %tp%n" + Locale.getDefault().toString(), c, c, c);
 		System.out.printf(Locale.JAPANESE, "The date in Day/Mont/Year is : %1$tB/%1$tm/%1$tY %n", date);
 		*/
@@ -381,16 +381,16 @@ import java.util.Scanner;
 		System.out.println("napishete 4islo ot 0 do 9");
 		int a = input.nextInt();
 		switch (a){
-			case 0 : System.out.println("нула");break;
-			case 1 : System.out.println("едно");break;
-			case 2 : System.out.println("две");break;
-			case 3 : System.out.println("три");break;
-			case 4 : System.out.println("четири");break;
-			case 5 : System.out.println("пет");break;
-			case 6 : System.out.println("шест");break;
-			case 7 : System.out.println("седем");break;
-			case 8 : System.out.println("осем");break;
-			case 9 : System.out.println("девет");break;
+			case 0 : System.out.println("пїЅпїЅпїЅпїЅ");break;
+			case 1 : System.out.println("пїЅпїЅпїЅпїЅ");break;
+			case 2 : System.out.println("пїЅпїЅпїЅ");break;
+			case 3 : System.out.println("пїЅпїЅпїЅ");break;
+			case 4 : System.out.println("пїЅпїЅпїЅпїЅпїЅпїЅ");break;
+			case 5 : System.out.println("пїЅпїЅпїЅ");break;
+			case 6 : System.out.println("пїЅпїЅпїЅпїЅ");break;
+			case 7 : System.out.println("пїЅпїЅпїЅпїЅпїЅ");break;
+			case 8 : System.out.println("пїЅпїЅпїЅпїЅ");break;
+			case 9 : System.out.println("пїЅпїЅпїЅпїЅпїЅ");break;
 			default: System.out.println("greshno chislo");
 		}*/
 		/**Scanner input = new Scanner(System.in);
@@ -457,19 +457,19 @@ import java.util.Scanner;
 			System.out.println("greshno vuvedeno chislo");
 		} else {
 			
-			String n1 = "едно";
-			String n2 = "две";
-			String n3 = "три";
-			String n4 = "четири";
-			String n5 = "пет";
-			String n6 = "шест";
-			String n7 = "седем";
-			String n8 = "осем";
-			String n9 = "девет";
-			String n10 = "десет ";
-			String na = "на";
-			String n11 = "еди" + na + n10;
-			String n12 = "два" + na + n10;
+			String n1 = "пїЅпїЅпїЅпїЅ";
+			String n2 = "пїЅпїЅпїЅ";
+			String n3 = "пїЅпїЅпїЅ";
+			String n4 = "пїЅпїЅпїЅпїЅпїЅпїЅ";
+			String n5 = "пїЅпїЅпїЅ";
+			String n6 = "пїЅпїЅпїЅпїЅ";
+			String n7 = "пїЅпїЅпїЅпїЅпїЅ";
+			String n8 = "пїЅпїЅпїЅпїЅ";
+			String n9 = "пїЅпїЅпїЅпїЅпїЅ";
+			String n10 = "пїЅпїЅпїЅпїЅпїЅ ";
+			String na = "пїЅпїЅ";
+			String n11 = "пїЅпїЅпїЅ" + na + n10;
+			String n12 = "пїЅпїЅпїЅ" + na + n10;
 			String n13 = n3 + na + n10;
 			String n14 = n4 + na + n10;
 			String n15 = n5 + na + n10;
@@ -477,14 +477,14 @@ import java.util.Scanner;
 			String n17 = n7 + na + n10;
 			String n18 = n8 + na + n10;
 			String n19 = n9 + na + n10;
-			String sto = "стотин ";
+			String sto = "пїЅпїЅпїЅпїЅпїЅпїЅ ";
 			int stotici = number / 100;
 			int desetici = (number - stotici * 100) / 10;
 			int edinici = number - stotici * 100 - desetici * 10;
 			switch (stotici) {
-				case 1: System.out.print("сто "); break;
-				case 2: System.out.print(n2 + "ста "); break;
-				case 3: System.out.print(n3 + "ста "); break; 
+				case 1: System.out.print("пїЅпїЅпїЅ "); break;
+				case 2: System.out.print(n2 + "пїЅпїЅпїЅ "); break;
+				case 3: System.out.print(n3 + "пїЅпїЅпїЅ "); break; 
 				case 4: System.out.print(n4 + sto); break;
 				case 5: System.out.print(n5 + sto); break;
 				case 6: System.out.print(n6 + sto); break; 
@@ -494,7 +494,7 @@ import java.util.Scanner;
 			}
 			if (desetici != 0){
 				if (((desetici == 1) || (edinici == 0)) && (number > 100)){
-					System.out.print("и ");
+					System.out.print("пїЅ ");
 				}
 			}
 			switch (desetici) {
@@ -510,7 +510,7 @@ import java.util.Scanner;
 					case 18: System.out.print(n18); break;
 					case 19: System.out.print(n19); break;
 				}; break;
-				case 2: System.out.print("два" + n10); break;
+				case 2: System.out.print("пїЅпїЅпїЅ" + n10); break;
 				case 3: System.out.print(n3 + n10); break; 
 				case 4: System.out.print(n4 + n10); break;
 				case 5: System.out.print(n5 + n10); break;
@@ -520,7 +520,7 @@ import java.util.Scanner;
 				case 9: System.out.print(n9 + n10); break; 
 			}
 			if ((edinici != 0) && (desetici != 1) && (number > 10)){
-				System.out.print("и ");
+				System.out.print("пїЅ ");
 			}
 			if (desetici != 1){
 				switch (edinici) {
@@ -536,7 +536,7 @@ import java.util.Scanner;
 				}
 			}
 			if (number == 0){
-				System.out.print("нула");
+				System.out.print("пїЅпїЅпїЅпїЅ");
 			}
 		}*/
 		
@@ -567,21 +567,21 @@ import java.util.Scanner;
 		System.out.printf("%d  -  %d  =  %d", squareOfSum, sumOfSquares, difference);
 		*/
 		
-	/**private static final String AND = " и ";
+	/**private static final String AND = " пїЅ ";
 	private static final String SPACE = " ";
 	private static final String VOID = "";
-	private static final String ZERO = "нула";
+	private static final String ZERO = "пїЅпїЅпїЅпїЅ";
 
 	private static final String UNITS[] = {
-			VOID, "едно", "две", "три", "четири",
-			"пет", "шест", "седем", "осем", "девет"};
+			VOID, "пїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅ", "пїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅпїЅ",
+			"пїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅ"};
 	private static final String UNITS_TEN_TO_TWENTY[] = {
-			"десет", "единадесет", "дванадесет", "тринадесет", "четиринадесет",
-			"петнадесет", "шестнадесет", "седемнадесет", "осемнадесет", "деветнадесет"};
-	private static final String TENTHS[] = {VOID, VOID, "двадесет", "тридесет", "четиридесет", "петдесет",
-			"шестдесет", "седемдесет", "осемдесет", "деветдесет"};
-	private static final String HUNDREDS[] = {VOID, "сто", "двеста", "триста", "четиристотин", "петстотин",
-			"шестстотин", "седемстотин", "осемстотин", "деветстотин"};
+			"пїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ",
+			"пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ"};
+	private static final String TENTHS[] = {VOID, VOID, "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ",
+			"пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ"};
+	private static final String HUNDREDS[] = {VOID, "пїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ",
+			"пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ"};
 
 
 	public static void main(String[] args) {
@@ -1611,6 +1611,7 @@ import java.util.Scanner;
 		System.out.println(broi);
 		*/
 
+		@SuppressWarnings("unused")
 		public class MyQuickSort {
 		    /*
 		     * Enums for the state of the Nodes, for use in DFS/BFS

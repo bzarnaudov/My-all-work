@@ -1,0 +1,18 @@
+package all;
+
+public class Problem4Circle extends Problem4Shape{
+	private double radius;
+	
+	public Problem4Circle() {
+		super(0, 0);
+	}
+	
+	public Problem4Circle(double width, double height) {
+		
+	}
+	
+	public double calculateSurface() {
+		double circleSurface = Math.PI * radius * radius;
+		return circleSurface;
+	}
+}

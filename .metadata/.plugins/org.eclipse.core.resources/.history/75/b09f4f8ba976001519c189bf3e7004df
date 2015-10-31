@@ -1,0 +1,6 @@
+package all;
+
+public interface Reproducible {
+	
+	Mammal[] reproduce(Mammal mate);
+}

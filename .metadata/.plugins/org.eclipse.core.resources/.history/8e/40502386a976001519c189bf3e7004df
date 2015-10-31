@@ -1,0 +1,21 @@
+package all;
+
+public class Mammal{
+	private boolean male;
+	
+	public Mammal() {
+		this(true);
+	}
+	
+	public Mammal(boolean male) {
+		this.male = male;
+	}
+	
+	public boolean isMale() {
+		return male;
+	}
+	
+	public void setMale(boolean male) {
+		this.male = male;
+	}
+}

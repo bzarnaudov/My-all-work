@@ -7,9 +7,9 @@ public class Problem8CheckCyclicGraph {
 
 	public static int vertices[][] = { 	{ 0, 1, 0, 0 , 0 },
 										{ 0, 0, 1, 0 , 0 },
-										{ 0, 0, 0, 0 , 0 },
+										{ 0, 0, 0, 1 , 0 },
 										{ 0, 0, 0, 0 , 1 },
-										{ 0, 0, 0, 0 , 0 }
+										{ 1, 0, 0, 0 , 0 }
 									};
 	public static boolean[] visited = new boolean[vertices.length];
 	public static Graph graph = new Graph(vertices);
@@ -20,8 +20,7 @@ public class Problem8CheckCyclicGraph {
 			System.out.println("graph is not cyclic");
 		} else {
 			System.out.println(returnedPath);
-		}
-		
+		}	
 	}
 
 	private static List<Integer> DFS(int vertex) {

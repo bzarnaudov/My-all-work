@@ -1,0 +1,9 @@
+package all;
+
+public class Problem4Shape {
+	private double width;
+	private double height;
+	
+	public void calculateSurface() {	
+	}
+}

@@ -1,0 +1,23 @@
+package all;
+
+public class Lion extends Felidae implements Reproducible{
+	private int weight;
+	
+	public Lion(boolean male, int weight) {
+		super(male); // visible - Felidae's public constructor.
+		this.weight = weight;
+	}
+	
+	public int getWeight() {
+		return weight;
+	}
+	
+	public void setWeight(int weight) {
+		this.weight = weight;
+	}
+
+	public Mammal[] reproduce(Mammal anotherLion) {
+		Object mammal1 = new Lion(true, 5);
+		return new Mammal[]{new Felidae(true), new Felidae(true)};
+	}
+}
