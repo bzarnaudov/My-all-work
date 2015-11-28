@@ -1,0 +1,16 @@
+package all;
+
+import javax.swing.*;
+
+public class FlashingText extends JApplet implements Runnable {
+
+	private JLabel jlblText = new JLabel("Welcome", JLabel.CENTER);
+	
+	
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+
+	}
+
+}
