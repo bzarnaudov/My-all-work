@@ -1,0 +1,12 @@
+package all;
+
+public class Problem1FindingShortestPathInTown {
+
+	public static void main(String[] args) {
+		
+		Problem1Dijkstra.ReadInput();
+        Problem1Dijkstra.FindPaths();
+
+	}
+
+}

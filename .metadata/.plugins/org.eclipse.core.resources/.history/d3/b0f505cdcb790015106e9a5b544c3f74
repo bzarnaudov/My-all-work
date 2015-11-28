@@ -1,7 +1,0 @@
-package all;
-
-public class Problem1Human {
-	private String name;
-	private String surname;
-	
-}

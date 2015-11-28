@@ -1,0 +1,93 @@
+package all;
+
+import java.util.*;
+
+public class Problem1MatrixSpiral {
+	
+	public static void Main(String[] args) {
+		Scanner input = new Scanner(System.in);
+        String inputLine = input.nextLine();
+        int arraySize = Integer.parseInt(inputLine);
+
+        int[][] matrix = new int[arraySize][arraySize];
+        
+        int row = 0;
+        int col = arraySize - 1;
+
+        Problem1Direction direction = Problem1Direction.Down;
+        int spiralInnerRadius = arraySize;
+
+        for (int i = 1; i <= arraySize * arraySize; i++)
+        {
+            matrix[row, col] = i;
+
+            switch (direction)
+            {
+                case Direction.Down:
+                    if (row < spiralInnerRadius - 1)
+                    {
+                        row++;
+                    }
+                    else
+                    {
+                        direction = Direction.Left;
+                        col--;
+                    }
+                    break;
+                case Direction.Right:
+                    if (col < spiralInnerRadius - 1)
+                    {
+                        col++;
+                    }
+                    else
+                    {
+                        direction = Direction.Down;
+                        row++;
+                    }
+                    break;
+                case Direction.Up:
+                    if (row > arraySize - spiralInnerRadius)
+                    {
+                        row--;
+                    }
+                    else
+                    {
+                        direction = Direction.Right;
+                        col++;
+                        spiralInnerRadius--;
+                    }
+                    break;
+                case Direction.Left:
+                    if (col > arraySize - spiralInnerRadius)
+                    {
+                        col--;
+                    }
+                    else
+                    {
+                        direction = Direction.Up;
+                        row--;
+                    }
+                    break;
+            }
+        }
+        PrintMatrix(matrix);
+        Console.WriteLine();
+    }
+
+    static void PrintMatrix(int[,] matrix)
+    {
+        StringBuilder output = new StringBuilder();
+
+        for (int r = 0; r < matrix.GetLength(0); r++)
+        {
+            for (int c = 0; c < matrix.GetLength(1); c++)
+            {
+                output.AppendFormat("{0,6}", matrix[r, c]);
+            }
+            output.AppendLine();
+        }
+
+        Console.WriteLine(output);
+    }
+
+}

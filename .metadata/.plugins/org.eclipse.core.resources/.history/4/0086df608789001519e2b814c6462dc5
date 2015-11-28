@@ -1,0 +1,42 @@
+package all;
+
+import java.util.*;
+
+public class Problem4Singer {
+	private String name;
+    private String nickname;
+    private List<Album> Albums;
+
+    // Create a constructor of the class
+    public Singer(string name, string nickname)
+    {
+        this.Name = name;
+        this.Nickname = nickname;
+        Albums = new List<Album>();
+    }
+
+    // Method for adding new albums for every artist
+    public void AddAlbum(Album album)
+    {
+        Albums.Add(album);
+    }
+
+    // Create an overriden method to make the the information in the class  
+    // into string 
+    public override string ToString()
+    {
+        StringBuilder sb = new StringBuilder();
+
+        sb.Append("Singers name " + this.Name);
+        sb.Append('\n');
+        sb.Append("Singers nickname " + this.Nickname);
+
+        foreach (var album in Albums)
+        {
+            sb.Append(album.ToString());
+            sb.Append('\n');
+        }
+        return sb.ToString();
+    }
+
+}

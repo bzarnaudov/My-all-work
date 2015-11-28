@@ -1,0 +1,23 @@
+package all;
+
+import java.util.*;
+
+public class Problem2ConvexHull {
+	
+	static Problem2Point mostLeftDownPoint = new Problem2Point();
+	
+	private int indexOfMostDownLeftPoint = 0;
+	private List<Problem2Point> hull = new ArrayList<Problem2Point>();
+	private List<Problem2Point> points = new ArrayList<Problem2Point>();
+	private int numberPoints;
+
+	private boolean orientation(Problem2Point p1, Problem2Point p2, Problem2Point p3) {
+		int orientation = p1.X * (p2.Y - p3.Y) + p2.X * (p3.Y - p1.Y) + p3.X
+				* (p1.Y - p2.Y);
+		if (orientation < 0)
+			return false;
+		return true;
+	}
+
+	
+}

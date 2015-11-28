@@ -1,0 +1,10 @@
+package all;
+
+public class Problem1Dijkstra {
+	
+	private static final int maxNumbersOfNodes = 5010;
+	
+	Problem1Node node;
+	
+	
+}

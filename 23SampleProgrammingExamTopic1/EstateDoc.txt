@@ -1,0 +1,20 @@
+120-650-Mladost1A-3-Yes-Yes
+115-640-Mladost4-6-Yes-Yes
+10-570-St.Grad-2-No-No
+78-650-Lulin next to Billa-3-Yes-Yes
+120-650-Mladost1A-3-Yes-Yes
+130-1000-Center-4-Yes-Yes
+!
+243.23-450-Center-200-34.23-2-No
+250-500-Near NDK-190-60-1-Yes
+300-470-Gorublqne-250-50-3-Yes
+230.5-455-Mladost1A-200-30.5-2-Yes
+!
+150-800-The Mall
+125.5-755-City Center
+130.3-760-The Mall
+!
+Bg Real Estates-Angel Petrov-121730021
+Alex Djenkov-Salesman-10
+Dimitar Dimitrov-Salesman-15
+Angel Petrov-CEO-20

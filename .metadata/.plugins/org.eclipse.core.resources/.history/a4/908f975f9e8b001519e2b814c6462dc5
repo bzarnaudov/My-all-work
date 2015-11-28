@@ -1,0 +1,37 @@
+package all;
+
+import java.util.Scanner;
+
+public class Problem2PrimesMatrixWithSieveOfEratosthenes {
+	private static final int PRIMES_INTERVAL_MAX = 1000000;
+
+	public static void main(String[] args) {
+		int matrixDimensions = readInput();
+		int primesNeededCount = matrixDimensions * matrixDimensions;
+		int[] primeNumbers = findPrimeNumbers(primesNeededCount);
+		printPrimesMatrix(primeNumbers, matrixDimensions);
+	}
+
+	private static int readInput() {
+		Scanner input = new Scanner(System.in);
+		String inputLine = input.nextLine();
+        
+        int n = 0;
+        try
+        {
+            n = int.Parse(input);
+        }
+        catch (FormatException exception)
+        {
+            Console.WriteLine("Invalid input: {0}", input);
+        }
+
+        if (n >= 200)
+        {
+            throw new ArgumentException("N > 200");
+        }
+        
+        return n;
+
+	}
+}

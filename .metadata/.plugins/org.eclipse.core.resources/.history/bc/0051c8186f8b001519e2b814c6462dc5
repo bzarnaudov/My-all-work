@@ -1,0 +1,18 @@
+package all;
+
+public class WordsCounter {
+
+	static String extractSeparators(String text) {
+		StringBuilder separators = new StringBuilder();
+		int textLength = text.length();
+		for (int index = 0; index < textLength; index++) {
+			char character = text.charAt(index);
+			if (!Character.isLetter(character)) {
+				separators.append(character);
+			}
+		}
+		return separators.toString();
+	}
+	
+	
+}

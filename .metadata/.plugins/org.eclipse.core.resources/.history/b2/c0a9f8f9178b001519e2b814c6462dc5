@@ -1,0 +1,134 @@
+package all;
+
+import java.util.*;
+
+public class Problem5Company {
+	private String companyName;
+    private String owner;
+    private String bulstat;
+    private List<Problem5Employee> employees;
+    private HashMap<Double, Problem5Apartment> apartmentCatalog;
+    private HashMap<Double, Problem5House> houseCatalog;
+    private HashMap<Double, Problem5Estate> shopCatalog;
+
+    public Problem5Company(String name, String owner, String bulstat) {
+        this.companyName = name;
+        this.owner = owner;
+        this.bulstat = bulstat;
+        this.apartmentCatalog = new HashMap<Double, Problem5Apartment>();
+        this.houseCatalog = new HashMap<Double, Problem5House>();
+        this.shopCatalog = new HashMap<Double, Problem5Estate>();
+        this.employees = new ArrayList<Problem5Employee>();
+    }
+
+   
+
+    public String getCompanyName() {
+		return companyName;
+	}
+
+
+
+	public void setCompanyName(String companyName) {
+		this.companyName = companyName;
+	}
+
+
+
+	public String getOwner() {
+		return owner;
+	}
+
+
+
+	public void setOwner(String owner) {
+		this.owner = owner;
+	}
+
+
+
+	public String getBulstat() {
+		return bulstat;
+	}
+
+
+
+	public void setBulstat(String bulstat) {
+		this.bulstat = bulstat;
+	}
+
+
+
+	public void addHouse(Problem5House hs) {
+        if (houseCatalog.containsKey(
+           calculatingHashCode(hs.getArea(), hs.getPricePerSquareMeter())) == false) {
+            houseCatalog.add(calculatingHashCode(hs.getArea(), hs.getPricePerSquareMeter()), hs);
+        }
+    }
+
+    public void AddApartment(Apartment apartment)
+    {
+        if (apartmentCatalog.ContainsKey(CalculatingHashCode(apartment.Area, 
+            apartment.PricePerSquareMeter)) == false)
+        {
+            apartmentCatalog.Add(CalculatingHashCode(
+                apartment.Area, apartment.PricePerSquareMeter), 
+                apartment);
+        }
+    }
+
+    public void AddShop(Estate shop)
+    {
+        if (shopCatalog.ContainsKey(
+            CalculatingHashCode(shop.Area, shop.PricePerSquareMeter)) == false)
+        {
+            shopCatalog.Add(CalculatingHashCode(
+                shop.Area, shop.PricePerSquareMeter), shop);
+        }
+    }
+
+    private Double calculatingHashCode(double area, double pricePerSquare) {
+        return 31 * area * pricePerSquare * 13.45 * 24.13;
+    }
+
+    public void ApartmentCatalogPrint()
+    {
+        foreach (var apartment in apartmentCatalog)
+        {
+            Console.WriteLine(apartment.Value.ToString());
+        }
+    }
+
+    public void HouseCatalogPring()
+    {
+        foreach (var house in houseCatalog)
+        {
+            Console.WriteLine(house.Value.ToString().Trim('{', '}'));
+        }
+    }
+
+    public void ShopCatalog()
+    {
+        foreach (var shop in shopCatalog)
+        {
+            Console.WriteLine(shop.Value.ToString().Trim('{', '}'));
+        }
+    }
+
+    public void AddEmployee(Employee emp)
+    {
+        if (employees.Contains(emp) == false)
+        {
+            employees.Add(emp);
+        }
+    }
+
+    public void EmployeesPrint()
+    {
+        foreach (var employee in employees)
+        {
+            Console.WriteLine(employee.ToString());
+        }
+    }
+
+}

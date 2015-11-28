@@ -1,0 +1,78 @@
+package all;
+
+import java.util.*;
+
+public class WordsCounterWithStringBuilder {
+
+	public static void main(String[] args) {
+		Scanner input = new Scanner(System.in);
+		String text = input.nextLine();
+		String[] words = extractWords(text);
+		countWords(words);
+	}
+
+	private static String[] extractWords(String text) {
+        StringBuilder word = new StringBuilder();
+        List<String> extractedWords = new ArrayList<String>();
+        
+        char currentChar;
+        for (int i = 0; i < text.length(); i++) {
+            currentChar = text.charAt(i);
+
+            if (Character.isLetter(currentChar)) {
+                word.append(currentChar);
+            } else {
+                if (word.length() > 0) {
+                    extractedWords.add(word.toString());
+                    word.setLength(0);
+                }
+            }
+        }
+
+        if (word.length() > 0) {
+            extractedWords.add(word.toString());
+            word.setLength(0);
+        }
+
+        return (String[]) extractedWords.toArray();
+    }
+
+	private static boolean isUpperCase(String word) {
+		boolean result = word.equals(word.toUpperCase());
+		return result;
+	}
+
+	private static boolean isLowerCase(String word) {
+		boolean result = word.equals(word.toLowerCase());
+		return result;
+	}
+
+	private static void countWords(String[] words) {
+        int upperCaseWordsCount = 0;
+        int lowerCaseWordsCount = 0;
+
+        foreach (string word in words)
+        {
+            if (IsUpperCase(word))
+            {
+                upperCaseWordsCount++;
+            }
+            else if (IsLowerCase(word))
+            {
+                lowerCaseWordsCount++;
+            }
+        }
+        int allWordsCount = words.Length;
+        PrintCounts(allWordsCount, upperCaseWordsCount, lowerCaseWordsCount);
+    }
+
+	private static void PrintCounts(int allWordsCount,
+			int allUpperCaseWordsCount, int allLowerCaseWordsCount) {
+		Console.WriteLine(allWordsCount);
+
+		Console.WriteLine(allUpperCaseWordsCount);
+
+		Console.WriteLine(allLowerCaseWordsCount);
+	}
+
+}

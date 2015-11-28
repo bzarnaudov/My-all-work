@@ -1,0 +1,80 @@
+package problem3FileSystem;
+
+public abstract class File implements Comparable<File> {
+	private String name;
+	private DateTime dateCreated;
+	private DateTime lastChanged;
+	private FilesType type;
+	private Object content;
+	private Directory parrent;
+
+	public File(String name, DateTime dateCreated, DateTime lastChanged,
+			Object content, FilesType type) {
+		this.name = name;
+		this.dateCreated = dateCreated;
+		this.lastChanged = lastChanged;
+		this.type = type;
+		this.content = content;
+	}
+
+	public Directory getParrent() {
+		return parrent;
+	}
+
+	public void setParrent(Directory parrent) {
+		this.parrent = parrent;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public DateTime getDateCreated() {
+		return dateCreated;
+	}
+
+	public void setDateCreated(DateTime dateCreated) {
+		this.dateCreated = dateCreated;
+	}
+
+	public DateTime getLastChanged() {
+		return lastChanged;
+	}
+
+	public void setLastChanged(DateTime lastChanged) {
+		this.lastChanged = lastChanged;
+	}
+
+	public FilesType getType() {
+		return type;
+	}
+
+	public void setType(FilesType type) {
+		this.type = type;
+	}
+
+	public Object getContent() {
+		return content;
+	}
+
+	public void setContent(Object content) {
+		this.content = content;
+	}
+
+	@Override
+	public int compareTo(File other) {
+		if (other == null) {
+			return 1;
+		}
+		return this.name.compareTo(other.name);
+	}
+
+	
+	
+	
+
+}

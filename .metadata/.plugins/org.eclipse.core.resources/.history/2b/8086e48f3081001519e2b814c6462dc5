@@ -1,0 +1,21 @@
+package all;
+
+import java.util.ArrayList;
+import java.util.PriorityQueue;
+
+public class Problem1Dijkstra {
+	
+	private static final int MAX_NUMBER_OF_NODES = 5010;
+	
+    private static PriorityQueue<Problem1Node> priorityQueue = new PriorityQueue<Problem1Node>();
+    private static ArrayList<Problem1Node>[] edges;
+    private static int[] distance = new int[MAX_NUMBER_OF_NODES];
+    private static int[] parents = new int[MAX_NUMBER_OF_NODES];
+    private static Dictionary<string, int> nodesStringToInt = new Dictionary<string, int>();
+    private static String[] nodesIntToString = new String[MAX_NUMBER_OF_NODES];
+    private static int numberOfNodes=0;
+
+	
+	
+	
+}

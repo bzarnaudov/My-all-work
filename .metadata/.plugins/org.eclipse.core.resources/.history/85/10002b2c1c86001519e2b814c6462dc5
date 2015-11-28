@@ -1,0 +1,117 @@
+package all;
+
+import java.util.*;
+
+public class Problem1ValidEmails {
+
+	private int usernameValid(String username) {
+		String regex = new String("^[A-Za-z_]+$");
+		if (!regex.isMatch(username)) {
+			return -1;
+		}
+		return 0;
+	}
+
+	private int DomainValid(String domain) {
+		Regex regex = new Regex("^[a-z]+$");
+		if (!regex.IsMatch(domain)) {
+			return -1;
+		}
+		if (domain.Length < 2 || domain.Length > 4) {
+			return -1;
+		}
+		return 0;
+	}
+
+	private int HostValid(String host) {
+		Regex regex = new Regex("^[a-z]+$");
+		if (!regex.IsMatch(host)) {
+			return -1;
+		}
+		return 0;
+	}
+
+	private int ValidationOfEmail(String email) {
+		String[] emailElements = email.Split('@', '.');
+		String username = emailElements[0];
+		String host = emailElements[1];
+		String domain = emailElements[2];
+		if (usernameValid(username) != 0 || HostValid(host) != 0
+				|| DomainValid(domain) != 0) {
+			return -1;
+		}
+		return 0;
+	}
+
+	private int ValidationOfName(String name) {
+		Regex regex = new Regex("^[A-Za-z]+$");
+		if (!regex.IsMatch(name)) {
+			return -1;
+		}
+		return 0;
+	}
+
+	public static void Main(String[] args)
+    {
+        StreamReader reader = null;
+        StreamWriter writer = null;
+
+        if (!File.Exists("../../Files/test.001.in.txt"))
+        {
+            Console.WriteLine("File mails.txt does not exist");
+            return;
+        }
+
+        try
+        {
+            writer = new StreamWriter("../../Files/test.001.out.txt");
+            reader = new StreamReader("../../Files/test.001.in.txt");
+                String line = string.Empty;
+                while (true)
+                {
+                    line = reader.ReadLine();
+                    if (line == null)
+                    {
+                        break;
+                    }
+
+                    String[] elements = line.Split(' ');
+                    String firstName = elements[0];
+                    String secondName = elements[1];
+                    String email = elements[2];
+
+                    if (ValidationOfName(firstName) != 0 ||   
+                                ValidationOfName(secondName) != 0)
+                    {
+                        Console.WriteLine("Error in names");
+                        continue;
+                    }
+
+                    try
+                    {
+                        if (ValidationOfEmail(email) != 0)
+                        {
+                            Console.WriteLine("Error in email syntax");
+                            continue;
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        Console.WriteLine("Error");
+                        continue;
+                    }     
+                  
+                    writer.WriteLine(firstName + " " + secondName + " " + email);
+                }
+        }
+        catch (Exception)
+        {
+            Console.WriteLine("Error");
+        }
+        finally
+        {
+            reader.Close();
+            writer.Close();
+        }
+    }
+}

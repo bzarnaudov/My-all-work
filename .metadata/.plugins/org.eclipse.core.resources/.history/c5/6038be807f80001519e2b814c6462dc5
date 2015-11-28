@@ -1,0 +1,8 @@
+package all;
+
+public class Problem1Dijkstra {
+	
+	Problem1Node node;
+	
+	
+}

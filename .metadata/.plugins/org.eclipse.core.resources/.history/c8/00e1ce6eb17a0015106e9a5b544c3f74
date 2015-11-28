@@ -1,8 +1,0 @@
-package all;
-
-public class Problem4Triangle extends Problem4Shape {
-	
-	public double calculateSurface() {
-		
-	}
-}

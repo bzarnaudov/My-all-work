@@ -1,0 +1,12 @@
+package all;
+
+import java.io.*;
+import java.util.*;
+
+public class Maze {
+	
+	private static final String INPUT_FILE_NAME = "Problem2.in";
+	private static final String OUTPUT_FILE_NAME = "Problem2.out";
+	
+	
+}

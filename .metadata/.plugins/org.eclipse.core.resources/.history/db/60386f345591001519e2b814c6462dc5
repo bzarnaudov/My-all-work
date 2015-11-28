@@ -1,0 +1,28 @@
+package problem3FileSystem;
+
+import java.util.Date;
+
+public class BinaryFile extends File{
+	
+	private byte[] content;
+
+	public BinaryFile(String name, Date dateCreated, Date lastChanged,
+			byte[] content, FilesType type) {
+		super(name, dateCreated, lastChanged, content, FilesType.Binary);
+		this.content = content;
+	}
+
+	/**
+	 * @return the content
+	 */
+	public String getContent() {
+		return content;
+	}
+
+	/**
+	 * @param content the content to set
+	 */
+	public void setContent(String content) {
+		this.content = content;
+	}
+}

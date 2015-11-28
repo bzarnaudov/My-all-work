@@ -1,0 +1,12 @@
+package all;
+
+public class WordsCounterWithStringBuilder {
+
+	public static void main(String[] args) {
+		string text = Console.ReadLine();
+        string[] words = ExtractWords(text);
+        CountWords(words);
+	}
+
+	
+}

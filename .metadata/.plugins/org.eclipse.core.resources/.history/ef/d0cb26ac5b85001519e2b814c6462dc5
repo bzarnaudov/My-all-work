@@ -1,0 +1,12 @@
+package all;
+
+public class ExitingFromMaze {
+
+	public static void main(String[] args) {
+		Maze maze = new Maze();
+		maze.readFromFile(Maze.INPUT_FILE_NAME);
+		int pathLength = maze.findShortestPath(maze.startCell);
+		maze.saveResult(OUTPUT_FILE_NAME, pathLength);
+	}
+
+}

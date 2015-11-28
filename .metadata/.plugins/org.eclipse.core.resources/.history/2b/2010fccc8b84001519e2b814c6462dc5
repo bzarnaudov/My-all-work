@@ -1,0 +1,6 @@
+package all;
+
+public class Problem2ConvexHull {
+	static Problem2Point mostLeftDownPoint = new Problem2Point();
+	
+}

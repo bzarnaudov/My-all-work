@@ -1,0 +1,6 @@
+package all;
+
+public class Problem3ParsedExpression {
+	public int[] numbers;
+	public char[] operators;
+}

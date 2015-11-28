@@ -1,0 +1,12 @@
+package all;
+
+import problem3FileSystem.*;
+
+public class Problem4RealFileSystem {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

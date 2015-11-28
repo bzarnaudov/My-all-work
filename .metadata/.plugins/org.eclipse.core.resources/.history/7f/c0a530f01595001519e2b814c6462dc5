@@ -1,0 +1,136 @@
+package problem3FileSystem;
+
+import java.util.*;
+
+public class FileSystemTest {
+
+	public static void main(String[] args) {
+		Device device = new Device();
+		Directory current = new Directory();
+		StringBuilder output = new StringBuilder();
+
+		Scanner input = new Scanner(System.in);
+		String command = input.nextLine();
+		if (command.startsWith("new")) {
+			String commandAtributes = command.substring("new".length() + 1);
+			String[] tokens = commandAtributes.split(",");
+			device = new Device(tokens[0], new Directory(tokens[1], Calendar
+					.getInstance().getTime()));
+			current = device.getRoot();
+			output.append("Device created – " + device.getName() + ", "
+					+ device.getRoot() + "\n");
+		}
+
+		command = input.nextLine();
+		while (!command.equals("end")) {
+			if (command.startsWith("md")) {
+				Directory newDirectory = makeDirectory(command);
+				try {
+					current.addDirectory(newDirectory);
+				} catch (Exception e) {
+					e.printStackTrace();
+				} finally {
+					if (input != null) {
+						input.close();
+					}
+				}
+				output.append("Directory made - " + newDirectory.getName()
+						+ "\n");
+			} else if (command.startsWith("cd")) {
+				if (command.equals("cd ..")) {
+					current = current.getParent();
+				} else {
+					String dirName = command.substring("cd".length() + 1)
+							.trim();
+					for (Directory dir : current.getDirectories()) {
+						if (dir.getName().equals(dirName)) {
+							current = dir;
+						}
+					}
+				}
+				output.append("Directory changed - " + current.getName() + "\n");
+			} else if (command.startsWith("dir")) {
+				output.append(current.getFilesAndDirs());
+			} else if (command.equals("cur")) {
+				output.append(current.getName() + "\n");
+			} else if (command.startsWith("nf")) {
+				try {
+					output.append("File created – " + newFile(command, current)
+							+ "\n");
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			} else if (command.startsWith("rf")) {
+				output.append(readFile(command, current));
+			} else if (command.startsWith("all")) {
+				output.append(device.toString());
+			}
+			command = input.nextLine();
+		}
+		System.out.println(output);
+	}
+
+	static Directory makeDirectory(String command) {
+		String commandAtributes = command.substring("md".length() + 1);
+		String[] tokens = commandAtributes.split(",");
+		Directory result = new Directory(tokens[0], Calendar.getInstance()
+				.getTime());
+		return result;
+	}
+
+	static String newFile(String command, Directory current) throws Exception {
+		String cmdAtributes = command.substring("nf".length() + 1);
+		String[] tokens = cmdAtributes.split(".");
+
+		Scanner input = new Scanner(System.in);
+		String content = input.nextLine();
+
+		if (tokens[1].equals("txt")) {
+			TextFile newFile = new TextFile(tokens[0], Calendar.getInstance()
+					.getTime(), Calendar.getInstance().getTime(), content);
+			current.addFile(newFile);
+			input.close();
+			return newFile.toString();
+		} else {
+			String[] bytes = content.split(" ");
+			byte[] bytesContent = new byte[bytes.length];
+
+			for (int i = 0; i < bytes.length; i++) {
+				bytesContent[i] = Byte.parseByte(bytes[i]);
+			}
+
+			BinaryFile newFile = new BinaryFile(tokens[0], Calendar
+					.getInstance().getTime(), Calendar.getInstance().getTime(),
+					bytesContent);
+			current.addFile(newFile);
+			input.close();
+			return newFile.toString();
+		}
+
+	}
+
+	static String readFile(String command, Directory currnet) {
+        String fileName = command.substring("rf".length() + 1).trim(); ;
+
+        File file = null;
+        for (File f : currnet.getFiles()) {
+            if (f.getName().equals(fileName) || f.toString().equals(fileName)) {
+                file = f;
+                break;
+            }
+        }
+
+        if (file.getType().equals(FilesType.Text)) {
+            return file.getContent().toString();
+        }
+
+        file.
+        StringBuilder result = new StringBuilder();
+        for (i = 0; i < file.get)
+        for (byte b : file.getContent() {
+            result.Append((byte)b + " ");
+        }
+
+        return result.toString();
+    }
+}

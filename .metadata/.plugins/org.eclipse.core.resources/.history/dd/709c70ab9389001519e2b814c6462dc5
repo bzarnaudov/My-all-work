@@ -1,0 +1,82 @@
+package all;
+
+import java.io.FileNotFoundException;
+import java.io.UnsupportedEncodingException;
+import java.util.Scanner;
+
+public class Problem4MainMusicalCompany {
+
+	// Create a sample test to check if the classes are working properly with its       
+    // methods
+
+	public static void main(String[] args) {
+		Scanner reader = null;
+		try {
+			reader =  new StreamReader(/MusicCompany.txt");
+	
+	          List<Song> songs = new List<Song>();
+	          List<Album> albums = new List<Album>();
+	          List<Singer> singers = new List<Singer>();
+	
+	          using (reader)
+	          {
+	              string line = "";
+	              string[] elements;
+	              for (int i = 0; i < 2; i++)
+	              {
+	                  while (true)
+	                  {
+	                      line = reader.ReadLine();
+	                      if (line == "!")
+	                      {
+	                          break;
+	                      }
+	
+	                      elements = line.Split('-');
+	                      songs.Add(new Song(elements[0], int.Parse(elements[1])));
+	                  }
+	
+	                  line = reader.ReadLine();
+	                  elements = line.Split('-');
+	                  albums.Add(new Album(elements[0], elements[1], 
+	                      int.Parse(elements[2]), int.Parse(elements[3])));
+	
+	                  line = reader.ReadLine();
+	                  elements = line.Split('-');
+	                  singers.Add(new Singer(elements[0], elements[1]));
+	
+	                  int counter = 0;
+	                  foreach (var song in songs)
+	                  {
+	                      albums[counter].AddSongs(song);
+	                  }
+	
+	                  singers[counter].AddAlbum(albums[counter]);
+	                  counter++;
+	                  songs.Clear();
+	              }
+	              line = reader.ReadLine();
+	              elements = line.Split('-');
+	              MusicComapny virginiaRecors = 
+	                      new MusicComapny(elements[0], elements[1], elements[2]);
+	
+	              foreach (var singer in singers)
+	              {
+	                  virginiaRecors.AddArtist(singer);
+	              }
+	              Console.WriteLine(virginiaRecors.ToString());
+	          }
+		} catch (FileNotFoundException fnfe) {
+			System.err.println(fnfe.getMessage());
+		} catch (UnsupportedEncodingException e1) {
+			e1.printStackTrace();
+		} finally {
+			if (!(reader == null)) {
+				reader.close();
+			}
+			if (!(writer == null)) {
+				writer.close();
+			}
+		}
+	}
+}

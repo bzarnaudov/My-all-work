@@ -1,0 +1,48 @@
+package all;
+
+import java.util.*;
+
+public class Problem2ConvexHull {
+	
+	static Problem2Point mostLeftDownPoint;
+	
+	private int indexOfMostDownLeftPoint = 0;
+	private List<Problem2Point> hull = new ArrayList<Problem2Point>();
+	private List<Problem2Point> points = new ArrayList<Problem2Point>();
+	private int numberPoints;
+
+	private boolean orientation(Problem2Point p1, Problem2Point p2, Problem2Point p3) {
+		int orientation = p1.getX() * (p2.getY() - p3.getY()) + p2.getX() * (p3.getY() - p1.getY()) 
+				+ p3.getX() * (p1.getY() - p2.getY());
+		if (orientation < 0)
+			return false;
+		return true;
+	}
+
+	public void readInput() {
+		Scanner input = new Scanner(System.in);
+        numberPoints = Integer.parseInt(input.nextLine());
+        Problem2Point current = new Problem2Point();
+        mostLeftDownPoint = new Problem2Point(Integer.MAX_VALUE, Integer.MAX_VALUE);
+        
+        for (int i = 0; i < numberPoints; i++) {
+            String inputLine = input.nextLine();
+            String[] numbers = inputLine.split(" ");
+            current.setX(Integer.parseInt(numbers[0]));
+            current.setY(Integer.parseInt(numbers[1]));
+            if (current.getX() < mostLeftDownPoint.getX()) {
+                mostLeftDownPoint.setX(current.getX());
+                mostLeftDownPoint.setY(current.getY());
+                indexOfMostDownLeftPoint = i;
+            } else if (current.getX() == mostLeftDownPoint.getX()) {
+                    if (current.Y < mostLeftDownPoint.Y) {
+                        mostLeftDownPoint.Y = current.Y;
+                        indexOfMostDownLeftPoint = i;
+                    }
+            }
+            points.Add(current);
+        }
+    }
+
+	
+}

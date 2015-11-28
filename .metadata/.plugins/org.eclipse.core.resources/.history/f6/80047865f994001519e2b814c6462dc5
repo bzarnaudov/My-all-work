@@ -1,0 +1,74 @@
+package problem3FileSystem;
+
+import java.util.*;
+
+public class Device {
+	private String name;
+    private Directory root;
+
+    public Device() {
+    	this("",new Directory());
+    }
+
+    public Device(String name, Directory root) {
+        this.name = name;
+        this.root = root;
+    }
+
+    public Device(String name, String rootName, Date rootLastChanged, params Directory[] children) {
+    	this(name, rootName, rootLastChanged, new HashSet<File>(), children);
+    }
+       
+
+    public Device(String name, String rootName, DateTime rootLastChanged, IEnumerable<File> files, params Directory[] children)
+        : this(name, new Directory(rootName, rootLastChanged, files, children)) { }
+
+    public String Name
+    {
+        get
+        {
+            return this.name;
+        }
+        set
+        {
+            this.name = value;
+        }
+    }
+
+    public Directory Root
+    {
+        get
+        {
+            return this.root;
+        }
+        set
+        {
+            this.root = value;
+        }
+    }
+
+    public override String ToString()
+    {
+        return "Device: " + this.name + '\n' + DfsTraversal(root, String.Empty);
+    }
+
+    public static String DfsTraversal(Directory dir, String path)
+    {
+        StringBuilder result = new StringBuilder();
+        StringBuilder sbPath = new StringBuilder(path);
+        sbPath.Append(dir.Name + '\\');
+        result.AppendLine(sbPath.ToString());
+
+        foreach (var file in dir.Files)
+        {
+            result.AppendLine(sbPath + file.ToString());
+        }
+
+        foreach (var subdir in dir.Directories)
+        {
+
+            result.Append(DfsTraversal(subdir, sbPath.ToString()));
+        }
+        return result.ToString();
+    }
+}

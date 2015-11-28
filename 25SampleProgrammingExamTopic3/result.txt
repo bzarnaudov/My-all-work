@@ -1,0 +1,6 @@
+game - 1
+big - 0
+strong - 0
+death - 1
+word - 48
+try - 16

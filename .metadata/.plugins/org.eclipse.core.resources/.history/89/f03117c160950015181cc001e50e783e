@@ -1,0 +1,57 @@
+package all;
+
+import problem3FileSystem.*;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.InvalidPathException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.*;
+
+public class Problem4RealFileSystem {
+
+	public static void main(String[] args) {
+		Scanner input = new Scanner(System.in);
+		String rootDirectory;
+		System.out.print("Please enter path for directory , which you want to see details : ");
+		while (true) {
+			rootDirectory = input.nextLine();
+			if (chackingPath(rootDirectory)) {
+				break;
+			}
+			System.out.println("Invalid path, please enter valid path :");
+		}
+		File file = new File(rootDirectory);
+		System.out.println(new Date(file.lastModified()*100));
+//		DirectoryInfo rootDirInfo = new DirectoryInfo(rootDirectory);
+//		Directory rootDir = new Directory(file.getName(), new Date(file.lastModified()*100));
+//		Device fileSystem = new Device("File System", rootDir);
+//		fileSystemTraversal(rootDirInfo, rootDir);
+//
+//		Console.WriteLine(fileSystem);
+
+	}
+
+	private static boolean chackingPath(String rootDirectory) {
+		try {
+			Path path = Paths.get(rootDirectory);
+			path.toRealPath();		
+		} catch (InvalidPathException | IOException e) {
+			return false;
+		}
+		return true;
+	}
+
+//	static void fileSystemTraversal(DirectoryInfo currentDirectoryInfo, FileSystem.Directory currentDirectory) {
+//        foreach (var file in currentDirectoryInfo.GetFiles()) {
+//            currentDirectory.AddFile(new BinaryFile(file.Name, file.CreationTime, file.LastWriteTime, null));
+//        }
+//
+//        foreach (var di in currentDirectoryInfo.GetDirectories()) {
+//            var dir = new FileSystem.Directory(di.Name, di.LastWriteTime);
+//            currentDirectory.AddDirectory(dir);
+//            FileSystemTraversal(di, dir);
+//        }
+//    }
+}

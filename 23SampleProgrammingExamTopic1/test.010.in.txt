@@ -1,0 +1,52 @@
+Angel Petrov anchkataabvbg
+Angel Petrov anchkataabvbg
+Angel Petrov anchkataabvbg
+Angel Petrov anchkataabvbg
+Ivelina Petrova ivel&7@abv.bg
+Petar Petrov pesho<5.mail.bg
+*van Penev cr7@abv.bg
+Angel Petrov anchkata@abv.bgbgy
+Angel Petrov anchkata@ab0v.bg
+Angel Petrov anchkata@abv_.bgbg
+Ivan Dimitrov ivan_dimitrov@abv.bg
+Svetlana Todorova Svetlana_tv@mail.bg
+Kiril Kalchev kalchev@gmail.bg
+Todor Ivanov todo*r@888.com
+Ivelina Petrova ivel&7@abv.bg
+Petar Petrov pesho<5.mail.bg
+*van Penev cr7@abv.bg
+Angel Petrov anchkata@abv.bgbgy
+Angel Petrov anchkata@ab0v.bg
+Angel Petrov anchkata@abv_.bgbg
+Angel Petrov anchkataabv.bg
+Angel Petrov anchkataabvbg
+Aba Asenova _@ABA.com
+Aba Asenova _@aba.org
+Aba Asenova _@aba.orgcom
+firstname lastname username@host.domain
+firstname lastname username@host.dom
+firstname lastname username@host.ain
+firstname lastname username@host.domn
+Plamen Vurbanov Abc_example.com (an @ character must separate the local and domain parts)
+Plamen Vurbanov Abc@example.com (character dot(.) is last in local part)
+Plamen Vurbanov Abc_123@example.com (character dot(.) is double)
+Plamen Vurbanov A@b@c@example.com (only one @ is allowed outside quotation marks)
+Plamen Vurbanov a"b(c)d,e:f;g<h>i[j\k]l@example.com (none of the special characters in this local part is allowed outside quotation marks)
+Plamen Vurbanov just"not"right@example.com (quoted strings must be dot separated, or the only element making up the local-part)
+Plamen Vurbanov this is"not\allowed@example.com (spaces, quotes, and backslashes may only exist when within quoted strings and preceded by a slash)
+Plamen Vurbanov this\ still\"not\\allowed@example.com (even if escaped (preceded by a backslash), spaces, quotes, and backslashes must still be contained by quotes)
+Ivan Dimitrov ivan_dimitrov@abv.bg
+Svetlana Todorova Svetlana_tv@mail.bg
+Kiril Kalchev kalchev@gmail.bg
+Plamen Varbanov plamen_varbanov@abv.bg
+Plamen Vurbanov plamen_vurbanov@gmail.com
+Plamen Vurbanov niceandsimple@example.com
+Plamen Vurbanov simplewith_symbol@example.com
+Plamen Vurbanov less_common@example.com
+Plamen Vurbanov a_little_more_unusual@deptexample.com
+Plamen Vurbanov much_more_unusual@example.com
+Plamen Vurbanov very_unusual__unusual_com@example.com
+Plamen Vurbanov very_VERY_very_unusual@strangeexample.com
+Plamen Vurbanov _@example.org
+Plamen Vurbanov joesmith@example.com
+Plamen Vurbanov joesmith@example.com (Joe Smith)

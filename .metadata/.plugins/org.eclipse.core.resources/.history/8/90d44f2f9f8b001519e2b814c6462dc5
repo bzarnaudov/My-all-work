@@ -1,0 +1,36 @@
+package all;
+
+import java.util.Scanner;
+
+public class Problem2PrimesMatrixWithSieveOfEratosthenes {
+	private static final int PRIMES_INTERVAL_MAX = 1000000;
+
+	public static void main(String[] args) {
+		int matrixDimensions = readInput();
+		int primesNeededCount = matrixDimensions * matrixDimensions;
+		int[] primeNumbers = findPrimeNumbers(primesNeededCount);
+		printPrimesMatrix(primeNumbers, matrixDimensions);
+	}
+
+	private static int readInput() {
+		Scanner input = new Scanner(System.in);
+		String inputLine = input.nextLine();
+        input.close();
+        int n = 0;
+        try {
+            n = Integer.parseInt(inputLine);
+        } catch (NumberFormatException exception) {
+        	System.out.println("Invalid input: " + inputLine);
+        }
+
+        if (n >= 200) {
+            try {
+				throw new Exception("N > 200");
+			} catch (Exception e) {
+				e.getMessage();
+			}
+        }
+        
+        return n;
+	}
+}

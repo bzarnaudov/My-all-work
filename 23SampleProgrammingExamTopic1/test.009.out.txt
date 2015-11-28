@@ -1,0 +1,4 @@
+Aba Asenova _@aba.org
+firstname lastname username@host.dom
+firstname lastname username@host.ain
+firstname lastname username@host.domn
