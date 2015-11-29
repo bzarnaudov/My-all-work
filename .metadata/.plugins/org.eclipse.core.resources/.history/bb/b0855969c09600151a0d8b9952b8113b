@@ -1,0 +1,12 @@
+package all;
+
+import javax.swing.*;
+
+public class EventDispatcherThreadDemo extends JApplet {
+	
+	private static final long serialVersionUID = -5853204645210979615L;
+
+	public EventDispatcherThreadDemo() {
+		
+	}
+}

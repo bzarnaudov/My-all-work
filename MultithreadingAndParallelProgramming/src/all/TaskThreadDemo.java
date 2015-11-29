@@ -3,6 +3,7 @@ package all;
 public class TaskThreadDemo {
 
 	public static void main(String[] args) {
+
 		// Create tasks
 		Runnable printA = new PrintChar('a', 1000);
 		Runnable printB = new PrintChar('b', 1000);

@@ -1,0 +1,10 @@
+package all;
+
+import javax.swing.*;
+
+public class EventDispatcherThreadDemo extends JApplet {
+	
+	public EventDispatcherThreadDemo() {
+		
+	}
+}
