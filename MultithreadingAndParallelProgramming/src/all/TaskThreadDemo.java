@@ -8,11 +8,10 @@ public class TaskThreadDemo {
 		Runnable printA = new PrintChar('a', 1000);
 		Runnable printB = new PrintChar('b', 1000);
 		Runnable print100 = new PrintNum(1000);
-		
+
 		Thread thread1 = new Thread(printA);
 		Thread thread2 = new Thread(printB);
 		Thread thread3 = new Thread(print100);
-		
 
 		thread1.setPriority(Thread.MIN_PRIORITY);
 		System.out.println(thread1.getPriority());

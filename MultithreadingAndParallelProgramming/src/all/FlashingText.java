@@ -6,13 +6,14 @@ public class FlashingText extends JApplet implements Runnable {
 
 	private static final long serialVersionUID = 1L;
 	private JLabel jlblText = new JLabel("Welcome", JLabel.CENTER);
-	
+
 	public FlashingText() {
 		add(jlblText);
 		new Thread(this).start();
 	}
-	
-	@Override /** Set the text on/off every 200 milliseconds */
+
+	@Override
+	/** Set the text on/off every 200 milliseconds */
 	public void run() {
 		try {
 			while (true) {
@@ -24,7 +25,7 @@ public class FlashingText extends JApplet implements Runnable {
 				Thread.sleep(200);
 			}
 		} catch (InterruptedException ex) {
-			
+
 		}
 	}
 }

@@ -4,7 +4,7 @@ import java.util.concurrent.*;
 
 public class AccountWithoutSync {
 	private static Account account = new Account();
-	
+
 	public static void main(String[] args) {
 		ExecutorService executor = Executors.newCachedThreadPool();
 		// Create and launch 100 threads
@@ -16,7 +16,7 @@ public class AccountWithoutSync {
 		// Wait until all tasks are finished
 		while (!executor.isTerminated()) {
 		}
-		
+
 		System.out.println("What is balance? " + account.getBalance());
 	}
 
@@ -26,17 +26,17 @@ public class AccountWithoutSync {
 			synchronized (account) {
 				account.deposit(1);
 			}
-		}	
+		}
 	}
-	
+
 	// An inner class for account
 	private static class Account {
 		private int balance = 0;
-		
+
 		public int getBalance() {
 			return balance;
 		}
-		
+
 		public void deposit(int amount) {
 			int newBalance = balance + amount;
 			// This delay is deliberately added to magnify
@@ -45,7 +45,7 @@ public class AccountWithoutSync {
 				Thread.sleep(5);
 			} catch (InterruptedException ex) {
 			}
-			
+
 			balance = newBalance;
 		}
 	}

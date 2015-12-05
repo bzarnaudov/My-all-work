@@ -1,0 +1,10 @@
+package all;
+
+public class ParallelMax {
+
+	public static void main(String[] args) {
+		
+
+	}
+
+}
