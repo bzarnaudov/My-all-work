@@ -17,7 +17,7 @@ public class AccountWithoutSync {
 		while (!executor.isTerminated()) {
 		}
 
-		System.out.println("What is balance? " + account.getBalance());
+		System.out.println("What is balance? " + account.getCount());
 	}
 
 	// A thread for adding a penny to the account
@@ -31,14 +31,14 @@ public class AccountWithoutSync {
 
 	// An inner class for account
 	private static class Account {
-		private int balance = 0;
+		private int count = 0;
 
-		public int getBalance() {
-			return balance;
+		public int getCount() {
+			return count;
 		}
 
 		public void deposit(int amount) {
-			int newBalance = balance + amount;
+			int newBalance = count + amount;
 			// This delay is deliberately added to magnify
 			// the data-corruption problem and make it easy to see
 			try {
@@ -46,7 +46,7 @@ public class AccountWithoutSync {
 			} catch (InterruptedException ex) {
 			}
 
-			balance = newBalance;
+			count = newBalance;
 		}
 	}
 }

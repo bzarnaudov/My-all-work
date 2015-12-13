@@ -1,0 +1,57 @@
+package exercises;
+
+import java.util.concurrent.*;
+import java.util.concurrent.locks.*;
+
+public class Exercise4BallControlUsingThread {
+	private static Balls ball = new Balls();
+	
+	public static void main(String[] args) {
+		ExecutorService executor = Executors.newCachedThreadPool();
+
+		// Create and launch 1000 threads
+		for (int i = 0; i < 1000; i++) {
+			executor.execute(new AddBallTask());
+		}
+
+		executor.shutdown();
+
+		// Wait until all tasks are finished
+		while (!executor.isTerminated()) {
+		}
+		
+		System.out.println("What is count of balls? " + ball.getCount());
+	}
+
+	private static class AddBallTask implements Runnable {
+		public void run() {
+			ball.deposit(1);
+		}
+	}
+
+	// An inner class for balls
+	private static class Balls {
+		private static Lock lock = new ReentrantLock(); // Create a lock
+		private int count = 0;
+
+		public int getCount() {
+			return count;
+		}
+
+		public void deposit(int amount) {
+			lock.lock(); // Acquire the lock
+			try {
+				int newBalance = count + amount;
+
+				// This delay is deliberately added to magnify
+				// the data-corruption problem and make it easy to see
+				Thread.sleep(5);
+
+				count = newBalance;
+			} catch (InterruptedException ex) {
+			} finally {
+				lock.unlock(); // Release the lock
+			}
+		}
+	}
+}

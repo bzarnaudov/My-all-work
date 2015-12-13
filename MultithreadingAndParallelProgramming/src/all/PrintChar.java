@@ -3,7 +3,7 @@ package all;
 public class PrintChar implements Runnable {
 
 	private char charToPrint; // The character to print
-	private int times; // The number of times to repeat
+	private int times; // The times to repeat
 
 	/**
 	 * Construct a task with specified character and number of times to print
@@ -16,7 +16,7 @@ public class PrintChar implements Runnable {
 
 	@Override
 	/** Override the run() method to tell the system
-	 * what task to perform
+	 *  what the task to perform
 	 */
 	public void run() {
 		for (int i = 0; i < times; i++) {

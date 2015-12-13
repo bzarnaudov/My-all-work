@@ -1,7 +1,0 @@
-package all;
-
-import javax.swing.*;
-
-public class EventDispatcherThreadDemo {
-	
-}

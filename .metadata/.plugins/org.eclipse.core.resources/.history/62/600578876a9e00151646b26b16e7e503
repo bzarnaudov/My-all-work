@@ -1,0 +1,18 @@
+package all;
+
+public class PrintNum implements Runnable {
+
+	private int lastNum;
+
+	public PrintNum(int n) {
+		lastNum = n;
+	}
+
+	@Override
+	public void run() {
+		System.out.print(1);
+		for (int i = 2; i <= lastNum; i++) {
+			System.out.print(" " + i);
+		}
+	}
+}

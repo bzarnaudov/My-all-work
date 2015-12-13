@@ -21,7 +21,7 @@ public class AccountWithSyncUsingLock {
 		while (!executor.isTerminated()) {
 		}
 
-		System.out.println("What is balance? " + account.getBalance());
+		System.out.println("What is balance? " + account.getCount());
 	}
 
 	// A thread for adding a penny to the account
@@ -34,22 +34,22 @@ public class AccountWithSyncUsingLock {
 	// An inner class for account
 	private static class Account {
 		private static Lock lock = new ReentrantLock(); // Create a lock
-		private int balance = 0;
+		private int count = 0;
 
-		public int getBalance() {
-			return balance;
+		public int getCount() {
+			return count;
 		}
 
 		public void deposit(int amount) {
 			lock.lock(); // Acquire the lock
 			try {
-				int newBalance = balance + amount;
+				int newBalance = count + amount;
 
 				// This delay is deliberately added to magnify
 				// the data-corruption problem and make it easy to see
 				Thread.sleep(5);
 
-				balance = newBalance;
+				count = newBalance;
 			} catch (InterruptedException ex) {
 			} finally {
 				lock.unlock(); // Release the lock

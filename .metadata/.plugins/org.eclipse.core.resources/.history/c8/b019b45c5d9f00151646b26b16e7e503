@@ -1,0 +1,37 @@
+package exercises;
+
+import java.util.concurrent.*;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+
+public class Exercise4SumTask {
+	private Integer sum = new Integer(0);
+	private static Lock lock = new ReentrantLock();
+
+	public static void main(String[] args) {
+		Exercise4SumTask test = new Exercise4SumTask();
+		System.out.println("What is sum ? " + test.sum);
+	}
+
+	public Exercise4SumTask() {
+		ExecutorService executor = Executors.newCachedThreadPool();
+
+		for (int i = 0; i < 1000; i++) {
+			lock.lock(); // Acquire the lock
+			executor.execute(new SumTask());
+			lock.unlock(); // Release the lock
+		}
+
+		executor.shutdown();
+
+		while (!executor.isTerminated()) {
+		}
+	}
+
+	class SumTask implements Runnable {
+		public void run() {
+			int value = sum.intValue() + 1;
+			sum = new Integer(value);
+		}
+	}
+}
