@@ -2,13 +2,12 @@ package exercises;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.util.*;
 
 import javax.swing.*;
 import javax.swing.Timer;
 
 @SuppressWarnings("serial")
-public class Exercise18_14 extends JApplet {
+public class ControlAGroupOfClocksSequential extends JApplet {
 	// Declare three clock panels
 	private ClockControl clockControl1, clockControl2, clockControl3;
 
@@ -21,7 +20,7 @@ public class Exercise18_14 extends JApplet {
 		JFrame frame = new JFrame("Exercise18_14");
 
 		// Create an instance of the applet
-		Exercise18_14 applet = new Exercise18_14();
+		ControlAGroupOfClocksSequential applet = new ControlAGroupOfClocksSequential();
 
 		// Add the applet instance to the frame
 		frame.add(applet, BorderLayout.CENTER);

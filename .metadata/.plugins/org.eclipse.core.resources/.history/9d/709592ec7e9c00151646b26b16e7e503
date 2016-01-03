@@ -1,7 +1,0 @@
-package all;
-
-public abstract class Test implements Runnable {
-	public void soSomething() {
-		
-	}
-}
