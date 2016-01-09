@@ -124,7 +124,7 @@ class ClockControl extends JPanel {
 	}
 
 	class Clock extends all.StillClock {
-		private Timer timer = new Timer(1000, new Listener());
+		private Timer timer = new Timer(10, new Listener());
 
 		public Clock() {
 			timer.start();

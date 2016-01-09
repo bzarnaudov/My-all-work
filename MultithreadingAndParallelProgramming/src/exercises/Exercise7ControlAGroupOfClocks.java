@@ -2,9 +2,9 @@ package exercises;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.util.concurrent.locks.Condition;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
+//import java.util.concurrent.locks.Condition;
+//import java.util.concurrent.locks.Lock;
+//import java.util.concurrent.locks.ReentrantLock;
 
 import javax.swing.*;
 
@@ -124,6 +124,58 @@ class ClockControlWithThreads extends JPanel implements ActionListener {
 		} 
 	}
 
+	//class clock with lock synchronization
+//	class Clock extends all.StillClock implements Runnable {
+//		private int speed = 10;
+//		private Thread timer = new Thread(this);
+//
+//		public Clock() {
+//			timer.start();
+//		}
+//
+//		public void setDelay(int ms) {
+//			speed = ms;
+//		}
+//
+//		boolean isSuspended = false;
+//		Lock lock = new ReentrantLock();
+//		Condition suspended = lock.newCondition();
+//
+//		public void run() {
+//			try {
+//				while (true) {
+//					setCurrentTime();
+//					repaint();
+//					Thread.sleep(speed);
+//					lock.lock();
+//					try {
+//						while (isSuspended) {
+//							suspended.await();
+//						}
+//					} finally {
+//						lock.unlock();
+//					}
+//				}
+//			} catch (Exception ex) {
+//				ex.printStackTrace();
+//			}
+//		}
+//
+//		public void resume() {
+//			lock.lock();
+//			isSuspended = false;
+//			suspended.signalAll();
+//			lock.unlock();
+//		}
+//
+//		public void suspend() {
+//			lock.lock();
+//			isSuspended = true;
+//			lock.unlock();
+//		}
+//	}
+	
+	//class clock with volatile variable
 	class Clock extends all.StillClock implements Runnable {
 		private int speed = 10;
 		private Thread timer = new Thread(this);
@@ -132,25 +184,16 @@ class ClockControlWithThreads extends JPanel implements ActionListener {
 			timer.start();
 		}
 
-		public void setDelay(int ms) {
-			speed = ms;
-		}
-
-		boolean isSuspended = false;
-		Lock lock = new ReentrantLock();
-		Condition suspended = lock.newCondition();
+		volatile boolean isSuspended = false;
 
 		public void run() {
 			try {
 				while (true) {
-					setCurrentTime();
-					repaint();
-					Thread.sleep(speed);
-					while (isSuspended) {
-						lock.lock();
-						suspended.await();
-						lock.unlock();
+					if (!isSuspended) {
+						setCurrentTime();
+						repaint();
 					}
+					Thread.sleep(speed);
 				}
 			} catch (Exception ex) {
 				ex.printStackTrace();
@@ -158,16 +201,11 @@ class ClockControlWithThreads extends JPanel implements ActionListener {
 		}
 
 		public void resume() {
-			lock.lock();
 			isSuspended = false;
-			suspended.signalAll();
-			lock.unlock();
 		}
 
 		public void suspend() {
-			lock.lock();
 			isSuspended = true;
-			lock.unlock();
 		}
 	}
 }
