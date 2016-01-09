@@ -1,0 +1,34 @@
+package exercises;
+
+import java.util.HashSet;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+public class Exercise9ConcurrentModificationException {
+	
+	private static HashSet<int> list;
+
+	public static void main(String[] args) {
+		// Create a thread pool with two threads
+		ExecutorService executor = Executors.newFixedThreadPool(2);
+
+		System.out.println("Thread 1\t\tThread 2\t\tBalance");
+
+		executor.execute(new DepositTask());
+		executor.execute(new WithDrawTask());
+		executor.shutdown();
+	}
+	
+	public static class CreateHashSetAndAddNumberToIt implements Runnable {
+
+		@Override
+		public void run() {
+			if (list == null) {
+				list = new HashSet
+			}
+			
+		}
+		
+	}
+
+}

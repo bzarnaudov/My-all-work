@@ -1,0 +1,49 @@
+package exercises;
+
+public class Exercise11DemonstrateDeadlock {
+	private Target target = new Target();
+	private Bullet bullet = new Bullet();
+
+	public static void main(String[] args) {
+		
+		Thread t1 = new Thread(new BulletGo());
+		
+	}
+	
+	
+	
+	private class Target {
+		private int size;
+		
+		public Target() {
+			this.size = 5;
+		}
+	}
+	
+	private class Bullet {
+		private int speed;
+		
+		public Bullet() {
+			this.speed = 100;
+		}
+	}
+	
+	private class BulletGo implements Runnable {
+
+		@Override
+		public void run() {
+			while (true) {
+				System.out.println("going");
+				synchronized (bullet) {
+					
+				}
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		
+	}
+}

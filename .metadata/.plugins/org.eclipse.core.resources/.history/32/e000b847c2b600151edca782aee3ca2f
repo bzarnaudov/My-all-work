@@ -1,0 +1,19 @@
+package exercises;
+
+public class Exercise11DemonstrateDeadlock {
+
+	public static void main(String[] args) {
+		
+	}
+	
+	
+	
+	private class Target {
+		private int size;
+		public Target() {
+			this.size = 5;
+		}
+	}
+	
+	
+}

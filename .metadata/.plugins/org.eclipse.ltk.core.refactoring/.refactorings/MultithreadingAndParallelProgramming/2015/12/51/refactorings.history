@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;exercises.ControlAGroupOfClocksSequental&apos; to &apos;ControlAGroupOfClocksSequential&apos;&#x0D;&#x0A;- Original project: &apos;MultithreadingAndParallelProgramming&apos;&#x0D;&#x0A;- Original element: &apos;exercises.ControlAGroupOfClocksSequental&apos;&#x0D;&#x0A;- Renamed element: &apos;exercises.ControlAGroupOfClocksSequential&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;ControlAGroupOfClocksSequental&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;exercises{Exercise18_14.java[ControlAGroupOfClocksSequental" matchStrategy="1" name="ControlAGroupOfClocksSequential" qualified="false" references="true" similarDeclarations="false" stamp="1450001731558" textual="false" version="1.0"/>
+</session>

@@ -1,0 +1,42 @@
+package exercises;
+
+import java.util.HashSet;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+public class Exercise9ConcurrentModificationException {
+	
+	private static HashSet<Integer> list;
+
+	public static void main(String[] args) {
+		// Create a thread pool with two threads
+		ExecutorService executor = Executors.newFixedThreadPool(2);
+
+		System.out.println("ConcurrentModificationException");
+
+		executor.execute(new CreateHashSetAndAddNumberToIt());
+		executor.execute(new TraverseHashSet());
+		executor.shutdown();
+	}
+	
+	public static class CreateHashSetAndAddNumberToIt implements Runnable {
+
+		@Override
+		public void run() {
+			if (list == null) {
+				list = new HashSet<Integer>();
+				list.add((int) (Math.random() * 1000) + 1);
+			} else {
+				list.add((int) (Math.random() * 1000) + 1);
+			}	
+		}
+	}
+	
+	public static class TraverseHashSet implements Runnable {
+		@Override
+		public void run() {
+			
+		}
+	}
+
+}
