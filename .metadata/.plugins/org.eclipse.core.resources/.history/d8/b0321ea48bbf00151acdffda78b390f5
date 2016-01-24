@@ -1,0 +1,95 @@
+package exercises;
+
+import java.util.ArrayList;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+public class Exercise18ParallelEightQueens {
+	public static ArrayList<String> list = new ArrayList<String>();
+
+	public static final int SIZE = 8; // The size of the chess board
+	// queens are placed at (i, queens[i])
+	// -1 indicates that no queen is currently placed in the ith row
+	// Initially, place a queen at (0, 0) in the 0th row
+	private int[] queens = { -1, -1, -1, -1, -1, -1, -1, -1 };
+	
+	private static int positionOfFirstQueen = 0;
+
+	public static void main(String[] args) {
+		// Exercise18ParallelEightQueens test = new
+		// Exercise18ParallelEightQueens();
+		long startTime = System.currentTimeMillis();
+		Exercise18ParallelEightQueens queens = new Exercise18ParallelEightQueens();
+		
+		long endTime = System.currentTimeMillis();
+		System.out.println("\nParallel time with "
+				+ Runtime.getRuntime().availableProcessors()
+				+ " processors is " + (endTime - startTime) + " milliseconds");
+	}
+
+	public Exercise18ParallelEightQueens() {
+		ExecutorService executor = Executors.newFixedThreadPool(8);
+		for (int i = 0; i < 8; i++) {
+			executor.execute(new RunOnSeparateThread());
+			positionOfFirstQueen++;
+		}
+		executor.shutdown();
+	}
+
+	private class RunOnSeparateThread implements Runnable {
+		public void run() {
+			if (search()) // Search for a solution
+				System.out.println("ima reshenie");
+			else
+				System.out.println("No solution found");
+		}
+	}
+
+	/** Search for a solution */
+	private boolean search() {
+		// k - 1 indicates the number of queens placed so far
+		// We are looking for a position in the kth row to place a queen
+		int k = 0;
+		while (k >= 0 && k < SIZE) {
+			// Find a position to place a queen in the kth row
+			int j = findPosition(k);
+			if (j < 0) {
+				queens[k] = -1;
+				k--; // back track to the previous row
+			} else {
+				queens[k] = j;
+				k++;
+			}
+		}
+
+		if (k == -1)
+			return false; // No solution
+		else
+			for (int i = 0; i < SIZE; i++) {
+				System.out.print(queens[i] + " ");
+			}
+			return true; // A solution is found
+	}
+
+	public int findPosition(int k) {
+		int start = queens[k] + 1; // Search for a new placement
+
+		for (int j = start; j < SIZE; j++) {
+			if (isValid(k, j))
+				return j; // (k, j) is the place to put the queen now
+		}
+
+		return -1;
+	}
+
+	/** Return true if a queen can be placed at (row, column) */
+	public boolean isValid(int row, int column) {
+		for (int i = 1; i <= row; i++)
+			if (queens[row - i] == column // Check column
+					|| queens[row - i] == column - i // Check upleft diagonal
+					|| queens[row - i] == column + i) // Check upright diagonal
+				return false; // There is a conflict
+		return true; // No conflict
+	}
+
+}

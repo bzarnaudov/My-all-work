@@ -1,0 +1,17 @@
+package exercises;
+
+import java.util.ArrayList;
+
+public class Exercise18ParallelEightQueens {
+	public static ArrayList String = new ArrayList();
+
+	public static void main(String[] args) {
+		long startTime = System.currentTimeMillis();
+		parallelAllEightQueens(list);
+		long endTime = System.currentTimeMillis();
+		System.out.println(result.toPlainString());
+		System.out.println("\nParallel time with "
+				+ Runtime.getRuntime().availableProcessors()
+				+ " processors is " + (endTime - startTime) + " milliseconds");
+	}
+}

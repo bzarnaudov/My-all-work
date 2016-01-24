@@ -16,9 +16,9 @@ public class ClockWithAudio extends JApplet {
 
 	// Create audio clips for pronouncing am and pm
 	protected AudioClip amAudio = Applet.newAudioClip(this.getClass()
-			.getResource("audio/am.au"));
+			.getResource("../audio/am.au"));
 	protected AudioClip pmAudio = Applet.newAudioClip(this.getClass()
-			.getResource("audio/pm.au"));
+			.getResource("../audio/pm.au"));
 
 	// Create a clock
 	private StillClock clock = new StillClock();
@@ -35,13 +35,13 @@ public class ClockWithAudio extends JApplet {
 		// Create audio clips for pronouncing hours
 		for (int i = 0; i < 12; i++) {
 			hourAudio[i] = Applet.newAudioClip(this.getClass().getResource(
-					"audio/hour" + i + ".au"));
+					"../audio/hour" + i + ".au"));
 		}
 
 		// Create audio clips for pronouncing minutes
 		for (int i = 0; i < 60; i++) {
 			minuteAudio[i] = Applet.newAudioClip(this.getClass().getResource(
-					"audio/minute" + i + ".au"));
+					"../audio/minute" + i + ".au"));
 		}
 
 		// Add clock and time label to the content pane of the applet
