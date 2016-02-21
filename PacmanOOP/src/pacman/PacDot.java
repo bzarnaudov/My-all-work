@@ -13,14 +13,14 @@ public class PacDot extends Drawable {
 	}
 
 	/**
-	 * Returns the value of the pac-dot to add to the player's score when eaten
+	 * Returns the value of the pacdot
 	 */
 	public int getScore() {
 		return score;
 	}
 
 	/**
-	 * Returns the size of the pac-dot
+	 * Returns the size of the pacdot
 	 */
 	public int getSize() {
 		return size;

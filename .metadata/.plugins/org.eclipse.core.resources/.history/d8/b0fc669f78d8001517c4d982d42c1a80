@@ -32,9 +32,9 @@ public class Pacman extends Unit {
 	private int requestDirectionY;
 	private int drawDirectionX;
 	private int drawDirectionY;
-
+	
 	private Timer timer;
-
+	
 	private boolean alive;
 
 	public Pacman() {
@@ -83,8 +83,7 @@ public class Pacman extends Unit {
 		pacAnimationCount--;
 
 		if (pacAnimationCount <= 0) {
-			pacAnimationCount = pacAnimationDelay; // make pacman to open his
-													// mouth slowly
+			pacAnimationCount = pacAnimationDelay; // make pacman to open his mouth slowly											
 			pacmanAnimationPos += pacAnimationDir;
 
 			if (pacmanAnimationPos == (pacmanAnimationCount - 1)
@@ -95,7 +94,7 @@ public class Pacman extends Unit {
 	}
 
 	public void movePacman(int blockSize, MapSpot[][] levelContent,
-			Score score, final TimeForKill timeForKill) {
+			Score score,final TimeForKill timeForKill) {
 
 		int positionX;
 		int positionY;
@@ -167,7 +166,7 @@ public class Pacman extends Unit {
 	public int getPacmanAnimationPos() {
 		return pacmanAnimationPos;
 	}
-
+	
 	public void timer(final TimeForKill timeForKill) {
 		int delay = 1000;
 		timer = new Timer(delay, new ActionListener() {

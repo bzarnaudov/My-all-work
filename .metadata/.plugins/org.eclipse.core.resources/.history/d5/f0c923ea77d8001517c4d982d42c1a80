@@ -13,7 +13,6 @@ public class Ghost extends Unit {
 	// pointer for four diagonals ghost behavior
 	private int counterForDiagonalX = 0;
 	private int counterForDiagonalY = 0;
-	
 	private int endPositionForBfsX;
 	private int endPositionForBfsY;
 
@@ -24,6 +23,15 @@ public class Ghost extends Unit {
 		rowPosition = startRowPosition;
 		columnPosition = startColumnPosition;
 		speed = 3;
+	}
+
+	/**
+	 * Function – change Ghost state
+	 */
+	public void changeState() {
+		// Code that changes the Ghost's state
+		// This function also will call the three functions of changeDirection,
+		// changeSpeed, and changeColor
 	}
 
 	public void moveGhosts(Graphics2D g2d, boolean killerPacman, Pacman pacman,
