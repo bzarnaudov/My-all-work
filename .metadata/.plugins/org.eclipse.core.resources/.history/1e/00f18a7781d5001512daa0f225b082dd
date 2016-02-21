@@ -1,0 +1,280 @@
+package pacman;
+
+import java.awt.Graphics2D;
+
+/**
+ * The Ghost Class
+ */
+public class Ghost extends Unit {
+
+	private Boolean isEatable;
+
+	// pointer for four diagonals ghost behavior
+	private int counterForDiagonalX = 0;
+	private int counterForDiagonalY = 0;
+	private int endPositionForBfsX;
+	private int endPositionForBfsY;
+
+	public static final int validSpeeds[] = { 1, 2, 3, 4, 6, 8 };
+
+	public Ghost(int startRowPosition, int startColumnPosition) {
+		rowPosition = startRowPosition;
+		columnPosition = startColumnPosition;
+		speed = 3;
+	}
+
+	/**
+	 * Function – change Ghost state
+	 */
+	public void changeState() {
+		// Code that changes the Ghost's state
+		// This function also will call the three functions of changeDirection,
+		// changeSpeed, and changeColor
+	}
+
+	private void moveGhosts(Graphics2D g2d, boolean killerPacman,
+			Pacman pacman, int blockSize, Ghost[] ghost, Level level) {
+
+		int positionX;
+		int positionY;
+		MapSpot pointOfMap;
+		MapSpot[][] levelContent = level.getLevelContent();
+
+		if (killerPacman == false) {
+			endPositionForBfsX = pacman.getRowPosition() / blockSize;
+			endPositionForBfsY = pacman.getColumnPosition() / blockSize;
+		} else {
+			endPositionForBfsX = level.getColumnStartingPositionGhost();
+			endPositionForBfsY = level.getRowStartingPositionGhost();
+		}
+
+		for (int i = 0; i < ghost.length; i++) {
+			if (ghost[i].columnPosition % blockSize == 0 && ghost[i].rowPosition % blockSize == 0) {
+				positionX = ghost[i].columnPosition / blockSize;
+				positionY = ghost[i].rowPosition / blockSize;
+				pointOfMap = levelContent[positionY][positionX];
+				
+				// the shortest path
+				if (i == 0) {
+					levelForBfs(endPositionForBfsY, endPositionForBfsX);
+					ghostBfsMove(i);
+
+				}
+
+				// 50% the shortest path and 50% random
+				if (i == 1) {
+					if (Math.random() > 0.5) {
+						levelForBfs(endPositionForBfsY, endPositionForBfsX);
+						ghostBfsMove(i);
+					} else {
+						randomMoveGhost(posGhost, i);
+					}
+				}
+				// path between four edges
+				if (i == 2) {
+					if (killerPacman == false) {
+						levelForBfs(counterForDiagonalY, counterForDiagonalX);
+						ghostBfsMove(i);
+						if (ghost[i].columnPosition / blockSize == 0
+								&& ghost[i].rowPosition / blockSize == 0) {
+							counterForDiagonalX = 14;
+							counterForDiagonalY = 14;
+						}
+						if (ghost[i].columnPosition / blockSize == 14
+								&& ghost[i].rowPosition / blockSize == 14) {
+							counterForDiagonalX = 0;
+							counterForDiagonalY = 14;
+						}
+						if (ghost[i].columnPosition / blockSize == 0
+								&& ghost[i].rowPosition / blockSize == 14) {
+							counterForDiagonalX = 14;
+							counterForDiagonalY = 0;
+						}
+						if (ghost[i].columnPosition / blockSize == 14
+								&& ghost[i].rowPosition / blockSize == 0) {
+							counterForDiagonalX = 0;
+							counterForDiagonalY = 0;
+						}
+					} else {
+						levelForBfs(endPositionForBfsY, endPositionForBfsX);
+						ghostBfsMove(i);
+					}
+				}
+				// random wandering
+				if (i > 2) {
+					if (killerPacman == false) {
+						randomMoveGhost(posGhost, i);
+					} else {
+						levelForBfs(endPositionForBfsY, endPositionForBfsX);
+						ghostBfsMove(i);
+					}
+				}
+			}
+			// the new position of ghost
+			ghost[i].columnPosition = ghost[i].columnPosition + (ghostdx[i] * ghostspeed[i]);
+			ghost[i].rowPosition = ghost[i].rowPosition + (ghostdy[i] * ghostspeed[i]);
+			drawGhost(g2d, ghost[i].columnPosition + 1, ghost[i].rowPosition + 1);
+
+			// meeting between pacman and ghost
+			if (pacmanx > (ghost[i].columnPosition - 12) && pacmanx < (ghost[i].columnPosition + 12)
+					&& pacmany > (ghost[i].rowPosition - 12) && pacmany < (ghost[i].rowPosition + 12)
+					&& ingame) {
+				if (killerPacman == false) {
+					dying = true;
+				} else {
+					ghost[i].columnPosition = level.getColumnStartingPositionGhost() * blockSize;
+					ghost[i].rowPosition = level.getRowStartingPositionGhost() * blockSize;
+				}
+			}
+		}
+	}
+	//
+	// // first step to the end
+	// private void ghostBfsMove(int i) {
+	// Node node = bfs(maze, ghost[i].columnPosition / blockSize, ghost[i].rowPosition / blockSize, 0);
+	// while (node != null) {
+	// if (node.l == 1) {
+	// ghostdx[i] = node.x - (ghost[i].columnPosition / blockSize);
+	// ghostdy[i] = node.y - (ghost[i].rowPosition / blockSize);
+	// }
+	// node = node.parent;
+	// }
+	// }
+	//
+	// private void levelForBfs(int endy, int endx) {
+	// int c = 0;
+	// for (int x = 0; x < 15; x++) {
+	// for (int y = 0; y < 15; y++) {
+	// maze[x][y] = leveldata[c];
+	// c += 1;
+	// }
+	// }
+	// maze[endy][endx] = 64; // the end of maze
+	// }
+	//
+	// private void randomMoveGhost(int posGhost, int i) {
+	// int count = 0;
+	// // algorithm for success escape of tunnels
+	// if ((screendata[posGhost] & 1) == 0 && ghostdx[i] != 1) {
+	// dx[count] = -1;
+	// dy[count] = 0;
+	// count++;
+	// }
+	//
+	// if ((screendata[posGhost] & 2) == 0 && ghostdy[i] != 1) {
+	// dx[count] = 0;
+	// dy[count] = -1;
+	// count++;
+	// }
+	//
+	// if ((screendata[posGhost] & 4) == 0 && ghostdx[i] != -1) {
+	// dx[count] = 1;
+	// dy[count] = 0;
+	// count++;
+	// }
+	//
+	// if ((screendata[posGhost] & 8) == 0 && ghostdy[i] != -1) {
+	// dx[count] = 0;
+	// dy[count] = 1;
+	// count++;
+	// }
+	//
+	// // random
+	// if (count == 0) {
+	//
+	// if ((screendata[posGhost] & 15) == 15) {
+	// ghostdx[i] = 0;
+	// ghostdy[i] = 0;
+	// } else {
+	// ghostdx[i] = -ghostdx[i];
+	// ghostdy[i] = -ghostdy[i];
+	// }
+	//
+	// } else {
+	// count = (int) (Math.random() * count);
+	// if (count > 3) {
+	// count = 3;
+	// }
+	// ghostdx[i] = dx[count];
+	// ghostdy[i] = dy[count];
+	// }
+	// }
+	//
+	// private void drawGhost(Graphics2D g2d, int x, int y) {
+	//
+	// g2d.drawImage(ghost, x, y, this);
+	// }
+	//
+	// public static class Node {
+	// int y;
+	// int x;
+	// int l;
+	// Node parent;
+	//
+	// private Node(int y, int x, int l, Node parent) {
+	// this.y = y;
+	// this.x = x;
+	// this.l = l;
+	// this.parent = parent;
+	// }
+	//
+	// @Override
+	// public String toString() {
+	// return "" + y + " " + x + " " + l;
+	// }
+	// }
+	//
+	// public static Node bfs(int[][] maze, int startX, int startY, int wall) {
+	// Queue<Node> queue = new LinkedList<>();
+	// Node start = new Node(startY, startX, 0, null);
+	// queue.add(start);
+	//
+	// while (queue.peek() != null) {
+	// Node current = queue.remove();
+	// int y = current.y;
+	// int x = current.x;
+	// int l = current.l;
+	//
+	// if (y - 1 > -1 && maze[y - 1][x] != wall) {
+	// Node next = new Node(y - 1, x, l + 1, current);
+	// if (maze[y - 1][x] == 64) {
+	// return next;
+	// } else {
+	// maze[y - 1][x] = wall;
+	// queue.add(next);
+	// }
+	// }
+	//
+	// if (x - 1 > -1 && maze[y][x - 1] != wall) {
+	// Node next = new Node(y, x - 1, l + 1, current);
+	// if (maze[y][x - 1] == 64) {
+	// return next;
+	// } else {
+	// maze[y][x - 1] = wall;
+	// queue.add(next);
+	// }
+	// }
+	//
+	// if (x + 1 < 15 && maze[y][x + 1] != wall) {
+	// Node next = new Node(y, x + 1, l + 1, current);
+	// if (maze[y][x + 1] == 64) {
+	// return next;
+	// } else {
+	// maze[y][x + 1] = wall;
+	// queue.add(next);
+	// }
+	// }
+	//
+	// if (y + 1 < 15 && maze[y + 1][x] != wall) {
+	// Node next = new Node(y + 1, x, l + 1, current);
+	// if (maze[y + 1][x] == 64) {
+	// return next;
+	// } else {
+	// maze[y + 1][x] = wall;
+	// queue.add(next);
+	// }
+	// }
+	// }
+	// return null;
+	// }
+}

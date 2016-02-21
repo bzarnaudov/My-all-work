@@ -1,0 +1,29 @@
+package pacman;
+
+import javax.swing.JFrame;
+
+public class GameInitilaization extends JFrame {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8178336655433621024L;
+
+	private final int BLOCK_SIZE = 24;
+	
+	public GameInitilaization() {
+		initUI();
+	}
+
+	private void initUI() {
+		Game game = new Game();
+		add(game);
+		setTitle("Pacman by Arnaudov");
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		int screenWidth = Game.level.getRows() * BLOCK_SIZE + 15;
+		int screenHeight = Game.level.getColumns() * BLOCK_SIZE + 60;
+		setSize(screenWidth, screenHeight);
+		setLocationRelativeTo(null);
+		setVisible(true);
+	}
+}

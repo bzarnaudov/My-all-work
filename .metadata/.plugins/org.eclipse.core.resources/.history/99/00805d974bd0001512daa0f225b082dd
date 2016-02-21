@@ -1,0 +1,14 @@
+package pacman;
+
+public class TimeForKill extends Drawable {
+	private int remainingTimeForKill;
+	
+	public TimeForKill() {
+		remainingTimeForKill = 0;
+	}
+	
+	public int getRemainingTimeForKill() {
+		return remainingTimeForKill;
+	}
+	
+}

@@ -1,0 +1,10 @@
+package pacman;
+
+public class MapSpot {
+	private boolean leftWall, topWall, rightWall, bottomWall;
+	private boolean dot;
+	private boolean powerDot;
+	
+	
+	
+}

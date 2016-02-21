@@ -1,0 +1,74 @@
+package pacman;
+
+public class Pacman {
+
+	
+	private void doAnim() {
+
+		pacanimcount--;
+
+		if (pacanimcount <= 0) {
+			pacanimcount = pacanimdelay; // make pacman to open his mouth slowly
+			pacmananimpos = pacmananimpos + pacanimdir;
+
+			if (pacmananimpos == (pacmananimcount - 1) || pacmananimpos == 0) {
+				pacanimdir = -pacanimdir;
+			}
+		}
+	}
+	
+	public void movePacman() {
+
+		int pos;
+		short ch;
+
+		if (reqdx == -pacmandx && reqdy == -pacmandy) {
+			pacmandx = reqdx;
+			pacmandy = reqdy;
+			viewdx = pacmandx;
+			viewdy = pacmandy;
+		}
+
+		if (pacmanx % blocksize == 0 && pacmany % blocksize == 0) {
+			pos = pacmanx / blocksize + nrofblocks
+					* (int) (pacmany / blocksize);
+			ch = screendata[pos];
+
+			if ((ch & 16) != 0) {
+				screendata[pos] = (short) (ch & 15);
+				score++;
+			}
+			if ((ch & 32) != 0) {
+				score += 49;
+				killerPacman = true;
+				if (remainingTimeForKill == 0) {
+					timer();
+				}
+				remainingTimeForKill = timeForKill / 1000;
+			}
+
+			if (reqdx != 0 || reqdy != 0) {
+				if (!((reqdx == -1 && reqdy == 0 && (ch & 1) != 0)
+						|| (reqdx == 1 && reqdy == 0 && (ch & 4) != 0)
+						|| (reqdx == 0 && reqdy == -1 && (ch & 2) != 0) || (reqdx == 0
+						&& reqdy == 1 && (ch & 8) != 0))) {
+					pacmandx = reqdx;
+					pacmandy = reqdy;
+					viewdx = pacmandx;
+					viewdy = pacmandy;
+				}
+			}
+
+			// Check for standstill
+			if ((pacmandx == -1 && pacmandy == 0 && (ch & 1) != 0)
+					|| (pacmandx == 1 && pacmandy == 0 && (ch & 4) != 0)
+					|| (pacmandx == 0 && pacmandy == -1 && (ch & 2) != 0)
+					|| (pacmandx == 0 && pacmandy == 1 && (ch & 8) != 0)) {
+				pacmandx = 0;
+				pacmandy = 0;
+			}
+		}
+		pacmanx = pacmanx + pacmanspeed * pacmandx;
+		pacmany = pacmany + pacmanspeed * pacmandy;
+	}
+}

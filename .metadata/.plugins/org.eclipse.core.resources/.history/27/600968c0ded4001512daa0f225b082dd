@@ -1,0 +1,160 @@
+package pacman;
+
+public class Pacman extends Unit {
+
+	private String pacman1S = "pacman.png";
+	private String pacman2upS = "up1.png";
+	private String pacman3upS = "up2.png";
+	private String pacman4upS = "up3.png";
+	private String pacman2downS = "down1.png";
+	private String pacman3downS = "down2.png";
+	private String pacman4downS = "down3.png";
+	private String pacman2leftS = "left1.png";
+	private String pacman3leftS = "left2.png";
+	private String pacman4leftS = "left3.png";
+	private String pacman2rightS = "right1.png";
+	private String pacman3rightS = "right2.png";
+	private String pacman4rightS = "right3.png";
+
+	private final int pacAnimationDelay = 2;
+	private final int pacmanAnimationCount = 4;
+
+	private int pacAnimationCount = pacAnimationDelay;
+	private int pacAnimationDir = 1;
+	private int pacmanAnimationPos = 0;
+
+	private int requestDirectionX;
+	private int requestDirectionY;
+	private int drawDirectionX;
+	private int drawDirectionY;
+
+	public Pacman() {
+		super.setImages(pacman1S, pacman2upS, pacman3upS, pacman4upS,
+				pacman2downS, pacman3downS, pacman4downS, pacman2leftS,
+				pacman3leftS, pacman4leftS, pacman2rightS, pacman3rightS,
+				pacman4rightS);
+		speed = 6;
+	}
+
+	public int getDrawDirectionX() {
+		return drawDirectionX;
+	}
+
+	public void setDrawDirectionX(int drawDirectionX) {
+		this.drawDirectionX = drawDirectionX;
+	}
+
+	public int getDrawDirectionY() {
+		return drawDirectionY;
+	}
+
+	public void setDrawDirectionY(int drawDirectionY) {
+		this.drawDirectionY = drawDirectionY;
+	}
+
+	public int getRequestDirectionX() {
+		return requestDirectionX;
+	}
+
+	public void setRequestDirectionX(int requestDirectionX) {
+		this.requestDirectionX = requestDirectionX;
+	}
+
+	public int getRequestDirectionY() {
+		return requestDirectionY;
+	}
+
+	public void setRequestDirectionY(int requestDirectionY) {
+		this.requestDirectionY = requestDirectionY;
+	}
+
+	public void doAnim() {
+
+		pacAnimationCount--;
+
+		if (pacAnimationCount <= 0) {
+			pacAnimationCount = pacAnimationDelay; // make pacman to open his
+													// mouth slowly
+			pacmanAnimationPos += pacAnimationDir;
+
+			if (pacmanAnimationPos == (pacmanAnimationCount - 1)
+					|| pacmanAnimationPos == 0) {
+				pacAnimationDir = -pacAnimationDir;
+			}
+		}
+	}
+
+	public void movePacman(int blockSize, MapSpot[][] levelContent, Score score) {
+
+		int positionX;
+		int positionY;
+		MapSpot pointOfMap;
+
+		if (requestDirectionX == -directionX
+				&& requestDirectionY == -directionY) {
+			directionX = requestDirectionX;
+			directionY = requestDirectionY;
+			drawDirectionX = directionX;
+			drawDirectionY = directionY;
+		}
+
+		if (columnPosition % blockSize == 0 && rowPosition % blockSize == 0) {
+			positionX = columnPosition / blockSize;
+			positionY = rowPosition / blockSize;
+			pointOfMap = levelContent[positionY][positionX];
+
+			if (pointOfMap.hasDot()) {
+				pointOfMap.setDot(false);
+				PacDot pacDot = new PacDot();
+				score.addToScore(pacDot.getScore());
+			}
+
+			if (pointOfMap.hasPowerDot()) {
+				pointOfMap.setPowerDot(false);
+				PowerDot powerDot = new PowerDot();
+				score.addToScore(powerDot.getScore());
+				Game.setKillerPacman(true);
+				if (Game.getRemainingTimeForKill() == 0) {
+					Game.timer1();
+				}
+				Game.remainingTimeForKill = Game.timeForKill / 1000;
+			}
+
+			if (requestDirectionX != 0 || requestDirectionY != 0) {
+				if (!((requestDirectionX == -1 && requestDirectionY == 0 && pointOfMap
+						.hasLeftWall())
+						|| (requestDirectionX == 1 && requestDirectionY == 0 && pointOfMap
+								.hasRightWall())
+						|| (requestDirectionX == 0 && requestDirectionY == -1 && pointOfMap
+								.hasTopWall()) || (requestDirectionX == 0
+						&& requestDirectionY == 1 && pointOfMap.hasBottomWall()))) {
+					directionX = requestDirectionX;
+					directionY = requestDirectionY;
+					drawDirectionX = directionX;
+					drawDirectionY = directionY;
+				}
+			}
+
+			// Check for standstill
+			if ((directionX == -1 && directionY == 0 && pointOfMap
+					.hasLeftWall())
+					|| (directionX == 1 && directionY == 0 && pointOfMap
+							.hasRightWall())
+					|| (directionX == 0 && directionY == -1 && pointOfMap
+							.hasTopWall())
+					|| (directionX == 0 && directionY == 1 && pointOfMap
+							.hasBottomWall())) {
+				directionX = 0;
+				directionY = 0;
+			}
+		}
+		columnPosition = columnPosition + speed * directionX;
+		rowPosition = rowPosition + speed * directionY;
+	}
+
+	
+
+	public int getPacmanAnimationPos() {
+		return pacmanAnimationPos;
+	}
+}

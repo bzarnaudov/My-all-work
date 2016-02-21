@@ -1,0 +1,42 @@
+package pacman;
+
+public class Level {
+
+	private void continueLevel() {
+
+		short i;
+		int dy = -1;
+		int random;
+
+		for (i = 0; i < nrofghosts; i++) {
+
+			ghostx[i] = 7 * blocksize; // ghosts starting point
+			ghosty[i] = 9 * blocksize;
+			ghostdx[i] = 0;
+			ghostdy[i] = dy;
+			dy = -dy;
+			// random for speed of ghost
+			random = (int) (Math.random() * (currentspeed + 1));
+
+			if (random > currentspeed) {
+				random = currentspeed;
+			}
+
+			ghostspeed[i] = validspeeds[random];
+		}
+
+		pacmanx = 7 * blocksize; // pacman starting point
+		pacmany = 14 * blocksize;
+		pacmandx = 0;
+		pacmandy = 0;
+		reqdx = 0;
+		reqdy = 0;
+		viewdx = -1;
+		viewdy = 0;
+		dying = false;
+		counterForDiagonalX = 0;
+		counterForDiagonalY = 0;
+	}
+	
+	
+}

@@ -1,0 +1,28 @@
+package pacman;
+
+import java.awt.Color;
+import java.awt.Font;
+
+public class Score extends Drawable {
+	private Font font;
+	private static int score = 0;
+
+	public Score() {
+		color = new Color(196, 128, 255);
+		font = new Font("Ariel", Font.BOLD, 16);
+	}
+
+	public Font getFont() {
+		return font;
+	}
+	
+	public static int getScore() {
+		return score;
+	}
+	
+	public static int changeScore(int addScore) {
+		score += addScore;
+	}
+
+
+}

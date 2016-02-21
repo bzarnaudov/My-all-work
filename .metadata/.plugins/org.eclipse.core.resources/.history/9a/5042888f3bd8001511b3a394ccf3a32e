@@ -1,0 +1,134 @@
+package pacman;
+
+import java.awt.Color;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
+public class Level extends Drawable {
+
+	private int rows, columns;
+	private int score;
+	private int rowStartingPositionGhost, columnStartingPositionGhost;
+	private int rowStartingPositionPacman, columnStartingPositionPacman;
+
+	private static MapSpot[][] levelContent;
+
+	public static int[][] levelForBFS;
+	public static int levelX, levelY;
+
+	public Level(String fileOfLevel) {
+		readLevelFromFile(fileOfLevel);
+		color = new Color(150, 100, 5);
+		levelX = levelContent.length;
+		levelY = levelContent[0].length;
+	}
+
+	public int totalScoreInLevel(PacDot pacDot, PowerDot powerDot) {
+		int sum = 0;
+		for (int i = 0; i < levelContent.length; i++) {
+			for (int j = 0; j < levelContent[i].length; j++) {
+				if (levelContent[i][j].hasDot()) {
+					sum += pacDot.getScore();
+				} else if (levelContent[i][j].hasPowerDot()) {
+					sum += powerDot.getScore();
+				}
+			}
+		}
+		score = sum;
+		return score;
+	}
+
+	private void readLevelFromFile(String fileOfLevel) {
+		Scanner fileInput = null;
+		try {
+			// Create scanner with the Cyrillic encoding
+			fileInput = new Scanner(new File(fileOfLevel), "Windows-1251");
+
+			fileInput.nextLine();
+			String line = fileInput.nextLine();
+			String[] parsedLine = line.split(" ");
+			rowStartingPositionPacman = Integer.parseInt(parsedLine[0]);
+			columnStartingPositionPacman = Integer.parseInt(parsedLine[1]);
+
+			fileInput.nextLine();
+			line = fileInput.nextLine();
+			parsedLine = line.split(" ");
+			rowStartingPositionGhost = Integer.parseInt(parsedLine[0]);
+			columnStartingPositionGhost = Integer.parseInt(parsedLine[1]);
+
+			fileInput.nextLine();
+			line = fileInput.nextLine();
+			parsedLine = line.split(" ");
+			rows = Integer.parseInt(parsedLine[0]);
+			columns = Integer.parseInt(parsedLine[1]);
+			levelContent = new MapSpot[rows][columns];
+
+			fileInput.nextLine();
+			while (fileInput.hasNextLine()) {
+				line = fileInput.nextLine();
+				parsedLine = line.split(" ");
+				levelContent[Integer.parseInt(parsedLine[0])][Integer
+						.parseInt(parsedLine[1])] = new MapSpot(
+						parsedLine[2].equals("1"), parsedLine[3].equals("1"),
+						parsedLine[4].equals("1"), parsedLine[5].equals("1"),
+						parsedLine[6].equals("1"), parsedLine[7].equals("1"));
+			}
+		} catch (FileNotFoundException fnfe) {
+			System.err.println(fnfe.getMessage());
+		} finally {
+			if (null != fileInput) {
+				fileInput.close();
+			}
+		}
+	}
+
+	public static void setLevelForBFS(int endy, int endx) {
+		levelForBFS = new int[levelX][levelY];
+		for (int i = 0; i < levelX; i++) {
+			for (int j = 0; j < levelY; j++) {
+				if (!levelContent[i][j].hasBottomWall()
+						&& !levelContent[i][j].hasLeftWall()
+						&& !levelContent[i][j].hasRightWall()
+						&& !levelContent[i][j].hasTopWall()
+						&& !levelContent[i][j].hasDot()
+						&& !levelContent[i][j].hasPowerDot()) {
+					levelForBFS[i][j] = 1; // wall
+				} else {
+					levelForBFS[i][j] = 0;
+				}
+				System.out.print(levelForBFS[i][j]);
+			}
+			System.out.println();
+		}
+		levelForBFS[endy][endx] = 2; // the end of maze
+	}
+
+	public MapSpot[][] getLevelContent() {
+		return levelContent;
+	}
+
+	public int getRows() {
+		return rows;
+	}
+
+	public int getColumns() {
+		return columns;
+	}
+
+	public int getRowStartingPositionGhost() {
+		return rowStartingPositionGhost;
+	}
+
+	public int getColumnStartingPositionGhost() {
+		return columnStartingPositionGhost;
+	}
+
+	public int getRowStartingPositionPacman() {
+		return rowStartingPositionPacman;
+	}
+
+	public int getColumnStartingPositionPacman() {
+		return columnStartingPositionPacman;
+	}
+}

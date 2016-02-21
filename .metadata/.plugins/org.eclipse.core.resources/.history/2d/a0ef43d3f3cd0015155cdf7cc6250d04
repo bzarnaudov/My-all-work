@@ -1,0 +1,28 @@
+package pacman;
+
+/**
+ * The Power Pellet Class
+ */
+public class PowerDot extends PacDot {
+	private int sizeModifier;
+
+	// don't need to define size and score because these are
+	// already defined in PacDot - PowerPellet inherits them.
+
+	public PowerDot() {
+		size = 20;
+		score = 50;
+		sizeModifier = -2;
+	}
+
+	/**
+	 * The blink function which would be called every time the power pellet is
+	 * drawn. Changes the sizeModifier to simulate a blinking effect
+	 */
+	public void blink() {
+		size += sizeModifier;
+		if (size < 10 || size > 20) {
+			sizeModifier = -sizeModifier;
+		}
+	}
+}

@@ -1,0 +1,10 @@
+package pacman;
+
+public class MapSpot {
+	private Wall left, top, right, bottom;
+	private PacDot dot;
+	private PowerPellet powerDot;
+	
+	
+	
+}

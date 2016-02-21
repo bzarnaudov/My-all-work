@@ -1,0 +1,19 @@
+package pacman;
+
+public class Pacman {
+
+	
+	private void doAnim() {
+
+		pacanimcount--;
+
+		if (pacanimcount <= 0) {
+			pacanimcount = pacanimdelay; // make pacman to open his mouth slowly
+			pacmananimpos = pacmananimpos + pacanimdir;
+
+			if (pacmananimpos == (pacmananimcount - 1) || pacmananimpos == 0) {
+				pacanimdir = -pacanimdir;
+			}
+		}
+	}
+}

@@ -1,0 +1,21 @@
+package pacman;
+
+import javax.swing.JFrame;
+
+public class GameInitilaization extends JFrame{
+
+	public GameInitilaization() {
+
+		initUI();
+	}
+
+	private void initUI() {
+
+		add(new Board());
+		setTitle("Pacman by Arnaudov");
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setSize(375, 420);
+		setLocationRelativeTo(null);
+		setVisible(true);
+	}
+}
