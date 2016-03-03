@@ -59,11 +59,12 @@
 	</section>
 	<section name="FatJarPackageWizard">
 		<item value="G:\Users\Creature\workspace" key="FatJarPackageWizardPage.ANTSCRIPT_LOCATION"/>
-		<item value="DfsForAllDirectoriesOnHardDisk (1) - AllDirectoriesAtLocation" key="FatJarPackageWizardPage.LAUNCH_CONFIGURATION_SELECTION_NAME"/>
-		<item value="C:\Users\Creature\Desktop\DfsForAllDirectoriesAtLocation.jar" key="FatJarPackageWizardPage.DESTINATION_PATH_SELECTION"/>
+		<item value="PacmanByArnaudov - PacmanOOP" key="FatJarPackageWizardPage.LAUNCH_CONFIGURATION_SELECTION_NAME"/>
+		<item value="C:\Users\Creature\Desktop\PacmanByArnaudov.jar" key="FatJarPackageWizardPage.DESTINATION_PATH_SELECTION"/>
 		<item value="false" key="FatJarPackageWizardPage.ANTSCRIPT_SAVE"/>
-		<item value="1" key="FatJarPackageWizardPage.LIBRARY_HANDLING"/>
+		<item value="3" key="FatJarPackageWizardPage.LIBRARY_HANDLING"/>
 		<list key="FatJarPackageWizardPage.DESTINATION_NAMES_ID">
+			<item value="C:\Users\Creature\Desktop\PacmanByArnaudov.jar"/>
 			<item value="C:\Users\Creature\Desktop\DfsForAllDirectoriesAtLocation.jar"/>
 			<item value="C:\Users\Creature\Desktop\PacmanGame.jar"/>
 		</list>

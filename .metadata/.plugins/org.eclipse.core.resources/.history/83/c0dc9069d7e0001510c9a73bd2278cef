@@ -1,0 +1,379 @@
+
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Event;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
+import javax.swing.JPanel;
+import javax.swing.Timer;
+
+public class Game extends JPanel {
+
+	private static final long serialVersionUID = -5566108725243282994L;
+
+	private final int BLOCK_SIZE = 24;
+
+	private String levelFileName;
+	private Level level;
+	private MapSpot[][] levelContent;
+
+	private int screenSizeWidth;
+	private int screenSizeHeight;
+	private int numberOfGhosts;
+	private int totalScore;
+
+	private PacDot pacDot;
+	private PowerDot powerDot;
+
+	private Pacman pacman;
+	private Score score;
+	private Ghost[] ghost;
+	private TimeForKill timeForKill;
+
+	private Timer timer;
+
+	public Game() {
+
+		initVariables();
+
+		addKeyListener(new KeyListener() {
+			
+			@Override
+			public void keyTyped(KeyEvent e) {
+			}
+			
+			@Override
+			public void keyPressed(KeyEvent e) {
+
+				int key = e.getKeyCode();
+
+				if (key == KeyEvent.VK_LEFT) {
+					pacman.setRequestDirectionX(-1);
+					pacman.setRequestDirectionY(0);
+				} else if (key == KeyEvent.VK_RIGHT) {
+					pacman.setRequestDirectionX(1);
+					pacman.setRequestDirectionY(0);
+				} else if (key == KeyEvent.VK_UP) {
+					pacman.setRequestDirectionX(0);
+					pacman.setRequestDirectionY(-1);
+				} else if (key == KeyEvent.VK_DOWN) {
+					pacman.setRequestDirectionX(0);
+					pacman.setRequestDirectionY(1);
+				}
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+
+				int key = e.getKeyCode();
+
+				if (key == Event.LEFT || key == Event.RIGHT || key == Event.UP
+						|| key == Event.DOWN) {
+					pacman.setRequestDirectionX(0);
+					pacman.setRequestDirectionY(0);
+				}
+			}
+		});
+
+		setFocusable(true);
+		setBackground(Color.black);
+	}
+
+	private void initVariables() {
+		levelFileName = "../level0.csv";
+		level = new Level(levelFileName);
+		levelContent = level.getLevelContent();
+		screenSizeWidth = BLOCK_SIZE * levelContent[0].length;
+		screenSizeHeight = BLOCK_SIZE * levelContent.length;
+		pacDot = new PacDot();
+		powerDot = new PowerDot();
+		pacman = new Pacman();
+		score = new Score();
+		totalScore = level.totalScoreInLevel(pacDot, powerDot);
+		numberOfGhosts = 4;
+		timeForKill = new TimeForKill();
+
+		timer = new Timer(40, new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				repaint();
+			}
+		});
+		timer.start();
+	}
+
+	public int getScreenSizeWidth() {
+		return screenSizeWidth;
+	}
+
+	public int getScreenSizeHeight() {
+		return screenSizeHeight;
+	}
+
+	@Override
+	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
+
+		doDrawing(g);
+	}
+
+	private void doDrawing(Graphics g) {
+
+		Graphics2D g2d = (Graphics2D) g;
+
+		g2d.setColor(Color.black);
+
+		drawMaze(g2d);
+		drawScore(g2d);
+		drawTimeForKill(g2d);
+		pacman.doAnim();
+		playGame(g2d);
+
+		Toolkit.getDefaultToolkit().sync();
+		g2d.dispose();
+	}
+
+	private void drawMaze(Graphics2D g2d) {
+
+		int row = 0, column = 0;
+
+		for (int y = 0; y < screenSizeHeight; y += BLOCK_SIZE) {
+			for (int x = 0; x < screenSizeWidth; x += BLOCK_SIZE) {
+				g2d.setColor(level.getColor());
+				g2d.setStroke(new BasicStroke(2));
+
+				if (levelContent[row][column].hasLeftWall() == true) {
+					g2d.drawLine(x, y, x, y + BLOCK_SIZE - 1);
+				}
+
+				if (levelContent[row][column].hasTopWall() == true) {
+					g2d.drawLine(x, y, x + BLOCK_SIZE - 1, y);
+				}
+
+				if (levelContent[row][column].hasRightWall() == true) {
+					g2d.drawLine(x + BLOCK_SIZE - 1, y, x + BLOCK_SIZE - 1, y
+							+ BLOCK_SIZE - 1);
+				}
+
+				if (levelContent[row][column].hasBottomWall() == true) {
+					g2d.drawLine(x, y + BLOCK_SIZE - 1, x + BLOCK_SIZE - 1, y
+							+ BLOCK_SIZE - 1);
+				}
+
+				if (levelContent[row][column].hasDot() == true) {
+					g2d.setColor(pacDot.getColor());
+					g2d.fillRect(x + 11, y + 11, pacDot.getSize(),
+							pacDot.getSize());
+				}
+
+				if (levelContent[row][column].hasPowerDot() == true) {
+					g2d.setColor(powerDot.getColor());
+					g2d.fillRect(x + 6, y + 6, powerDot.getSize(),
+							powerDot.getSize());
+				}
+				column++;
+			}
+			column = 0;
+			row++;
+		}
+	}
+
+	private void drawScore(Graphics2D g) {
+		String s;
+		g.setFont(score.getFont());
+		g.setColor(score.getColor());
+		s = "Score: " + score.getScore();
+		g.drawString(s, screenSizeHeight / 2 + 96, screenSizeWidth + 16);
+	}
+
+	private void drawTimeForKill(Graphics2D g) {
+		String s;
+
+		g.setFont(timeForKill.getFont());
+		g.setColor(timeForKill.getColor());
+		s = "Remaining time for kill: " + timeForKill.getRemainingTimeForKill();
+		g.drawString(s, screenSizeWidth / 15, screenSizeHeight + 16);
+	}
+
+	private void playGame(Graphics2D g2d) {
+		if (!pacman.isAlive()) {
+			death();
+		} else {
+			pacman.movePacman(BLOCK_SIZE, levelContent, score, timeForKill);
+			drawPacman(g2d);
+			for (int i = 0; i < ghost.length; i++) {
+				ghost[i].moveGhosts(g2d, timeForKill.isKillerPacman(), pacman, BLOCK_SIZE, level, i);
+				drawGhost(g2d, ghost[i].columnPosition + 1, ghost[i].rowPosition + 1, i);
+			}
+
+			if (score.getScore() == totalScore) {
+				score.setScore(0);
+				initLevel();
+			}
+		}
+	}
+	
+	private void drawGhost(Graphics2D g2d, int x, int y, int i) {
+		g2d.drawImage(ghost[i].unit1, x, y, this);
+	}
+
+	private void death() {
+		score.setScore(0);
+		initLevel();
+	}
+
+	private void initLevel() {
+		level = new Level(levelFileName);
+		levelContent = level.getLevelContent();
+		timeForKill.setKillerPacman(false);
+		timeForKill.setRemainingTimeForKill(0);
+		continueLevel();
+	}
+
+	private void continueLevel() {
+
+		ghost = new Ghost[numberOfGhosts];
+		int directionY = -1;
+		int random;
+
+		for (int i = 0; i < numberOfGhosts; i++) {
+			ghost[i] = new Ghost(level.getRowStartingPositionGhost()
+					* BLOCK_SIZE, level.getColumnStartingPositionGhost()
+					* BLOCK_SIZE); // ghost starting point
+
+			ghost[i].setDirectionX(0);
+			ghost[i].setDirectionY(directionY);
+			directionY = -directionY;
+
+			// random for speed of ghost
+			random = (int) (Math.random() * (ghost[i].getSpeed() + 1));
+
+			if (random > ghost[i].getSpeed()) {
+				random = ghost[i].getSpeed();
+			}
+
+			ghost[i].setSpeed(Ghost.validSpeeds[random]);
+		}
+
+		// pacman starting point
+		pacman = new Pacman();
+		pacman.setRowPosition(level.getRowStartingPositionPacman() * BLOCK_SIZE);
+		pacman.setColumnPosition(level.getColumnStartingPositionPacman()
+				* BLOCK_SIZE);
+		pacman.setDirectionX(0);
+		pacman.setDirectionY(0);
+		pacman.setRequestDirectionX(0);
+		pacman.setRequestDirectionY(0);
+		pacman.setDrawDirectionX(-1);
+		pacman.setDrawDirectionY(0);
+	}
+
+	@Override
+	public void addNotify() {
+		super.addNotify();
+
+		initGame();
+	}
+
+	private void initGame() {
+
+		score.setScore(0);
+		initLevel();
+	}
+
+	public void drawPacman(Graphics2D g2d) {
+		int x = pacman.getColumnPosition() + 1;
+		int y = pacman.getRowPosition() + 1;
+
+		if (pacman.getDrawDirectionX() == -1) {
+			drawPacnanLeft(g2d, x, y);
+		} else if (pacman.getDrawDirectionX() == 1) {
+			drawPacmanRight(g2d, x, y);
+		} else if (pacman.getDrawDirectionY() == -1) {
+			drawPacmanUp(g2d, x, y);
+		} else {
+			drawPacmanDown(g2d, x, y);
+		}
+	}
+
+	private void drawPacmanUp(Graphics2D g2d, int x, int y) {
+
+		switch (pacman.getPacmanAnimationPos()) {
+		case 1:
+			g2d.drawImage(pacman.unit2up, x, y, this);
+			break;
+		case 2:
+			g2d.drawImage(pacman.unit3up, x, y, this);
+			break;
+		case 3:
+			g2d.drawImage(pacman.unit4up, x, y, this);
+			break;
+		default:
+			g2d.drawImage(pacman.unit1, x, y, this);
+			break;
+		}
+	}
+
+	private void drawPacmanDown(Graphics2D g2d, int x, int y) {
+
+		switch (pacman.getPacmanAnimationPos()) {
+		case 1:
+			g2d.drawImage(pacman.unit2down, x, y, this);
+			break;
+		case 2:
+			g2d.drawImage(pacman.unit3down, x, y, this);
+			break;
+		case 3:
+			g2d.drawImage(pacman.unit4down, x, y, this);
+			break;
+		default:
+			g2d.drawImage(pacman.unit1, x, y, this);
+			break;
+		}
+	}
+
+	private void drawPacnanLeft(Graphics2D g2d, int x, int y) {
+
+		switch (pacman.getPacmanAnimationPos()) {
+		case 1:
+			g2d.drawImage(pacman.unit2left, x, y, this);
+			break;
+		case 2:
+			g2d.drawImage(pacman.unit3left, x, y, this);
+			break;
+		case 3:
+			g2d.drawImage(pacman.unit4left, x, y, this);
+			break;
+		default:
+			g2d.drawImage(pacman.unit1, x, y, this);
+			break;
+		}
+	}
+
+	private void drawPacmanRight(Graphics2D g2d, int x, int y) {
+
+		switch (pacman.getPacmanAnimationPos()) {
+		case 1:
+			g2d.drawImage(pacman.unit2right, x, y, this);
+			break;
+		case 2:
+			g2d.drawImage(pacman.unit3right, x, y, this);
+			break;
+		case 3:
+			g2d.drawImage(pacman.unit4right, x, y, this);
+			break;
+		default:
+			g2d.drawImage(pacman.unit1, x, y, this);
+			break;
+		}
+	}
+
+}

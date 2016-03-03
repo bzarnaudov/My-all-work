@@ -1,0 +1,71 @@
+package pacman;
+
+import java.awt.Event;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+
+import javax.swing.Timer;
+
+
+public class EventController1 {
+	Game game;
+	Pacman pacman;
+	private Timer timer;
+	
+	public EventController1(Game game, Pacman pacman) {
+		this.pacman = pacman;
+		this.game = game;
+		setUpListeners();
+	}
+	
+	 public void setUpListeners() {
+		game.addKeyListener(keyAdapter);
+		timer = new Timer(40, actionListener);
+		timer.start();
+		
+	 }
+	
+    private KeyAdapter keyAdapter = new KeyAdapter() {
+    	@Override
+		public void keyPressed(KeyEvent e) {
+
+			int key = e.getKeyCode();
+
+			if (key == KeyEvent.VK_LEFT) {
+				pacman.setRequestDirectionX(-1);
+				pacman.setRequestDirectionY(0);
+			} else if (key == KeyEvent.VK_RIGHT) {
+				pacman.setRequestDirectionX(1);
+				pacman.setRequestDirectionY(0);
+			} else if (key == KeyEvent.VK_UP) {
+				pacman.setRequestDirectionX(0);
+				pacman.setRequestDirectionY(-1);
+			} else if (key == KeyEvent.VK_DOWN) {
+				pacman.setRequestDirectionX(0);
+				pacman.setRequestDirectionY(1);
+			}
+		}
+
+		@Override
+		public void keyReleased(KeyEvent e) {
+
+			int key = e.getKeyCode();
+
+			if (key == Event.LEFT || key == Event.RIGHT || key == Event.UP
+					|| key == Event.DOWN) {
+				pacman.setRequestDirectionX(0);
+				pacman.setRequestDirectionY(0);
+			}
+		}
+    };
+
+    private ActionListener actionListener = new ActionListener() {
+    	@Override
+        public void actionPerformed(ActionEvent e){
+    		game.repaint();
+    	}
+
+    };
+}

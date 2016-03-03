@@ -1,0 +1,50 @@
+package pacman;
+
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
+public class EventController implements KeyListener {
+	private Pacman pacman;
+
+	public EventController(Pacman pacman) {
+		this.pacman = pacman;
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+
+		int key = e.getKeyCode();
+
+		if (key == KeyEvent.VK_LEFT) {
+			pacman.setRequestDirectionX(-1);
+			pacman.setRequestDirectionY(0);
+		} else if (key == KeyEvent.VK_RIGHT) {
+			pacman.setRequestDirectionX(1);
+			pacman.setRequestDirectionY(0);
+		} else if (key == KeyEvent.VK_UP) {
+			pacman.setRequestDirectionX(0);
+			pacman.setRequestDirectionY(-1);
+		} else if (key == KeyEvent.VK_DOWN) {
+			pacman.setRequestDirectionX(0);
+			pacman.setRequestDirectionY(1);
+		}
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+
+		int key = e.getKeyCode();
+
+		if (key == Event.LEFT || key == Event.RIGHT || key == Event.UP
+				|| key == Event.DOWN) {
+			pacman.setRequestDirectionX(0);
+			pacman.setRequestDirectionY(0);
+		}
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+}
