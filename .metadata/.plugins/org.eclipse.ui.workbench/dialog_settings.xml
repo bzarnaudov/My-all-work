@@ -5,8 +5,8 @@
 		<item value="506" key="DIALOG_X_ORIGIN"/>
 	</section>
 	<section name="org.eclipse.ui.internal.QuickAccess">
-		<item value="490" key="dialogHeight"/>
-		<item value="960" key="dialogWidth"/>
+		<item value="760" key="dialogHeight"/>
+		<item value="1440" key="dialogWidth"/>
 		<list key="textEntries">
 		</list>
 		<list key="orderedElements">
@@ -39,11 +39,11 @@
 		<item value="false" key="WizardFileSystemResourceImportPage1.STORE_CREATE_CONTAINER_STRUCTURE_ID"/>
 		<item value="false" key="WizardFileSystemResourceImportPage1.STORE_OVERWRITE_EXISTING_RESOURCES_ID"/>
 		<list key="WizardFileSystemResourceImportPage1.STORE_SOURCE_NAMES_ID">
+			<item value="C:\Users\Creature\Desktop"/>
+			<item value="G:\Users\Creature\workspace\PacmanOOPbug"/>
 			<item value="C:\Users\Creature\Desktop\resources"/>
 			<item value="G:\Users\Creature\workspace\PacmanOOP\src\resources"/>
-			<item value="C:\Users\Creature\Desktop"/>
 			<item value="C:\Users\Creature\Desktop\Programirane\java knigi\borislav dimitrov knigi\1"/>
-			<item value="G:\Users\Creature\workspace\MultithreadingAndParallelProgramming\image"/>
 		</list>
 	</section>
 </section>

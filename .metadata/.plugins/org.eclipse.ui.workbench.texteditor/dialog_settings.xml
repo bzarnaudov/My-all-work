@@ -12,14 +12,14 @@
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="../src/"/>
+			<item value="../src"/>
 			<item value="../../"/>
 			<item value="../"/>
 			<item value="resources"/>
 			<item value="killer"/>
 			<item value="killeer"/>
 			<item value="system"/>
-			<item value="ghost"/>
-			<item value="getLe"/>
 		</list>
 		<list key="replacehistory">
 			<item value=""/>
