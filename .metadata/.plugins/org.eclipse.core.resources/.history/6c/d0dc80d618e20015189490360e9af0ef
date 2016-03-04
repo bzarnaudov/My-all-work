@@ -1,0 +1,32 @@
+Information , about movement of ghosts:
+
+1 - always chases pacman with breath 
+first search(BFS) algorithm
+
+2 - 50% chases pacman with BFS and 
+other 50% random movement (there is 
+also restrictions with their help, 
+when ghost entered tunnel, he has 
+to exit and after this to change his 
+direction, because he will cycle if 
+there are no restrictions)
+
+3 - with BFS goes from one corner to 
+other
+
+4 - random movement
+
+When you take power dot : three ghosts 
+will go back to the starting point and
+forth ghost will try to go to starting 
+point, but 50% of his movement is random 
+and can't come back so fast like others. 
+This movement I named drunken movement.
+
+Pacman will be invisible for 10 seconds 
+and in this time you can eat ghost. They 
+will go to their starting point.
+
+Когато се вземе голяма точка 3 от тях веднага се прибират към обежището си, а 4 тия се опитва да се прибере , но 50 % от ходовете му са рандом и му е по трудно да стигне до целта - на този дух му викам пияния дух :)
+
+10 секунди се отброяват докато пакмана може да изяжда духове и през това време духовете се стремят да са си в обежището.
